@@ -1,35 +1,31 @@
 <?php
 
-<<<<<<< HEAD
-class Type extends Admin_Controller
-=======
 class type extends Admin_Controller
->>>>>>> 973db4d77c337813cc07a2f4bce82c3f5e463ac7
 {
 	
 	public function __construct(){
     	parent::__construct();
-        $this->load->module_model('venue_type','venue_type_model');
-        $this->lang->module_load('venue_type','venue_type');
+        $this->load->module_model('event_type','event_type_model');
+        $this->lang->module_load('event_type','event_type');
         //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
     }
     
 	public function index()
 	{
 		// Display Page
-		$data['header'] = 'venue_type';
-		$data['page'] = $this->config->item('template_admin') . "venue_type/index";
-		$data['module'] = 'venue_type';
+		$data['header'] = 'event_type';
+		$data['page'] = $this->config->item('template_admin') . "event_type/index";
+		$data['module'] = 'event_type';
 		$this->load->view($this->_container,$data);		
 	}
 
 	public function json()
 	{
 		$this->_get_search_param();	
-		$total=$this->venue_type_model->count();
-		paging('venue_type_id');
+		$total=$this->event_type_model->count();
+		paging('event_type_id');
 		$this->_get_search_param();	
-		$rows=$this->venue_type_model->getVenueTypes()->result_array();
+		$rows=$this->event_type_model->getEventTypes()->result_array();
 		echo json_encode(array('total'=>$total,'rows'=>$rows));
 	}
 	
@@ -39,7 +35,7 @@ class type extends Admin_Controller
 		parse_str($this->input->post('data'),$params);
 		if(!empty($params['search']))
 		{
-			($params['search']['venue_type']!='')?$this->db->like('venue_type',$params['search']['venue_type']):'';
+			($params['search']['event_type']!='')?$this->db->like('event_type',$params['search']['event_type']):'';
 
 		}  
 
@@ -54,11 +50,23 @@ class type extends Admin_Controller
         
 	}
 
-		
+	
+	private function _datewise($field,$from,$to)
+	{
+			if(!empty($from) && !empty($to))
+			{
+				$this->db->where("(date_format(".$field.",'%Y-%m-%d') between '".date('Y-m-d',strtotime($from)).
+						"' and '".date('Y-m-d',strtotime($to))."')");
+			}
+			else if(!empty($from))
+			{
+				$this->db->like($field,date('Y-m-d',strtotime($from)));				
+			}		
+	}	
     
 	public function combo_json()
     {
-		$rows=$this->venue_type_model->getVenueTypes()->result_array();
+		$rows=$this->event_type_model->getEventTypes()->result_array();
 		echo json_encode($rows);    	
     }    
     
@@ -68,7 +76,7 @@ class type extends Admin_Controller
 		if($id && is_array($id))
 		{
         	foreach($id as $row):
-				$this->venue_type_model->delete('VENUE_TYPES',array('venue_type_id'=>$row));
+				$this->event_type_model->delete('EVENT_TYPES',array('event_type_id'=>$row));
             endforeach;
 		}
 	}    
@@ -78,13 +86,13 @@ class type extends Admin_Controller
 		
         $data=$this->_get_posted_data(); //Retrive Posted Data		
 
-        if(!$this->input->post('venue_type_id'))
+        if(!$this->input->post('event_type_id'))
         {
-            $success=$this->venue_type_model->insert('VENUE_TYPES',$data);
+            $success=$this->event_type_model->insert('EVENT_TYPES',$data);
         }
         else
         {
-            $success=$this->venue_type_model->update('VENUE_TYPES',$data,array('venue_type_id'=>$data['venue_type_id']));
+            $success=$this->event_type_model->update('EVENT_TYPES',$data,array('event_type_id'=>$data['event_type_id']));
         }
         
 		if($success)
@@ -105,8 +113,9 @@ class type extends Admin_Controller
    private function _get_posted_data()
    {
    		$data=array();
-        $data['venue_type_id'] = $this->input->post('venue_type_id');
-$data['venue_type'] = $this->input->post('venue_type');
+        $data['event_type_id'] = $this->input->post('event_type_id');
+$data['event_type'] = $this->input->post('event_type');
+$data['created_date'] = $this->input->post('created_date');
 
         return $data;
    }

@@ -39,7 +39,15 @@ class Venue extends Admin_Controller
 ($params['search']['venue_type_id']!='')?$this->db->where('venue_type_id',$params['search']['venue_type_id']):'';
 ($params['search']['venue_location']!='')?$this->db->like('venue_location',$params['search']['venue_location']):'';
 ($params['search']['venue_city']!='')?$this->db->like('venue_city',$params['search']['venue_city']):'';
+<<<<<<< HEAD
 ($params['search']['cusine']!='')?$this->db->like('cusine',$params['search']['cusine']):'';
+=======
+($params['search']['venue_longitude']!='')?$this->db->where('venue_longitude',$params['search']['venue_longitude']):'';
+($params['search']['venue_latitude']!='')?$this->db->where('venue_latitude',$params['search']['venue_latitude']):'';
+($params['search']['cusine']!='')?$this->db->like('cusine',$params['search']['cusine']):'';
+($params['search']['venue_drink']!='')?$this->db->like('venue_drink',$params['search']['venue_drink']):'';
+($params['search']['venue_food']!='')?$this->db->like('venue_food',$params['search']['venue_food']):'';
+>>>>>>> 973db4d77c337813cc07a2f4bce82c3f5e463ac7
 ($params['search']['food_price_range']!='')?$this->db->like('food_price_range',$params['search']['food_price_range']):'';
 ($params['search']['drink_price_range']!='')?$this->db->like('drink_price_range',$params['search']['drink_price_range']):'';
 (isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
@@ -95,7 +103,10 @@ class Venue extends Admin_Controller
 
         if(!$this->input->post('venue_id'))
         {
+<<<<<<< HEAD
             $data['created_date'] = date('Y-m-d H:i:s');
+=======
+>>>>>>> 973db4d77c337813cc07a2f4bce82c3f5e463ac7
             $success=$this->venue_model->insert('VENUES',$data);
         }
         else

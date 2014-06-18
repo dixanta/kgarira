@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 class Type extends Admin_Controller
-=======
-class type extends Admin_Controller
->>>>>>> 973db4d77c337813cc07a2f4bce82c3f5e463ac7
 {
 	
 	public function __construct(){

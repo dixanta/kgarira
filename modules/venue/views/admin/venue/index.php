@@ -14,40 +14,17 @@
 <td><label><?php echo lang('venue_city')?></label>:</td>
 <td><input type="text" name="search[venue_city]" id="search_venue_city"  class="easyui-validatebox"/></td>
 </tr>
-<<<<<<< HEAD
-<td><label><?php echo lang('cusine')?></label>:</td>
-<td><input type="text" name="search[cusine]" id="search_cusine"  class="easyui-validatebox"/></td>
-=======
-<tr>
-<td><label><?php echo lang('venue_longitude')?></label>:</td>
-<td><input type="text" name="search[venue_longitude]" id="search_venue_longitude"  class="easyui-numberbox"/></td>
-<td><label><?php echo lang('venue_latitude')?></label>:</td>
-<td><input type="text" name="search[venue_latitude]" id="search_venue_latitude"  class="easyui-numberbox"/></td>
-</tr>
 <tr>
 <td><label><?php echo lang('cusine')?></label>:</td>
 <td><input type="text" name="search[cusine]" id="search_cusine"  class="easyui-validatebox"/></td>
-<td><label><?php echo lang('venue_drink')?></label>:</td>
-<td><input type="text" name="search[venue_drink]" id="search_venue_drink"  class="easyui-validatebox"/></td>
-</tr>
-<tr>
-<td><label><?php echo lang('venue_food')?></label>:</td>
-<td><input type="text" name="search[venue_food]" id="search_venue_food"  class="easyui-validatebox"/></td>
->>>>>>> 973db4d77c337813cc07a2f4bce82c3f5e463ac7
 <td><label><?php echo lang('food_price_range')?></label>:</td>
 <td><input type="text" name="search[food_price_range]" id="search_food_price_range"  class="easyui-validatebox"/></td>
 </tr>
 <tr>
 <td><label><?php echo lang('drink_price_range')?></label>:</td>
-<<<<<<< HEAD
-<td><input type="text" name="search[drink_price_range]" id="search_drink_price_range"  class="easyui-validatebox"/></td>    
-=======
 <td><input type="text" name="search[drink_price_range]" id="search_drink_price_range"  class="easyui-validatebox"/></td>
-<td><label><?php echo lang('created_date')?></label>:</td>
-<td><input type="text" name="date[created_date][from]" id="search_created_date_from"  class="easyui-datebox"/> ~ <input type="text" name="date[created_date][to]" id="search_created_date_to"  class="easyui-datebox"/></td>
 </tr>
 <tr>
->>>>>>> 973db4d77c337813cc07a2f4bce82c3f5e463ac7
 <td><label><?php echo lang('status')?></label>:</td>
 <td><input type="radio" name="search[status]" id="search_status1" value="1"/><?php echo lang('general_yes')?>
 									<input type="radio" name="search[status]" id="search_status0" value="0"/><?php echo lang('general_no')?></td>
@@ -71,15 +48,7 @@
 <th data-options="field:'venue_type_id',sortable:true" width="50"><?php echo lang('venue_type_id')?></th>
 <th data-options="field:'venue_location',sortable:true" width="50"><?php echo lang('venue_location')?></th>
 <th data-options="field:'venue_city',sortable:true" width="50"><?php echo lang('venue_city')?></th>
-<<<<<<< HEAD
 <th data-options="field:'cusine',sortable:true" width="50"><?php echo lang('cusine')?></th>
-=======
-<th data-options="field:'venue_longitude',sortable:true" width="50"><?php echo lang('venue_longitude')?></th>
-<th data-options="field:'venue_latitude',sortable:true" width="50"><?php echo lang('venue_latitude')?></th>
-<th data-options="field:'cusine',sortable:true" width="50"><?php echo lang('cusine')?></th>
-<th data-options="field:'venue_drink',sortable:true" width="50"><?php echo lang('venue_drink')?></th>
-<th data-options="field:'venue_food',sortable:true" width="50"><?php echo lang('venue_food')?></th>
->>>>>>> 973db4d77c337813cc07a2f4bce82c3f5e463ac7
 <th data-options="field:'food_price_range',sortable:true" width="50"><?php echo lang('food_price_range')?></th>
 <th data-options="field:'drink_price_range',sortable:true" width="50"><?php echo lang('drink_price_range')?></th>
 <th data-options="field:'created_date',sortable:true" width="50"><?php echo lang('created_date')?></th>
@@ -139,12 +108,9 @@
 		              <td width="34%" ><label><?php echo lang('drink_price_range')?>:</label></td>
 					  <td width="66%"><input name="drink_price_range" id="drink_price_range" class="easyui-validatebox" required="true"></td>
 		       </tr><tr>
-<<<<<<< HEAD
-=======
 		              <td width="34%" ><label><?php echo lang('created_date')?>:</label></td>
 					  <td width="66%"><input name="created_date" id="created_date" class="easyui-datetimebox" required="true"></td>
 		       </tr><tr>
->>>>>>> 973db4d77c337813cc07a2f4bce82c3f5e463ac7
 		              <td width="34%" ><label><?php echo lang('status')?>:</label></td>
 					  <td width="66%"><input type="radio" value="1" name="status" id="status1" /><?php echo lang("general_yes")?> <input type="radio" value="0" name="status" id="status0" /><?php echo lang("general_no")?></td>
 		       </tr><input type="hidden" name="venue_id" id="venue_id"/>

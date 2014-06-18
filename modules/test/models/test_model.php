@@ -1,28 +1,28 @@
 <?php
-class Email_template_model extends MY_Model
+class Test_model extends MY_Model
 {
 	var $joins=array();
     public function __construct()
     {
     	parent::__construct();
-        $this->prefix='be_groups';
-        $this->_TABLES=array('EMAIL_TEMPLATES'=>$this->prefix.'email_templates');
+        $this->prefix='tbl_';
+        $this->_TABLES=array('TEST'=>$this->prefix.'test');
 		$this->_JOINS=array('KEY'=>array('join_type'=>'LEFT','join_field'=>'join1.id=join2.id',
                                            'select'=>'field_names','alias'=>'alias_name'),
                            
                             );        
     }
     
-    public function getEmailTemplates($where=NULL,$order_by=NULL,$limit=array('limit'=>NULL,'offset'=>''))
+    public function getTests($where=NULL,$order_by=NULL,$limit=array('limit'=>NULL,'offset'=>''))
     {
-       $fields='email_templates.*';
+       $fields='tests.*';
        
 		foreach($this->joins as $key):
 			$fields=$fields . ','.$this->_JOINS[$key]['select'];
 		endforeach;
                 
         $this->db->select($fields);
-        $this->db->from($this->_TABLES['EMAIL_TEMPLATES']. ' email_templates');
+        $this->db->from($this->_TABLES['TEST']. ' tests');
 		
 		foreach($this->joins as $key):
                     $this->db->join($this->_TABLES[$key]. ' ' .$this->_JOINS[$key]['alias'],$this->_JOINS[$key]['join_field'],$this->_JOINS[$key]['join_type']);
@@ -41,7 +41,7 @@ class Email_template_model extends MY_Model
     public function count($where=NULL)
     {
 		
-        $this->db->from($this->_TABLES['EMAIL_TEMPLATES'].' email_templates');
+        $this->db->from($this->_TABLES['TEST'].' tests');
         
         foreach($this->joins as $key):
         $this->db->join($this->_TABLES[$key]. ' ' .$this->_JOINS[$key]['alias'],$this->_JOINS[$key]['join_field'],$this->_JOINS[$key]['join_type']);

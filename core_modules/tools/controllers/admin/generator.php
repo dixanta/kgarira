@@ -95,7 +95,7 @@ class Generator extends Admin_Controller
 		$this->_generate_model_file($this->module_name);
 		$this->_generate_language_file($this->module_name);
 		$this->_generate_controller_file($this->module_name);	
-		$this->_generate_api_controller_file($this->module_name);			
+		//$this->_generate_api_controller_file($this->module_name);			
 
 		$primary_key=$this->_get_primary_key();	
 		$upload_view_function='';

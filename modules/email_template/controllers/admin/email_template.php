@@ -7,7 +7,7 @@ class Email_template extends Admin_Controller
     	parent::__construct();
         $this->load->module_model('email_template','email_template_model');
         $this->lang->module_load('email_template','email_template');
-		$this->bep_assets->load_asset('tinymce');
+        //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
     }
     
 	public function index()
@@ -22,7 +22,7 @@ class Email_template extends Admin_Controller
 	public function json()
 	{
 		$this->_get_search_param();	
-		$total=$this->email_template_model->countEmailTemplates();
+		$total=$this->email_template_model->count();
 		paging('email_template_id');
 		$this->_get_search_param();	
 		$rows=$this->email_template_model->getEmailTemplates()->result_array();
@@ -36,8 +36,8 @@ class Email_template extends Admin_Controller
 		if(!empty($params['search']))
 		{
 			($params['search']['name']!='')?$this->db->like('name',$params['search']['name']):'';
-			($params['search']['slug_name']!='')?$this->db->like('slug_name',$params['search']['slug_name']):'';
-			($params['search']['subject']!='')?$this->db->like('subject',$params['search']['subject']):'';
+($params['search']['slug_name']!='')?$this->db->like('slug_name',$params['search']['slug_name']):'';
+($params['search']['subject']!='')?$this->db->like('subject',$params['search']['subject']):'';
 
 		}  
 
@@ -83,19 +83,17 @@ class Email_template extends Admin_Controller
 		}
 	}    
 
-	public function form_json()
+	public function save()
 	{
 		
         $data=$this->_get_posted_data(); //Retrive Posted Data		
 
         if(!$this->input->post('email_template_id'))
         {
-			$data['created_date'] = date('Y-m-d H:i:s');
-			$success=$this->email_template_model->insert('EMAIL_TEMPLATES',$data);
+            $success=$this->email_template_model->insert('EMAIL_TEMPLATES',$data);
         }
         else
         {
-			$data['modified_date'] = date('Y-m-d H:i:s');           
             $success=$this->email_template_model->update('EMAIL_TEMPLATES',$data,array('email_template_id'=>$data['email_template_id']));
         }
         
@@ -118,10 +116,13 @@ class Email_template extends Admin_Controller
    {
    		$data=array();
         $data['email_template_id'] = $this->input->post('email_template_id');
-		$data['name'] = $this->input->post('name');
-		$data['slug_name'] = $this->input->post('slug_name');
-		$data['subject'] = $this->input->post('subject');
-		$data['body'] = $this->input->post('body');
+$data['name'] = $this->input->post('name');
+$data['slug_name'] = $this->input->post('slug_name');
+$data['subject'] = $this->input->post('subject');
+$data['body'] = $this->input->post('body');
+$data['created_date'] = $this->input->post('created_date');
+$data['modified_date'] = $this->input->post('modified_date');
+
         return $data;
    }
    

@@ -1,9 +1,14 @@
 <?php
 function easyui_settings($key)
 {
-	$combo_settings['AREA']=array('url'=>site_url('area/admin/area/combo_json'),
-								'valueField'=>'area_id',
-								'textField'=>'area_name'
+	$combo_settings['EVENT_TYPE']=array('url'=>site_url('event/admin/type/combo_json'),
+								'valueField'=>'event_type_id',
+								'textField'=>'event_type'
+							);
+							
+	$combo_settings['VENUE']=array('url'=>site_url('venue/admin/venue/combo_json'),
+								'valueField'=>'venue_id',
+								'textField'=>'venue_name'
 							);
 	$combo_settings['BLOG_CATEGORY']=array('url'=>site_url('blog/admin/category/combo_json'),
 								'valueField'=>'blogcategory_id',

@@ -36,7 +36,7 @@
 </div> 
 
 <!--for create and edit venue_type form-->
-<div id="dlg" class="easyui-dialog" style="width:600px;height:auto;padding:10px 20px"
+<div id="dlg" class="easyui-dialog" style="width:800px;height:auto;padding:10px 20px"
         data-options="closed:true,collapsible:true,buttons:'#dlg-buttons',modal:true">
     <form id="form-venue_type" method="post" >
     <table>
@@ -48,7 +48,6 @@
     </form>
 	<div id="dlg-buttons">
     	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
-       	<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save_notify()"><?php  echo  lang('general_save_notify')?></a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
 	</div>    
 </div>
@@ -188,31 +187,6 @@
 		
 	}
     
-    function save_notify()
-	{
-		$('#form-venue_type').form('submit',{
-			url: '<?php  echo site_url('venue/admin/type/save_notify')?>',
-			onSubmit: function(){
-				return $(this).form('validate');
-			},
-			success: function(result){
-				var result = eval('('+result+')');
-				if (result.success)
-				{
-					$('#form-venue_type').form('clear');
-					$('#dlg').window('close');		// close the dialog
-					$.messager.show({title: '<?php  echo lang('success')?>',msg: result.msg});
-					$('#venue_type-table').datagrid('reload');	// reload the user data
-				} 
-				else 
-				{
-					$.messager.show({title: '<?php  echo lang('error')?>',msg: result.msg});
-				} //if close
-			}//success close
-		
-		});		
-		
-	}
 	
 	
 </script>

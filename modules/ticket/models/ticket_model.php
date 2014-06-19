@@ -1,33 +1,28 @@
 <?php
-class Event_model extends MY_Model
+class Ticket_model extends MY_Model
 {
 	var $joins=array();
     public function __construct()
     {
     	parent::__construct();
         $this->prefix='tbl_';
-        $this->_TABLES=array('EVENTS'=>$this->prefix.'events','EVENT_TYPES'=>$this->prefix.'event_types',
-							 'VENUES'=>$this->prefix.'venues');
-		
-		$this->_JOINS=array('VENUES'=>array('join_type'=>'LEFT','join_field'=>'venues.venue_id=events.venue_id',
-                                           'select'=>'venue_name','alias'=>'venues'),
-							'EVENT_TYPES'=>array('join_type'=>'LEFT','join_field'=>'event_types.event_type_id=events.event_type_id',
-                                           'select'=>'event_type','alias'=>'event_types'),
+        $this->_TABLES=array('TICKETS'=>$this->prefix.'tickets','EVENTS'=>$this->prefix.'events');
+		$this->_JOINS=array('EVENTS'=>array('join_type'=>'LEFT','join_field'=>'events.event_id=tickets.ticket_id',
+                                           'select'=>'event_name','alias'=>'events'),
                            
-                            );
-        
+                            );        
     }
     
-    public function getEvents($where=NULL,$order_by=NULL,$limit=array('limit'=>NULL,'offset'=>''))
+    public function getTickets($where=NULL,$order_by=NULL,$limit=array('limit'=>NULL,'offset'=>''))
     {
-       $fields='events.*';
+       $fields='tickets.*';
        
 		foreach($this->joins as $key):
 			$fields=$fields . ','.$this->_JOINS[$key]['select'];
 		endforeach;
                 
         $this->db->select($fields);
-        $this->db->from($this->_TABLES['EVENTS']. ' events');
+        $this->db->from($this->_TABLES['TICKETS']. ' tickets');
 		
 		foreach($this->joins as $key):
                     $this->db->join($this->_TABLES[$key]. ' ' .$this->_JOINS[$key]['alias'],$this->_JOINS[$key]['join_field'],$this->_JOINS[$key]['join_type']);
@@ -46,7 +41,7 @@ class Event_model extends MY_Model
     public function count($where=NULL)
     {
 		
-        $this->db->from($this->_TABLES['EVENTS'].' events');
+        $this->db->from($this->_TABLES['TICKETS'].' tickets');
         
         foreach($this->joins as $key):
         $this->db->join($this->_TABLES[$key]. ' ' .$this->_JOINS[$key]['alias'],$this->_JOINS[$key]['join_field'],$this->_JOINS[$key]['join_type']);

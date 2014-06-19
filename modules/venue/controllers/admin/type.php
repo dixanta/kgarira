@@ -14,7 +14,7 @@ class Type extends Admin_Controller
 	{
 		// Display Page
 		$data['header'] = 'venue_type';
-		$data['page'] = $this->config->item('template_admin') . "venue_type/index";
+		$data['page'] = $this->config->item('template_admin') . "type/index";
 		$data['module'] = 'venue';
 		$this->load->view($this->_container,$data);		
 	}
@@ -98,11 +98,6 @@ class Type extends Admin_Controller
         
 	}
    
-   public function save_notify()
-    {
-     $this->save();
-     //email code
-    }
    private function _get_posted_data()
    {
    		$data=array();

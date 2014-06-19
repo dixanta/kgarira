@@ -29,12 +29,6 @@
 <td><input type="text" name="search[member_id]" id="search_member_id"  class="easyui-numberbox"/></td>
 </tr>
 <tr>
-<td><label><?php echo lang('slug_id')?></label>:</td>
-<td><input type="text" name="search[slug_id]" id="search_slug_id"  class="easyui-numberbox"/></td>
-</tr>
-<tr>
-<td><label><?php echo lang('slug_name')?></label>:</td>
-<td><input type="text" name="search[slug_name]" id="search_slug_name"  class="easyui-validatebox"/></td>
 <td><label><?php echo lang('status')?></label>:</td>
 <td><input type="radio" name="search[status]" id="search_status1" value="1"/><?php echo lang('general_yes')?>
 									<input type="radio" name="search[status]" id="search_status0" value="0"/><?php echo lang('general_no')?></td>
@@ -69,11 +63,6 @@
 <th data-options="field:'paid_tickets',sortable:true" width="50"><?php echo lang('paid_tickets')?></th>
 <th data-options="field:'ticket_amount',sortable:true" width="50"><?php echo lang('ticket_amount')?></th>
 <th data-options="field:'member_id',sortable:true" width="50"><?php echo lang('member_id')?></th>
-<th data-options="field:'fb_event_id',sortable:true" width="50"><?php echo lang('fb_event_id')?></th>
-<th data-options="field:'is_fb_event',sortable:true" width="50"><?php echo lang('is_fb_event')?></th>
-<th data-options="field:'is_guest_event',sortable:true" width="50"><?php echo lang('is_guest_event')?></th>
-<th data-options="field:'slug_id',sortable:true" width="50"><?php echo lang('slug_id')?></th>
-<th data-options="field:'slug_name',sortable:true" width="50"><?php echo lang('slug_name')?></th>
 <th data-options="field:'status',sortable:true,formatter:formatStatus" width="30" align="center"><?php echo lang('status')?></th>
 
     <th field="action" width="100" formatter="getActions"><?php  echo lang('action')?></th>

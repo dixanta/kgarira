@@ -48,11 +48,6 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 ($params['search']['paid_tickets']!='')?$this->db->where('paid_tickets',$params['search']['paid_tickets']):'';
 ($params['search']['ticket_amount']!='')?$this->db->like('ticket_amount',$params['search']['ticket_amount']):'';
 ($params['search']['member_id']!='')?$this->db->where('member_id',$params['search']['member_id']):'';
-($params['search']['fb_event_id']!='')?$this->db->where('fb_event_id',$params['search']['fb_event_id']):'';
-(isset($params['search']['is_fb_event']))?$this->db->where('is_fb_event',$params['search']['is_fb_event']):'';
-(isset($params['search']['is_guest_event']))?$this->db->where('is_guest_event',$params['search']['is_guest_event']):'';
-($params['search']['slug_id']!='')?$this->db->where('slug_id',$params['search']['slug_id']):'';
-($params['search']['slug_name']!='')?$this->db->like('slug_name',$params['search']['slug_name']):'';
 (isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
 
 		}  

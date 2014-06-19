@@ -1,4 +1,4 @@
-<div region="center" border="false">
+<div region="center" border="false">  
 <div style="padding:20px">
 <div id="search-panel" class="easyui-panel" data-options="title:'<?php  echo lang('event_artist_search')?>',collapsible:true,iconCls:'icon-search'" style="padding:5px">
 <form action="" method="post" id="event_artist-search-form">

@@ -1,9 +1,9 @@
 <?php
 function easyui_settings($key)
 {
-	$combo_settings['AREA']=array('url'=>site_url('area/admin/area/combo_json'),
-								'valueField'=>'area_id',
-								'textField'=>'area_name'
+	$combo_settings['GENRE']=array('url'=>site_url('genre/admin/genre/combo_json'),
+								'valueField'=>'genre_id',
+								'textField'=>'genre_name'
 							);
 	$combo_settings['BLOG_CATEGORY']=array('url'=>site_url('blog/admin/category/combo_json'),
 								'valueField'=>'blogcategory_id',

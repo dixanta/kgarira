@@ -23,7 +23,8 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 
 	public function json()
 	{
-		$this->_get_search_param();	
+		$this->_get_search_param();
+		$this->event_model->joins=array('VENUES','EVENT_TYPES');
 		$total=$this->event_model->count();
 		paging('event_id');
 		$this->_get_search_param();	
@@ -125,6 +126,12 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 		 
 		 echo json_encode(array('msg'=>$msg,'success'=>$success));		
         
+	}
+	
+	public function save_notify()
+	{
+		$this->save();		
+        //email section
 	}
    
    private function _get_posted_data()

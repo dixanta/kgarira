@@ -51,6 +51,7 @@
     </form>
 	<div id="dlg-buttons">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save_notify()"><?php  echo  lang('general_save_notify')?></a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
 	</div>    
 </div>
@@ -189,6 +190,7 @@
 		});		
 		
 	}
+	
 	
 	
 </script>

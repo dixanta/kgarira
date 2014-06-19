@@ -1,6 +1,11 @@
 <?php
 function easyui_settings($key)
 {
+	$combo_settings['EVENT_TYPE']=array('url'=>site_url('event/admin/type/combo_json'),
+								'valueField'=>'event_type_id',
+								'textField'=>'event_type'
+							);
+							
 	$combo_settings['VENUE_TYPE']=array('url'=>site_url('venue/admin/type/combo_json'),
 									'valueField'=>'venue_type_id',
 							'textField'=>'venue_type'
@@ -18,7 +23,7 @@ function easyui_settings($key)
 								'valueField'=>'genre_id',
 								'textField'=>'genre_name'
 							);
-							
+		
 	$combo_settings['EVENT_TYPE']=array('url'=>site_url('event/admin/type/combo_json'),
 								'valueField'=>'event_type_id',
 								'textField'=>'event_type'
@@ -28,7 +33,11 @@ function easyui_settings($key)
 								'valueField'=>'venue_id',
 								'textField'=>'venue_name'
 								);
-														
+	
+	$combo_settings['VENUE']=array('url'=>site_url('venue/admin/venue/combo_json'),
+								'valueField'=>'venue_id',
+								'textField'=>'venue_name'
+							);
 	$combo_settings['BLOG_CATEGORY']=array('url'=>site_url('blog/admin/category/combo_json'),
 								'valueField'=>'blogcategory_id',
 								'textField'=>'blogcategory_name'

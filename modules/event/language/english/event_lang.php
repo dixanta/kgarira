@@ -27,8 +27,8 @@ $lang['create_event']='Create Event';
 $lang['edit_event']='Edit Event';
 $lang['delete_event']='Delete Event';
 $lang['event_search']='Event Search';
-
-$lang['event']='Event';
+$lang['event_search']='Event Search';
+$lang['upload_images']='Upload Images';
 //$lang['action']='Actions';
 //$lang['saved_successful']='Saved Successful';
 //$lang['delete_successful']='Delete Successful';

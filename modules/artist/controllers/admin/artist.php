@@ -122,13 +122,13 @@ protected $uploadthumbpath= 'uploads/artist/thumb/';
    {
    		$data=array();
         $data['artist_id'] = $this->input->post('artist_id');
-$data['artist_name'] = $this->input->post('artist_name');
-$data['artist_description'] = $this->input->post('artist_description');
-$data['artist_image'] = $this->input->post('artist_image');
-$data['contact_number'] = $this->input->post('contact_number');
-$data['created_date'] = $this->input->post('created_date');
-$data['genre_id'] = $this->input->post('genre_id');
-$data['status'] = $this->input->post('status');
+		$data['artist_name'] = $this->input->post('artist_name');
+		$data['artist_description'] = $this->input->post('artist_description');
+		$data['artist_image'] = $this->input->post('artist_image');
+		$data['contact_number'] = $this->input->post('contact_number');
+		$data['created_date'] = $this->input->post('created_date');
+		$data['genre_id'] = $this->input->post('genre_id');
+		$data['status'] = $this->input->post('status');
 
         return $data;
    }

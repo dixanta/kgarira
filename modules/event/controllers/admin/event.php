@@ -44,9 +44,6 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 ($params['search']['promoter_id']!='')?$this->db->where('promoter_id',$params['search']['promoter_id']):'';
 ($params['search']['country_code']!='')?$this->db->like('country_code',$params['search']['country_code']):'';
 (isset($params['search']['allow_ticket_sell']))?$this->db->where('allow_ticket_sell',$params['search']['allow_ticket_sell']):'';
-($params['search']['no_of_tickets']!='')?$this->db->where('no_of_tickets',$params['search']['no_of_tickets']):'';
-($params['search']['paid_tickets']!='')?$this->db->where('paid_tickets',$params['search']['paid_tickets']):'';
-($params['search']['ticket_amount']!='')?$this->db->like('ticket_amount',$params['search']['ticket_amount']):'';
 ($params['search']['member_id']!='')?$this->db->where('member_id',$params['search']['member_id']):'';
 (isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
 

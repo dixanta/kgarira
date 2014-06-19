@@ -1,12 +1,12 @@
 <?php
 
-class type extends Admin_Controller
+class Type extends Admin_Controller
 {
 	
 	public function __construct(){
     	parent::__construct();
-        $this->load->module_model('event_type','event_type_model');
-        $this->lang->module_load('event_type','event_type');
+        $this->load->module_model('event','event_type_model');
+        $this->lang->module_load('event','event_type');
         //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
     }
     
@@ -14,8 +14,8 @@ class type extends Admin_Controller
 	{
 		// Display Page
 		$data['header'] = 'event_type';
-		$data['page'] = $this->config->item('template_admin') . "event_type/index";
-		$data['module'] = 'event_type';
+		$data['page'] = $this->config->item('template_admin') . "type/index";
+		$data['module'] = 'event';
 		$this->load->view($this->_container,$data);		
 	}
 
@@ -88,6 +88,7 @@ class type extends Admin_Controller
 
         if(!$this->input->post('event_type_id'))
         {
+            $data['created_date'] = date("Y-m-d H:i:s");
             $success=$this->event_type_model->insert('EVENT_TYPES',$data);
         }
         else
@@ -115,7 +116,6 @@ class type extends Admin_Controller
    		$data=array();
         $data['event_type_id'] = $this->input->post('event_type_id');
 $data['event_type'] = $this->input->post('event_type');
-$data['created_date'] = $this->input->post('created_date');
 
         return $data;
    }

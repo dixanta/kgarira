@@ -1,12 +1,13 @@
 <?php
 
 
-$lang['venue_id'] = 'Venue Id';
-$lang['venue_name'] = 'Venue Name';
+$lang['venue_id'] = 'Id';
+$lang['venue_name'] = 'Name';
 $lang['venue_type_id'] = 'Venue Type Id';
-$lang['venue_location'] = 'Venue Location';
-$lang['venue_city'] = 'Venue City';
-$lang['venue_description'] = 'Venue Description';
+$lang['venue_type'] = 'Type';
+$lang['venue_location'] = 'Location';
+$lang['venue_city'] = 'City';
+$lang['venue_description'] = 'Description';
 $lang['venue_longitude'] = 'Venue Longitude';
 $lang['venue_latitude'] = 'Venue Latitude';
 $lang['cusine'] = 'Cusine';

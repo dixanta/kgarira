@@ -5,8 +5,8 @@ class Type extends Admin_Controller
 	
 	public function __construct(){
     	parent::__construct();
-        $this->load->module_model('venue_type','venue_type_model');
-        $this->lang->module_load('venue_type','venue_type');
+        $this->load->module_model('venue','venue_type_model');
+        $this->lang->module_load('venue','venue_type');
         //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
     }
     
@@ -15,7 +15,7 @@ class Type extends Admin_Controller
 		// Display Page
 		$data['header'] = 'venue_type';
 		$data['page'] = $this->config->item('template_admin') . "venue_type/index";
-		$data['module'] = 'venue_type';
+		$data['module'] = 'venue';
 		$this->load->view($this->_container,$data);		
 	}
 
@@ -98,6 +98,11 @@ class Type extends Admin_Controller
         
 	}
    
+   public function save_notify()
+    {
+     $this->save();
+     //email code
+    }
    private function _get_posted_data()
    {
    		$data=array();

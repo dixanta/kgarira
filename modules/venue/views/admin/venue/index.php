@@ -45,7 +45,7 @@
     <th data-options="field:'checkbox',checkbox:true"></th>
     <th data-options="field:'venue_id',sortable:true" width="30"><?php echo lang('venue_id')?></th>
 <th data-options="field:'venue_name',sortable:true" width="50"><?php echo lang('venue_name')?></th>
-<th data-options="field:'venue_type_id',sortable:true" width="50"><?php echo lang('venue_type_id')?></th>
+<th data-options="field:'venue_type_id',sortable:true" width="50"><?php echo lang('venue_type')?></th>
 <th data-options="field:'venue_location',sortable:true" width="50"><?php echo lang('venue_location')?></th>
 <th data-options="field:'venue_city',sortable:true" width="50"><?php echo lang('venue_city')?></th>
 <th data-options="field:'cusine',sortable:true" width="50"><?php echo lang('cusine')?></th>
@@ -74,13 +74,11 @@
 		<tr>
 		              <td width="34%" ><label><?php echo lang('venue_name')?>:</label></td>
 					  <td width="66%"><input name="venue_name" id="venue_name" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('venue_type_id')?>:</label></td>
+		              <td width="34%" ><label><?php echo lang('venue_type')?>:</label></td>
 					  <td width="66%"><input name="venue_type_id" id="venue_type_id" class="easyui-numberbox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_location')?>:</label></td>
 					  <td width="66%"><input name="venue_location" id="venue_location" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_city')?>:</label></td>
 					  <td width="66%"><input name="venue_city" id="venue_city" class="easyui-validatebox" required="true"></td>
 		       </tr><tr>
@@ -89,7 +87,6 @@
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_longitude')?>:</label></td>
 					  <td width="66%"><input name="venue_longitude" id="venue_longitude" class="easyui-numberbox" required="true"></td>
-		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_latitude')?>:</label></td>
 					  <td width="66%"><input name="venue_latitude" id="venue_latitude" class="easyui-numberbox" required="true"></td>
 		       </tr><tr>
@@ -98,18 +95,13 @@
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_drink')?>:</label></td>
 					  <td width="66%"><input name="venue_drink" id="venue_drink" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_food')?>:</label></td>
 					  <td width="66%"><input name="venue_food" id="venue_food" class="easyui-validatebox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('food_price_range')?>:</label></td>
 					  <td width="66%"><input name="food_price_range" id="food_price_range" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('drink_price_range')?>:</label></td>
 					  <td width="66%"><input name="drink_price_range" id="drink_price_range" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('created_date')?>:</label></td>
-					  <td width="66%"><input name="created_date" id="created_date" class="easyui-datetimebox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('status')?>:</label></td>
 					  <td width="66%"><input type="radio" value="1" name="status" id="status1" /><?php echo lang("general_yes")?> <input type="radio" value="0" name="status" id="status0" /><?php echo lang("general_no")?></td>
@@ -117,8 +109,9 @@
     </table>
     </form>
 	<div id="dlg-buttons">
-		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save_notify()"><?php  echo  lang('general_save_notify')?></a>
 	</div>    
 </div>
 <!--div ends-->
@@ -235,6 +228,32 @@
 	{
 		$('#form-venue').form('submit',{
 			url: '<?php  echo site_url('venue/admin/venue/save')?>',
+			onSubmit: function(){
+				return $(this).form('validate');
+			},
+			success: function(result){
+				var result = eval('('+result+')');
+				if (result.success)
+				{
+					$('#form-venue').form('clear');
+					$('#dlg').window('close');		// close the dialog
+					$.messager.show({title: '<?php  echo lang('success')?>',msg: result.msg});
+					$('#venue-table').datagrid('reload');	// reload the user data
+				} 
+				else 
+				{
+					$.messager.show({title: '<?php  echo lang('error')?>',msg: result.msg});
+				} //if close
+			}//success close
+		
+		});		
+		
+	}
+    
+    function save_notify()
+	{
+		$('#form-venue').form('submit',{
+			url: '<?php  echo site_url('venue/admin/venue/save_notify')?>',
 			onSubmit: function(){
 				return $(this).form('validate');
 			},

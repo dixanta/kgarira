@@ -28,6 +28,7 @@ $lang['general_add'] = "Add";
 $lang['general_edit'] = "Modify";
 $lang['general_delete'] = "Delete";
 $lang['general_save'] = "Save";
+$lang['general_save_notify'] = "Save And Notify";
 $lang['general_cancel'] = "Cancel";
 $lang['general_back'] = "Back";
 $lang['general_documentation'] = "Documentation";

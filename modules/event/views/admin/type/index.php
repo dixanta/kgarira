@@ -5,8 +5,6 @@
 <table width="100%" border="1" cellspacing="1" cellpadding="1">
 <tr><td><label><?php echo lang('event_type')?></label>:</td>
 <td><input type="text" name="search[event_type]" id="search_event_type"  class="easyui-validatebox"/></td>
-<td><label><?php echo lang('created_date')?></label>:</td>
-<td><input type="text" name="date[created_date][from]" id="search_created_date_from"  class="easyui-datebox"/> ~ <input type="text" name="date[created_date][to]" id="search_created_date_to"  class="easyui-datebox"/></td>
 </tr>
 <tr>
 </tr>
@@ -48,9 +46,6 @@
 		<tr>
 		              <td width="34%" ><label><?php echo lang('event_type')?>:</label></td>
 					  <td width="66%"><input name="event_type" id="event_type" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('created_date')?>:</label></td>
-					  <td width="66%"><input name="created_date" id="created_date" class="easyui-datetimebox" required="true"></td>
 		       </tr><input type="hidden" name="event_type_id" id="event_type_id"/>
     </table>
     </form>
@@ -79,7 +74,7 @@
 				});
 		});		
 		$('#event_type-table').datagrid({
-			url:'<?php  echo site_url('event_type/admin/event_type/json')?>',
+			url:'<?php  echo site_url('event/admin/type/json')?>',
 			height:'auto',
 			width:'auto',
 			onDblClickRow:function(index,row)
@@ -132,7 +127,7 @@
 		$.messager.confirm('Confirm','<?php  echo lang('delete_confirm')?>',function(r){
 			if (r){
 				var row = $('#event_type-table').datagrid('getRows')[index];
-				$.post('<?php  echo site_url('event_type/admin/event_type/delete_json')?>', {id:[row.event_type_id]}, function(){
+				$.post('<?php  echo site_url('event/admin/type/delete_json')?>', {id:[row.event_type_id]}, function(){
 					$('#event_type-table').datagrid('deleteRow', index);
 					$('#event_type-table').datagrid('reload');
 				});
@@ -154,7 +149,7 @@
 			
 			$.messager.confirm('Confirm','<?php  echo lang('delete_confirm')?>',function(r){
 				if(r){				
-					$.post('<?php  echo site_url('event_type/admin/event_type/delete_json')?>',{id:selected},function(data){
+					$.post('<?php  echo site_url('event/admin/type/delete_json')?>',{id:selected},function(data){
 						$('#event_type-table').datagrid('reload');
 					});
 				}
@@ -172,7 +167,7 @@
 	function save()
 	{
 		$('#form-event_type').form('submit',{
-			url: '<?php  echo site_url('event_type/admin/event_type/save')?>',
+			url: '<?php  echo site_url('event/admin/type/save')?>',
 			onSubmit: function(){
 				return $(this).form('validate');
 			},

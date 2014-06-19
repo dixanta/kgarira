@@ -47,8 +47,9 @@
     </table>
     </form>
 	<div id="dlg-buttons">
-		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
+    	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
+       	<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save_notify()"><?php  echo  lang('general_save_notify')?></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
 	</div>    
 </div>
 <!--div ends-->
@@ -71,7 +72,7 @@
 				});
 		});		
 		$('#venue_type-table').datagrid({
-			url:'<?php  echo site_url('venue_type/admin/venue_type/json')?>',
+			url:'<?php  echo site_url('venue/admin/type/json')?>',
 			height:'auto',
 			width:'auto',
 			onDblClickRow:function(index,row)
@@ -124,7 +125,7 @@
 		$.messager.confirm('Confirm','<?php  echo lang('delete_confirm')?>',function(r){
 			if (r){
 				var row = $('#venue_type-table').datagrid('getRows')[index];
-				$.post('<?php  echo site_url('venue_type/admin/venue_type/delete_json')?>', {id:[row.venue_type_id]}, function(){
+				$.post('<?php  echo site_url('venue/admin/type/delete_json')?>', {id:[row.venue_type_id]}, function(){
 					$('#venue_type-table').datagrid('deleteRow', index);
 					$('#venue_type-table').datagrid('reload');
 				});
@@ -146,7 +147,7 @@
 			
 			$.messager.confirm('Confirm','<?php  echo lang('delete_confirm')?>',function(r){
 				if(r){				
-					$.post('<?php  echo site_url('venue_type/admin/venue_type/delete_json')?>',{id:selected},function(data){
+					$.post('<?php  echo site_url('venue/admin/type/delete_json')?>',{id:selected},function(data){
 						$('#venue_type-table').datagrid('reload');
 					});
 				}
@@ -164,7 +165,33 @@
 	function save()
 	{
 		$('#form-venue_type').form('submit',{
-			url: '<?php  echo site_url('venue_type/admin/venue_type/save')?>',
+			url: '<?php  echo site_url('venue/admin/type/save')?>',
+			onSubmit: function(){
+				return $(this).form('validate');
+			},
+			success: function(result){
+				var result = eval('('+result+')');
+				if (result.success)
+				{
+					$('#form-venue_type').form('clear');
+					$('#dlg').window('close');		// close the dialog
+					$.messager.show({title: '<?php  echo lang('success')?>',msg: result.msg});
+					$('#venue_type-table').datagrid('reload');	// reload the user data
+				} 
+				else 
+				{
+					$.messager.show({title: '<?php  echo lang('error')?>',msg: result.msg});
+				} //if close
+			}//success close
+		
+		});		
+		
+	}
+    
+    function save_notify()
+	{
+		$('#form-venue_type').form('submit',{
+			url: '<?php  echo site_url('venue/admin/type/save_notify')?>',
 			onSubmit: function(){
 				return $(this).form('validate');
 			},

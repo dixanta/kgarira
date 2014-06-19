@@ -39,11 +39,7 @@ class Venue extends Admin_Controller
 ($params['search']['venue_type_id']!='')?$this->db->where('venue_type_id',$params['search']['venue_type_id']):'';
 ($params['search']['venue_location']!='')?$this->db->like('venue_location',$params['search']['venue_location']):'';
 ($params['search']['venue_city']!='')?$this->db->like('venue_city',$params['search']['venue_city']):'';
-($params['search']['venue_longitude']!='')?$this->db->where('venue_longitude',$params['search']['venue_longitude']):'';
-($params['search']['venue_latitude']!='')?$this->db->where('venue_latitude',$params['search']['venue_latitude']):'';
 ($params['search']['cusine']!='')?$this->db->like('cusine',$params['search']['cusine']):'';
-($params['search']['venue_drink']!='')?$this->db->like('venue_drink',$params['search']['venue_drink']):'';
-($params['search']['venue_food']!='')?$this->db->like('venue_food',$params['search']['venue_food']):'';
 ($params['search']['food_price_range']!='')?$this->db->like('food_price_range',$params['search']['food_price_range']):'';
 ($params['search']['drink_price_range']!='')?$this->db->like('drink_price_range',$params['search']['drink_price_range']):'';
 (isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
@@ -91,6 +87,25 @@ class Venue extends Admin_Controller
             endforeach;
 		}
 	}    
+    
+    
+    public function save_notify()
+    {
+        $data=$this->_get_posted_data();
+        $data['created_date']=date('Y-m-d H:i:s');
+        $success = $this->venue_model->insert('VENUES',$data);
+        if($success)
+        {
+            $success = true;
+            $msg=lang('success message');
+            
+        }
+        else
+        {
+            $success=false;
+            $msg=lang('failure message');
+        }
+    }
 
 	public function save()
 	{
@@ -99,6 +114,7 @@ class Venue extends Admin_Controller
 
         if(!$this->input->post('venue_id'))
         {
+            $data['created_date']=date('Y-m-d H:i:s');
             $success=$this->venue_model->insert('VENUES',$data);
         }
         else
@@ -137,7 +153,6 @@ $data['venue_drink'] = $this->input->post('venue_drink');
 $data['venue_food'] = $this->input->post('venue_food');
 $data['food_price_range'] = $this->input->post('food_price_range');
 $data['drink_price_range'] = $this->input->post('drink_price_range');
-$data['created_date'] = $this->input->post('created_date');
 $data['status'] = $this->input->post('status');
 
         return $data;

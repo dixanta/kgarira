@@ -56,12 +56,8 @@
 <th data-options="field:'promoter_id',sortable:true" width="50"><?php echo lang('promoter_id')?></th>
 <th data-options="field:'country_code',sortable:true" width="50"><?php echo lang('country_code')?></th>
 <th data-options="field:'event_start_date',sortable:true" width="50"><?php echo lang('event_start_date')?></th>
-<th data-options="field:'allow_ticket_sell',sortable:true" width="50"><?php echo lang('allow_ticket_sell')?></th>
 <th data-options="field:'event_image',sortable:true" width="50"><?php echo lang('event_image')?></th>
 <th data-options="field:'event_end_date',sortable:true" width="50"><?php echo lang('event_end_date')?></th>
-<th data-options="field:'no_of_tickets',sortable:true" width="50"><?php echo lang('no_of_tickets')?></th>
-<th data-options="field:'paid_tickets',sortable:true" width="50"><?php echo lang('paid_tickets')?></th>
-<th data-options="field:'ticket_amount',sortable:true" width="50"><?php echo lang('ticket_amount')?></th>
 <th data-options="field:'member_id',sortable:true" width="50"><?php echo lang('member_id')?></th>
 <th data-options="field:'status',sortable:true,formatter:formatStatus" width="30" align="center"><?php echo lang('status')?></th>
 
@@ -131,8 +127,9 @@
     </form>
 	<div id="dlg-buttons">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
+        
         <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save_notify()"><?php  echo  lang('general_save_notify')?></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
 	</div>    
 </div>   
 </div>

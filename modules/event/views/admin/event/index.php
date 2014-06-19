@@ -57,8 +57,8 @@
     <th data-options="field:'checkbox',checkbox:true"></th>
     <th data-options="field:'event_id',sortable:true" width="30"><?php echo lang('event_id')?></th>
 <th data-options="field:'event_name',sortable:true" width="50"><?php echo lang('event_name')?></th>
-<th data-options="field:'event_type_id',sortable:true" width="50"><?php echo lang('event_type_id')?></th>
-<th data-options="field:'venue_id',sortable:true" width="50"><?php echo lang('venue_id')?></th>
+<th data-options="field:'event_type',sortable:true" width="50"><?php echo lang('event_type_id')?></th>
+<th data-options="field:'venue_name',sortable:true" width="50"><?php echo lang('venue_id')?></th>
 <th data-options="field:'promoter_id',sortable:true" width="50"><?php echo lang('promoter_id')?></th>
 <th data-options="field:'country_code',sortable:true" width="50"><?php echo lang('country_code')?></th>
 <th data-options="field:'event_start_date',sortable:true" width="50"><?php echo lang('event_start_date')?></th>
@@ -89,31 +89,26 @@
 </div> 
 
 <!--for create and edit event form-->
-<div id="dlg" class="easyui-dialog" style="width:600px;height:auto;padding:10px 20px"
+<div id="dlg" class="easyui-dialog" style="width:800px;height:auto;padding:10px 20px"
         data-options="closed:true,collapsible:true,buttons:'#dlg-buttons',modal:true">
     <form id="form-event" method="post" >
     <table>
 		<tr>
 		              <td width="34%" ><label><?php echo lang('event_name')?>:</label></td>
 					  <td width="66%"><input name="event_name" id="event_name" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
+		       
 		              <td width="34%" ><label><?php echo lang('event_type_id')?>:</label></td>
-					  <td width="66%"><input name="event_type_id" id="event_type_id" class="easyui-numberbox" required="true"></td>
+					  <td width="66%"><input name="event_type_id" id="event_type_id" class="" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_id')?>:</label></td>
-					  <td width="66%"><input name="venue_id" id="venue_id" class="easyui-numberbox" required="true"></td>
-		       </tr><tr>
+					  <td width="66%"><input name="venue_id" id="venue_id" class="" required="true"></td>
 		              <td width="34%" ><label><?php echo lang('promoter_id')?>:</label></td>
 					  <td width="66%"><input name="promoter_id" id="promoter_id" class="easyui-numberbox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('country_code')?>:</label></td>
 					  <td width="66%"><input name="country_code" id="country_code" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('event_start_date')?>:</label></td>
 					  <td width="66%"><input name="event_start_date" id="event_start_date" class="easyui-datetimebox" required="true"></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('allow_ticket_sell')?>:</label></td>
-					  <td width="66%"><input type="radio" value="1" name="allow_ticket_sell" id="allow_ticket_sell1" /><?php echo lang("general_yes")?> <input type="radio" value="0" name="allow_ticket_sell" id="allow_ticket_sell0" /><?php echo lang("general_no")?></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('event_description')?>:</label></td>
 					  <td width="66%"><textarea name="event_description" id="event_description" class="easyui-validatebox" required="true" style="width:300px;height:100px"></textarea></td>
@@ -123,36 +118,22 @@
                       <input name="event_image" id="event_image" type="text" style="display:none"/>
                       <input type="file" id="upload_image" name="userfile" style="display:block"/>
                       <a href="#" id="change-image" title="Delete" style="display:none"><img src="<?=base_url()?>assets/icons/delete.png" border="0"/></a></td>
-		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('event_end_date')?>:</label></td>
 					  <td width="66%"><input name="event_end_date" id="event_end_date" class="easyui-datetimebox" required="true"></td>
 		       </tr><tr>
+                      <tr>
+							<td width="34%" ><label><?php echo lang('allow_ticket_sell')?>:</label></td>
+                             <td width="66%"><input type="radio" value="1" name="allow_ticket_sell" id="allow_ticket_sell1" />					<?php echo lang("general_yes")?> <input type="radio" value="0" name="allow_ticket_sell" id="allow_ticket_sell0" /><?php echo lang("general_no")?></td>                      
+                      </tr>
 		              <td width="34%" ><label><?php echo lang('no_of_tickets')?>:</label></td>
 					  <td width="66%"><input name="no_of_tickets" id="no_of_tickets" class="easyui-numberbox" required="true"></td>
-		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('paid_tickets')?>:</label></td>
 					  <td width="66%"><input name="paid_tickets" id="paid_tickets" class="easyui-numberbox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('ticket_amount')?>:</label></td>
 					  <td width="66%"><input name="ticket_amount" id="ticket_amount" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('member_id')?>:</label></td>
 					  <td width="66%"><input name="member_id" id="member_id" class="easyui-numberbox" required="true"></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('fb_event_id')?>:</label></td>
-					  <td width="66%"><input name="fb_event_id" id="fb_event_id" class="easyui-numberbox" required="true"></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('is_fb_event')?>:</label></td>
-					  <td width="66%"><input type="radio" value="1" name="is_fb_event" id="is_fb_event1" /><?php echo lang("general_yes")?> <input type="radio" value="0" name="is_fb_event" id="is_fb_event0" /><?php echo lang("general_no")?></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('is_guest_event')?>:</label></td>
-					  <td width="66%"><input type="radio" value="1" name="is_guest_event" id="is_guest_event1" /><?php echo lang("general_yes")?> <input type="radio" value="0" name="is_guest_event" id="is_guest_event0" /><?php echo lang("general_no")?></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('slug_id')?>:</label></td>
-					  <td width="66%"><input name="slug_id" id="slug_id" class="easyui-numberbox" required="true"></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('slug_name')?>:</label></td>
-					  <td width="66%"><input name="slug_name" id="slug_name" class="easyui-validatebox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('status')?>:</label></td>
 					  <td width="66%"><input type="radio" value="1" name="status" id="status1" /><?php echo lang("general_yes")?> <input type="radio" value="0" name="status" id="status0" /><?php echo lang("general_no")?></td>
@@ -160,9 +141,11 @@
     </table>
     </form>
 	<div id="dlg-buttons">
-		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save_notify()"><?php  echo  lang('general_save_notify')?></a>
 	</div>    
+</div>   
 </div>
 <!--div ends-->
    
@@ -170,6 +153,12 @@
 </div>
 <script language="javascript" type="text/javascript">
 	$(function(){
+		<?php easyui_combobox('search_event_type_id','EVENT_TYPE');
+			  easyui_combobox('event_type_id','EVENT_TYPE');?>
+			  
+			  <?php easyui_combobox('search_venue_id','VENUE');
+			  easyui_combobox('venue_id','VENUE');?>
+		
 		$('#clear').click(function(){
 			$('#event-search-form').form('clear');
 			$('#event-table').datagrid({
@@ -300,6 +289,15 @@
 		
 	}
 	
+	
+	function save_notify()
+	{
+		
+		$this.save();
+		//email section
+		}
+	
+	
 	function uploadReady()
 	{
 		uploader=$('#upload_image');
@@ -330,5 +328,7 @@
                 }
 			}		
 		});		
+		
+		
 	}
 </script>

@@ -92,7 +92,9 @@ protected $uploadthumbpath= 'uploads/ticket/thumb/';
 
         if(!$this->input->post('ticket_id'))
         {
-            $success=$this->ticket_model->insert('TICKETS',$data);
+            $data['created_date'] =date('Y-m-d H:i:s');
+			$success=$this->ticket_model->insert('TICKETS',$data);
+			
         }
         else
         {
@@ -118,11 +120,9 @@ protected $uploadthumbpath= 'uploads/ticket/thumb/';
    {
    		$data=array();
         $data['ticket_id'] = $this->input->post('ticket_id');
-$data['ticket_image'] = $this->input->post('ticket_image');
-$data['ticket_number'] = $this->input->post('ticket_number');
-$data['event_id'] = $this->input->post('event_id');
-$data['created_date'] = $this->input->post('created_date');
-
+		$data['ticket_image'] = $this->input->post('ticket_image');
+		$data['ticket_number'] = $this->input->post('ticket_number');
+		$data['event_id'] = $this->input->post('event_id');
         return $data;
    }
    

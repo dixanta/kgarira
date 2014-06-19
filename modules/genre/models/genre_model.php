@@ -1,30 +1,28 @@
 <?php
-class Artist_model extends MY_Model
+class Genre_model extends MY_Model
 {
 	var $joins=array();
     public function __construct()
     {
     	parent::__construct();
         $this->prefix='tbl_';
-        $this->_TABLES=array('ARTISTS'=>$this->prefix.'artists',
-								'GENRES'=>$this->prefix.'genres');
-		$this->_JOINS=array('GENRES'=>array('join_type'=>'LEFT','join_field'=>'genres.genre_id=artists.artist_id',
-                                           'select'=>'genre_name','alias'=>'genres'),
-										   
+        $this->_TABLES=array('GENRES'=>$this->prefix.'genres');
+		$this->_JOINS=array('KEY'=>array('join_type'=>'LEFT','join_field'=>'join1.id=join2.id',
+                                           'select'=>'field_names','alias'=>'alias_name'),
                            
                             );        
     }
     
-    public function getArtists($where=NULL,$order_by=NULL,$limit=array('limit'=>NULL,'offset'=>''))
+    public function getGenres($where=NULL,$order_by=NULL,$limit=array('limit'=>NULL,'offset'=>''))
     {
-       $fields='artists.*';
+       $fields='genres.*';
        
 		foreach($this->joins as $key):
 			$fields=$fields . ','.$this->_JOINS[$key]['select'];
 		endforeach;
                 
         $this->db->select($fields);
-        $this->db->from($this->_TABLES['ARTISTS']. ' artists');
+        $this->db->from($this->_TABLES['GENRES']. ' genres');
 		
 		foreach($this->joins as $key):
                     $this->db->join($this->_TABLES[$key]. ' ' .$this->_JOINS[$key]['alias'],$this->_JOINS[$key]['join_field'],$this->_JOINS[$key]['join_type']);
@@ -43,7 +41,7 @@ class Artist_model extends MY_Model
     public function count($where=NULL)
     {
 		
-        $this->db->from($this->_TABLES['ARTISTS'].' artists');
+        $this->db->from($this->_TABLES['GENRES'].' genres');
         
         foreach($this->joins as $key):
         $this->db->join($this->_TABLES[$key]. ' ' .$this->_JOINS[$key]['alias'],$this->_JOINS[$key]['join_field'],$this->_JOINS[$key]['join_type']);

@@ -6,11 +6,16 @@ class Event_model extends MY_Model
     {
     	parent::__construct();
         $this->prefix='tbl_';
-        $this->_TABLES=array('EVENTS'=>$this->prefix.'events');
-		$this->_JOINS=array('KEY'=>array('join_type'=>'LEFT','join_field'=>'join1.id=join2.id',
-                                           'select'=>'field_names','alias'=>'alias_name'),
+        $this->_TABLES=array('EVENTS'=>$this->prefix.'events','EVENT_TYPES'=>$this->prefix.'event_types',
+							 'VENUES'=>$this->prefix.'venues');
+		
+		$this->_JOINS=array('VENUES'=>array('join_type'=>'LEFT','join_field'=>'venues.venue_id=events.venue_id',
+                                           'select'=>'venue_name','alias'=>'venues'),
+							'EVENT_TYPES'=>array('join_type'=>'LEFT','join_field'=>'event_types.event_type_id=events.event_type_id',
+                                           'select'=>'event_type','alias'=>'event_types'),
                            
-                            );        
+                            );
+        
     }
     
     public function getEvents($where=NULL,$order_by=NULL,$limit=array('limit'=>NULL,'offset'=>''))

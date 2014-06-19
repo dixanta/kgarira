@@ -6,6 +6,23 @@ function easyui_settings($key)
 								'textField'=>'event_type'
 							);
 							
+	$combo_settings['VENUE_TYPE']=array('url'=>site_url('venue/admin/type/combo_json'),
+									'valueField'=>'venue_type_id',
+							'textField'=>'venue_type'
+							);
+	$combo_settings['ARTIST']=array('url'=>site_url('artist/admin/artist/combo_json'),
+								'valueField'=>'artist_id',
+								'textField'=>'artist_name'
+							);	
+	$combo_settings['EVENT']=array('url'=>site_url('event/admin/event/combo_json'),
+								'valueField'=>'event_id',
+								'textField'=>'event_name'
+							);
+	$combo_settings['GENRE']=array('url'=>site_url('genre/admin/genre/combo_json'),
+								'valueField'=>'genre_id',
+								'textField'=>'genre_name'
+							);
+							
 	$combo_settings['VENUE']=array('url'=>site_url('venue/admin/venue/combo_json'),
 								'valueField'=>'venue_id',
 								'textField'=>'venue_name'

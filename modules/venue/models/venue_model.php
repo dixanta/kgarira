@@ -6,9 +6,10 @@ class Venue_model extends MY_Model
     {
     	parent::__construct();
         $this->prefix='tbl_';
-        $this->_TABLES=array('VENUES'=>$this->prefix.'venues');
-		$this->_JOINS=array('KEY'=>array('join_type'=>'LEFT','join_field'=>'join1.id=join2.id',
-                                           'select'=>'field_names','alias'=>'alias_name'),
+        $this->_TABLES=array('VENUES'=>$this->prefix.'venues',
+                            'VENUE_TYPES'=>$this->prefix.'venue_types');
+		$this->_JOINS=array('VENUE_TYPES'=>array('join_type'=>'LEFT','join_field'=>'venue_types.venue_type_id=venues.venue_type_id',
+                                           'select'=>'venue_type','alias'=>'venue_types'),
                            
                             );        
     }

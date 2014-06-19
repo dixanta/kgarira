@@ -6,7 +6,7 @@
 <tr><td><label><?php echo lang('venue_name')?></label>:</td>
 <td><input type="text" name="search[venue_name]" id="search_venue_name"  class="easyui-validatebox"/></td>
 <td><label><?php echo lang('venue_type_id')?></label>:</td>
-<td><input type="text" name="search[venue_type_id]" id="search_venue_type_id"  class="easyui-numberbox"/></td>
+<td><input type="text" name="search[venue_type_id]" id="search_venue_type_id"  class=""/></td>
 </tr>
 <tr>
 <td><label><?php echo lang('venue_location')?></label>:</td>
@@ -45,7 +45,7 @@
     <th data-options="field:'checkbox',checkbox:true"></th>
     <th data-options="field:'venue_id',sortable:true" width="30"><?php echo lang('venue_id')?></th>
 <th data-options="field:'venue_name',sortable:true" width="50"><?php echo lang('venue_name')?></th>
-<th data-options="field:'venue_type_id',sortable:true" width="50"><?php echo lang('venue_type')?></th>
+<th data-options="field:'venue_type',sortable:true" width="50"><?php echo lang('venue_type')?></th>
 <th data-options="field:'venue_location',sortable:true" width="50"><?php echo lang('venue_location')?></th>
 <th data-options="field:'venue_city',sortable:true" width="50"><?php echo lang('venue_city')?></th>
 <th data-options="field:'cusine',sortable:true" width="50"><?php echo lang('cusine')?></th>
@@ -67,7 +67,7 @@
 </div> 
 
 <!--for create and edit venue form-->
-<div id="dlg" class="easyui-dialog" style="width:600px;height:auto;padding:10px 20px"
+<div id="dlg" class="easyui-dialog" style="width:800px;height:auto;padding:10px 20px"
         data-options="closed:true,collapsible:true,buttons:'#dlg-buttons',modal:true">
     <form id="form-venue" method="post" >
     <table>
@@ -75,7 +75,7 @@
 		              <td width="34%" ><label><?php echo lang('venue_name')?>:</label></td>
 					  <td width="66%"><input name="venue_name" id="venue_name" class="easyui-validatebox" required="true"></td>
 		              <td width="34%" ><label><?php echo lang('venue_type')?>:</label></td>
-					  <td width="66%"><input name="venue_type_id" id="venue_type_id" class="easyui-numberbox" required="true"></td>
+					  <td width="66%"><input name="venue_type_id" id="venue_type_id" class="" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_location')?>:</label></td>
 					  <td width="66%"><input name="venue_location" id="venue_location" class="easyui-validatebox" required="true"></td>
@@ -111,7 +111,6 @@
 	<div id="dlg-buttons">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save_notify()"><?php  echo  lang('general_save_notify')?></a>
 	</div>    
 </div>
 <!--div ends-->
@@ -120,6 +119,10 @@
 </div>
 <script language="javascript" type="text/javascript">
 	$(function(){
+	   
+       <?php easyui_combobox('search_venue_type_id','VENUE_TYPE');
+            easyui_combobox('venue_type_id','VENUE_TYPE');
+       ?>
 		$('#clear').click(function(){
 			$('#venue-search-form').form('clear');
 			$('#venue-table').datagrid({
@@ -250,31 +253,6 @@
 		
 	}
     
-    function save_notify()
-	{
-		$('#form-venue').form('submit',{
-			url: '<?php  echo site_url('venue/admin/venue/save_notify')?>',
-			onSubmit: function(){
-				return $(this).form('validate');
-			},
-			success: function(result){
-				var result = eval('('+result+')');
-				if (result.success)
-				{
-					$('#form-venue').form('clear');
-					$('#dlg').window('close');		// close the dialog
-					$.messager.show({title: '<?php  echo lang('success')?>',msg: result.msg});
-					$('#venue-table').datagrid('reload');	// reload the user data
-				} 
-				else 
-				{
-					$.messager.show({title: '<?php  echo lang('error')?>',msg: result.msg});
-				} //if close
-			}//success close
-		
-		});		
-		
-	}
 	
 	
 </script>

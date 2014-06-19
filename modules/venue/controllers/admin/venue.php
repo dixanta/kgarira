@@ -22,6 +22,7 @@ class Venue extends Admin_Controller
 	public function json()
 	{
 		$this->_get_search_param();	
+        $this->venue_model->joins=array('VENUE_TYPES');
 		$total=$this->venue_model->count();
 		paging('venue_id');
 		$this->_get_search_param();	
@@ -88,24 +89,6 @@ class Venue extends Admin_Controller
 		}
 	}    
     
-    
-    public function save_notify()
-    {
-        $data=$this->_get_posted_data();
-        $data['created_date']=date('Y-m-d H:i:s');
-        $success = $this->venue_model->insert('VENUES',$data);
-        if($success)
-        {
-            $success = true;
-            $msg=lang('success message');
-            
-        }
-        else
-        {
-            $success=false;
-            $msg=lang('failure message');
-        }
-    }
 
 	public function save()
 	{

@@ -8,6 +8,7 @@ $lang['artist_image'] = 'Artist Image';
 $lang['contact_number'] = 'Contact Number';
 $lang['created_date'] = 'Created Date';
 $lang['genre_id'] = 'Genre Id';
+$lang['genre_name'] = 'Genre Name';
 $lang['status'] = 'Status';
 
 $lang['create_artist']='Create Artist';

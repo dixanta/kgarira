@@ -24,10 +24,12 @@ protected $uploadthumbpath= 'uploads/artist/thumb/';
 	public function json()
 	{
 		$this->_get_search_param();	
+		$this->artist_model->joins=array('GENRES');
 		$total=$this->artist_model->count();
 		paging('artist_id');
 		$this->_get_search_param();	
 		$rows=$this->artist_model->getArtists()->result_array();
+		
 		echo json_encode(array('total'=>$total,'rows'=>$rows));
 	}
 	

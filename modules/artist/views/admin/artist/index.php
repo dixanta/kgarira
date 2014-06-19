@@ -36,7 +36,7 @@
 <th data-options="field:'artist_image',sortable:true" width="50"><?php echo lang('artist_image')?></th>
 <th data-options="field:'contact_number',sortable:true" width="50"><?php echo lang('contact_number')?></th>
 <th data-options="field:'created_date',sortable:true" width="50"><?php echo lang('created_date')?></th>
-<th data-options="field:'genre_id',sortable:true" width="50"><?php echo lang('genre_id')?></th>
+<th data-options="field:'genre_name',sortable:true" width="50"><?php echo lang('genre_name')?></th>
 <th data-options="field:'status',sortable:true,formatter:formatStatus" width="30" align="center"><?php echo lang('status')?></th>
 
     <th field="action" width="100" formatter="getActions"><?php  echo lang('action')?></th>
@@ -73,16 +73,15 @@
 					  <td width="66%"><input name="contact_number" id="contact_number" class="easyui-numberbox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('genre_id')?>:</label></td>
-					  <td width="66%"><input name="genre_id" id="genre_id" class="easyui-numberbox" required="true"></td>
-		       </tr><tr>
+					  <td width="66%"><input name="genre_id" id="genre_id" class="" required="true"></tr><tr>
 		              <td width="34%" ><label><?php echo lang('status')?>:</label></td>
 					  <td width="66%"><input type="radio" value="1" name="status" id="status1" /><?php echo lang("general_yes")?> <input type="radio" value="0" name="status" id="status0" /><?php echo lang("general_no")?></td>
 		       </tr><input type="hidden" name="artist_id" id="artist_id"/>
     </table>
     </form>
 	<div id="dlg-buttons">
-		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
 	</div>    
 </div>
 <!--div ends-->
@@ -91,6 +90,10 @@
 </div>
 <script language="javascript" type="text/javascript">
 	$(function(){
+		<?php easyui_combobox('search_genre_id','GENRE');
+				easyui_combobox('genre_id','GENRE');
+		?>
+		
 		$('#clear').click(function(){
 			$('#artist-search-form').form('clear');
 			$('#artist-table').datagrid({

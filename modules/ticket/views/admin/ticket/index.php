@@ -56,7 +56,7 @@
 					  <td width="66%"><input name="ticket_number" id="ticket_number" class="easyui-numberbox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('event_id')?>:</label></td>
-					  <td width="66%"><input name="event_id" id="event_id" class="easyui-numberbox" required="true"></td>
+					  <td width="66%"><input name="event_id" id="event_id" class="" required="true"></td>
 		       </tr><input type="hidden" name="ticket_id" id="ticket_id"/>
     </table>
     </form>

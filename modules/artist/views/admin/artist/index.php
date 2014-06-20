@@ -33,7 +33,7 @@
     <th data-options="field:'checkbox',checkbox:true"></th>
     <th data-options="field:'artist_id',sortable:true" width="30"><?php echo lang('artist_id')?></th>
 <th data-options="field:'artist_name',sortable:true" width="50"><?php echo lang('artist_name')?></th>
-<th data-options="field:'artist_image',sortable:true" width="50"><?php echo lang('artist_image')?></th>
+<th data-options="field:'artist_image',sortable:true,formatter:formatImage" width="50"><?php echo lang('artist_image')?></th>
 <th data-options="field:'contact_number',sortable:true" width="50"><?php echo lang('contact_number')?></th>
 <th data-options="field:'created_date',sortable:true" width="50"><?php echo lang('created_date')?></th>
 <th data-options="field:'genre_name',sortable:true" width="50"><?php echo lang('genre_name')?></th>
@@ -56,7 +56,7 @@
         data-options="closed:true,collapsible:true,buttons:'#dlg-buttons',modal:true">
     <form id="form-artist" method="post" >
     <table>
-		<tr>
+		<tr>	
 		              <td width="34%" ><label><?php echo lang('artist_name')?>:</label></td>
 					  <td width="66%"><input name="artist_name" id="artist_name" class="easyui-validatebox" required="true"></td>
 		       </tr><tr>
@@ -93,6 +93,7 @@
 		<?php easyui_combobox('search_genre_id','GENRE');
 				easyui_combobox('genre_id','GENRE');
 		?>
+		<?php tinymce('artist_description')?>
 		
 		$('#clear').click(function(){
 			$('#artist-search-form').form('clear');
@@ -116,13 +117,31 @@
 				edit(index);
 			}
 		});
+		$('#change-image').on('click',function(){
+			$.messager.confirm('Confirm','Are you sure to delete ?',function(r){
+				if (r){
+					$.post('<?php echo site_url('artist/admin/artist/upload_delete')?>',{filename:$('#artist_image').val()},function(data){
+					$('#upload_image_name').html('').hide();
+					$('#change-image').hide();
+					$('#upload_image').show();	
+					});
+				}
+			});
+		});
 	});
-	
 	function getActions(value,row,index)
 	{
 		var e = '<a href="#" onclick="edit('+index+')" class="easyui-linkbutton l-btn" iconcls="icon-edit"  title="<?php  echo lang('edit_artist')?>"><span class="l-btn-left"><span style="padding-left: 20px;" class="l-btn-text icon-edit"></span></span></a>';
 		var d = '<a href="#" onclick="removeartist('+index+')" class="easyui-linkbutton l-btn" iconcls="icon-remove"  title="<?php  echo lang('delete_artist')?>"><span class="l-btn-left"><span style="padding-left: 20px;" class="l-btn-text icon-cancel"></span></span></a>';
 		return e+d;		
+	}
+	function formatImage(value)
+	{
+		if(value!='')
+		{
+			return '<img src="<?php echo base_url()?>uploads/artist/thumb/' + value + '" height="50" width="50">';
+		}
+		return '';
 	}
 	
 	function formatStatus(value)
@@ -137,16 +156,27 @@
 	function create(){
 		//Create code here
 		$('#form-artist').form('clear');
+		tinymce.get('artist_description').setContent(''); 
 		$('#dlg').window('open').window('setTitle','<?php  echo lang('create_artist')?>');
-		//uploadReady(); //Uncomment This function if ajax uploading
+		$('#upload_image_name').html('').hide();
+		$('#change-image').hide();
+		$('#upload_image').show();	
+			
+		uploadReady(); //Uncomment This function if ajax uploading
 	}	
-
 	function edit(index)
 	{
 		var row = $('#artist-table').datagrid('getRows')[index];
 		if (row){
 			$('#form-artist').form('load',row);
-			//uploadReady(); //Uncomment This function if ajax uploading
+			
+			if(row.artist_image!='')
+			{
+				$('#upload_image_name').html(row.artist_image).show();
+				$('#change-image').show();
+				$('#upload_image').hide();
+			}
+			uploadReady(); //Uncomment This function if ajax uploading
 			$('#dlg').window('open').window('setTitle','<?php  echo lang('edit_artist')?>');
 		}
 		else

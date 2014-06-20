@@ -30,7 +30,7 @@
     <th data-options="field:'country_id',sortable:true" width="30"><?php echo lang('country_id')?></th>
 <th data-options="field:'country_name',sortable:true" width="50"><?php echo lang('country_name')?></th>
 <th data-options="field:'country_code',sortable:true" width="50"><?php echo lang('country_code')?></th>
-<th data-options="field:'flag_image',sortable:true" width="50"><?php echo lang('flag_image')?></th>
+<th data-options="field:'flag_image',sortable:true,formatter:formatImage" width="50"><?php echo lang('flag_image')?></th>
 <th data-options="field:'status',sortable:true,formatter:formatStatus" width="30" align="center"><?php echo lang('status')?></th>
 
     <th field="action" width="100" formatter="getActions"><?php  echo lang('action')?></th>
@@ -110,6 +110,15 @@
 		return e+d;		
 	}
 	
+		function formatImage(value)
+	{
+		if(value!='')
+		{
+			return '<img src="<?php echo base_url()?>uploads/country/thumb/' + value + '" height="50" width="50">';
+		}
+		return '';
+	}
+	
 	function formatStatus(value)
 	{
 		if(value==1)
@@ -119,11 +128,17 @@
 		return 'No';
 	}
 
+	
 	function create(){
 		//Create code here
 		$('#form-country').form('clear');
+		//tinymce.get('artist_description').setContent(''); 
 		$('#dlg').window('open').window('setTitle','<?php  echo lang('create_country')?>');
-		//uploadReady(); //Uncomment This function if ajax uploading
+		$('#upload_image_name').html('').hide();
+		$('#change-image').hide();
+		$('#upload_image').show();	
+			
+		uploadReady(); //Uncomment This function if ajax uploading
 	}	
 
 	function edit(index)
@@ -131,7 +146,14 @@
 		var row = $('#country-table').datagrid('getRows')[index];
 		if (row){
 			$('#form-country').form('load',row);
-			//uploadReady(); //Uncomment This function if ajax uploading
+			
+			if(row.flag_image!='')
+			{
+				$('#upload_image_name').html(row.country_image).show();
+				$('#change-image').show();
+				$('#upload_image').hide();
+			}
+			uploadReady(); //Uncomment This function if ajax uploading
 			$('#dlg').window('open').window('setTitle','<?php  echo lang('edit_country')?>');
 		}
 		else

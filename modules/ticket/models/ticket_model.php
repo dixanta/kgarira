@@ -7,7 +7,7 @@ class Ticket_model extends MY_Model
     	parent::__construct();
         $this->prefix='tbl_';
         $this->_TABLES=array('TICKETS'=>$this->prefix.'tickets','EVENTS'=>$this->prefix.'events');
-		$this->_JOINS=array('EVENTS'=>array('join_type'=>'LEFT','join_field'=>'events.event_id=tickets.ticket_id',
+		$this->_JOINS=array('EVENTS'=>array('join_type'=>'LEFT','join_field'=>'events.event_id=tickets.event_id',
                                            'select'=>'event_name','alias'=>'events'),
                            
                             );        

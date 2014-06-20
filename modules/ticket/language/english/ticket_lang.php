@@ -6,6 +6,7 @@ $lang['ticket_image'] = 'Ticket Image';
 $lang['ticket_number'] = 'Ticket Number';
 $lang['event_id'] = 'Event Id';
 $lang['created_date'] = 'Created Date';
+$lang['event_name'] = 'Event Name';
 
 $lang['create_ticket']='Create Ticket';
 $lang['edit_ticket']='Edit Ticket';

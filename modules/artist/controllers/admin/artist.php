@@ -9,7 +9,8 @@ protected $uploadthumbpath= 'uploads/artist/thumb/';
     	parent::__construct();
         $this->load->module_model('artist','artist_model');
         $this->lang->module_load('artist','artist');
-        //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
+		$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
+		$this->bep_assets->load_asset('tinymce');
     }
     
 	public function index()
@@ -123,10 +124,9 @@ protected $uploadthumbpath= 'uploads/artist/thumb/';
    		$data=array();
         $data['artist_id'] = $this->input->post('artist_id');
 		$data['artist_name'] = $this->input->post('artist_name');
-		$data['artist_description'] = $this->input->post('artist_description');
 		$data['artist_image'] = $this->input->post('artist_image');
+		$data['artist_description'] = $this->input->post('artist_description');
 		$data['contact_number'] = $this->input->post('contact_number');
-		$data['created_date'] = $this->input->post('created_date');
 		$data['genre_id'] = $this->input->post('genre_id');
 		$data['status'] = $this->input->post('status');
 
@@ -167,6 +167,7 @@ protected $uploadthumbpath= 'uploads/artist/thumb/';
 		//get filename
 		$filename = $this->input->post('filename');
 		@unlink($this->uploadPath . '/' . $filename);
+		@unlink($this->uploadthumbpath . '/' . $filename);
 	} 	
 	    
 }

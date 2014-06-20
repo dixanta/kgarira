@@ -9,7 +9,8 @@ protected $uploadthumbpath= 'uploads/country/thumb/';
     	parent::__construct();
         $this->load->module_model('country','country_model');
         $this->lang->module_load('country','country');
-        //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
+        $this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
+		//$this->bep_assets->load_asset('tinymce');
     }
     
 	public function index()
@@ -148,6 +149,7 @@ $data['status'] = $this->input->post('status');
 		//get filename
 		$filename = $this->input->post('filename');
 		@unlink($this->uploadPath . '/' . $filename);
+		@unlink($this->uploadthumbpath . '/' . $filename);
 	} 	
 	    
 }

@@ -50,13 +50,14 @@
     <thead>
     <th data-options="field:'checkbox',checkbox:true"></th>
     <th data-options="field:'event_id',sortable:true" width="30"><?php echo lang('event_id')?></th>
+<th data-options="field:'event_image',sortable:false,formatter:formatImage" width="50"><?php echo lang('event_image')?></th>
+
 <th data-options="field:'event_name',sortable:true" width="50"><?php echo lang('event_name')?></th>
 <th data-options="field:'event_type',sortable:true" width="50"><?php echo lang('event_type_id')?></th>
 <th data-options="field:'venue_name',sortable:true" width="50"><?php echo lang('venue_id')?></th>
 <th data-options="field:'promoter_id',sortable:true" width="50"><?php echo lang('promoter_id')?></th>
 <th data-options="field:'country_code',sortable:true" width="50"><?php echo lang('country_code')?></th>
 <th data-options="field:'event_start_date',sortable:true" width="50"><?php echo lang('event_start_date')?></th>
-<th data-options="field:'event_image',sortable:true" width="50"><?php echo lang('event_image')?></th>
 <th data-options="field:'event_end_date',sortable:true" width="50"><?php echo lang('event_end_date')?></th>
 <th data-options="field:'member_id',sortable:true" width="50"><?php echo lang('member_id')?></th>
 <th data-options="field:'status',sortable:true,formatter:formatStatus" width="30" align="center"><?php echo lang('status')?></th>
@@ -144,6 +145,8 @@
 			  
 			  <?php easyui_combobox('search_venue_id','VENUE');
 			  easyui_combobox('venue_id','VENUE');?>
+			  
+		 <?php tinymce('event_description')?>
 		
 		$('#clear').click(function(){
 			$('#event-search-form').form('clear');
@@ -167,6 +170,18 @@
 				edit(index);
 			}
 		});
+		
+		$('#change-image').on('click',function(){
+			$.messager.confirm('Confirm','Are you sure to delete ?',function(r){
+				if (r){
+					$.post('<?php echo site_url('event/admin/event/upload_delete')?>',{filename:$('#event_image').val()},function(data){
+					$('#upload_image_name').html('').hide();
+					$('#change-image').hide();
+					$('#upload_image').show();	
+					});
+				}
+			});
+		});
 	});
 	
 	function getActions(value,row,index)
@@ -176,20 +191,24 @@
 		return e+d;		
 	}
 	
-	function formatStatus(value)
+	function formatImage(value)
 	{
-		if(value==1)
+		if(value!='')
 		{
-			return 'Yes';
+			return '<img src="<?php echo base_url()?>uploads/event/thumb/' + value + '" height="50" width="50">';
 		}
-		return 'No';
+		return '';
 	}
 
 	function create(){
 		//Create code here
 		$('#form-event').form('clear');
 		$('#dlg').window('open').window('setTitle','<?php  echo lang('create_event')?>');
-		//uploadReady(); //Uncomment This function if ajax uploading
+		$('#upload_image_name').html('').hide();
+		$('#change-image').hide();
+		$('#upload_image').show();	
+			
+		uploadReady(); //Uncomment This function if ajax uploading
 	}	
 
 	function edit(index)
@@ -197,7 +216,14 @@
 		var row = $('#event-table').datagrid('getRows')[index];
 		if (row){
 			$('#form-event').form('load',row);
-			//uploadReady(); //Uncomment This function if ajax uploading
+			
+			if(row.event_image!='')
+			{
+				$('#upload_image_name').html(row.event_image).show();
+				$('#change-image').show();
+				$('#upload_image').hide();
+			}
+			uploadReady(); //Uncomment This function if ajax uploading
 			$('#dlg').window('open').window('setTitle','<?php  echo lang('edit_event')?>');
 		}
 		else

@@ -5,7 +5,7 @@
 <table width="100%" border="1" cellspacing="1" cellpadding="1">
 <tr><td><label><?php echo lang('venue_name')?></label>:</td>
 <td><input type="text" name="search[venue_name]" id="search_venue_name"  class="easyui-validatebox"/></td>
-<td><label><?php echo lang('venue_type_id')?></label>:</td>
+<td><label><?php echo lang('venue_type')?></label>:</td>
 <td><input type="text" name="search[venue_type_id]" id="search_venue_type_id"  class=""/></td>
 </tr>
 <tr>
@@ -23,8 +23,6 @@
 <tr>
 <td><label><?php echo lang('drink_price_range')?></label>:</td>
 <td><input type="text" name="search[drink_price_range]" id="search_drink_price_range"  class="easyui-validatebox"/></td>
-</tr>
-<tr>
 <td><label><?php echo lang('status')?></label>:</td>
 <td><input type="radio" name="search[status]" id="search_status1" value="1"/><?php echo lang('general_yes')?>
 									<input type="radio" name="search[status]" id="search_status0" value="0"/><?php echo lang('general_no')?></td>
@@ -44,14 +42,13 @@
     <thead>
     <th data-options="field:'checkbox',checkbox:true"></th>
     <th data-options="field:'venue_id',sortable:true" width="30"><?php echo lang('venue_id')?></th>
-<th data-options="field:'venue_name',sortable:true" width="50"><?php echo lang('venue_name')?></th>
+<th data-options="field:'venue_name',sortable:true" width="80"><?php echo lang('venue_name')?></th>
 <th data-options="field:'venue_type',sortable:true" width="50"><?php echo lang('venue_type')?></th>
 <th data-options="field:'venue_location',sortable:true" width="50"><?php echo lang('venue_location')?></th>
 <th data-options="field:'venue_city',sortable:true" width="50"><?php echo lang('venue_city')?></th>
 <th data-options="field:'cusine',sortable:true" width="50"><?php echo lang('cusine')?></th>
 <th data-options="field:'food_price_range',sortable:true" width="50"><?php echo lang('food_price_range')?></th>
 <th data-options="field:'drink_price_range',sortable:true" width="50"><?php echo lang('drink_price_range')?></th>
-<th data-options="field:'created_date',sortable:true" width="50"><?php echo lang('created_date')?></th>
 <th data-options="field:'status',sortable:true,formatter:formatStatus" width="30" align="center"><?php echo lang('status')?></th>
 
     <th field="action" width="100" formatter="getActions"><?php  echo lang('action')?></th>
@@ -83,7 +80,7 @@
 					  <td width="66%"><input name="venue_city" id="venue_city" class="easyui-validatebox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_description')?>:</label></td>
-					  <td width="66%"><textarea name="venue_description" id="venue_description" class="easyui-validatebox" required="true" style="width:300px;height:100px"></textarea></td>
+					  <td width="66%" colspan = "3"><textarea name="venue_description" id="venue_description" class="easyui-validatebox" required="true" style="width:500px;height:100px"></textarea></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_longitude')?>:</label></td>
 					  <td width="66%"><input name="venue_longitude" id="venue_longitude" class="easyui-numberbox" required="true"></td>
@@ -122,6 +119,7 @@
 	   
        <?php easyui_combobox('search_venue_type_id','VENUE_TYPE');
             easyui_combobox('venue_type_id','VENUE_TYPE');
+            tinymce('venue_description');
        ?>
 		$('#clear').click(function(){
 			$('#venue-search-form').form('clear');
@@ -166,6 +164,7 @@
 	function create(){
 		//Create code here
 		$('#form-venue').form('clear');
+        tinymce.get('venue_description').setContent('');
 		$('#dlg').window('open').window('setTitle','<?php  echo lang('create_venue')?>');
 		//uploadReady(); //Uncomment This function if ajax uploading
 	}	

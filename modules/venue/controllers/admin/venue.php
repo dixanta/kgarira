@@ -8,6 +8,7 @@ class Venue extends Admin_Controller
         $this->load->module_model('venue','venue_model');
         $this->lang->module_load('venue','venue');
         //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
+        $this->bep_assets->load_asset('tinymce');
     }
     
 	public function index()
@@ -37,7 +38,7 @@ class Venue extends Admin_Controller
 		if(!empty($params['search']))
 		{
 			($params['search']['venue_name']!='')?$this->db->like('venue_name',$params['search']['venue_name']):'';
-($params['search']['venue_type_id']!='')?$this->db->where('venue_type_id',$params['search']['venue_type_id']):'';
+($params['search']['venue_type_id']!='')?$this->db->where('venues.venue_type_id',$params['search']['venue_type_id']):'';
 ($params['search']['venue_location']!='')?$this->db->like('venue_location',$params['search']['venue_location']):'';
 ($params['search']['venue_city']!='')?$this->db->like('venue_city',$params['search']['venue_city']):'';
 ($params['search']['cusine']!='')?$this->db->like('cusine',$params['search']['cusine']):'';

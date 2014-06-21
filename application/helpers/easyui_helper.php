@@ -6,6 +6,11 @@ function easyui_settings($key)
 								'textField'=>'event_type'
 							);
 							
+	$combo_settings['GALLERY_IMAGE']=array('url'=>site_url('gallery_image/admin/gallery_image/combo_json'),
+								'valueField'=>'gallery_image_id',
+								'textField'=>'image_name'
+							);
+							
 	$combo_settings['VENUE_TYPE']=array('url'=>site_url('venue/admin/type/combo_json'),
 									'valueField'=>'venue_type_id',
 							'textField'=>'venue_type'

@@ -25,10 +25,6 @@
 <td><input type="text" name="date[event_end_date][from]" id="search_event_end_date_from"  class="easyui-datebox"/> ~ <input type="text" name="date[event_end_date][to]" id="search_event_end_date_to"  class="easyui-datebox"/></td>
 </tr>
 <tr>
-<td><label><?php echo lang('member_id')?></label>:</td>
-<td><input type="text" name="search[member_id]" id="search_member_id"  class="easyui-numberbox"/></td>
-</tr>
-<tr>
 <td><label><?php echo lang('status')?></label>:</td>
 <td><input type="radio" name="search[status]" id="search_status1" value="1"/><?php echo lang('general_yes')?>
 									<input type="radio" name="search[status]" id="search_status0" value="0"/><?php echo lang('general_no')?></td>
@@ -59,7 +55,7 @@
 <th data-options="field:'country_code',sortable:true" width="50"><?php echo lang('country_code')?></th>
 <th data-options="field:'event_start_date',sortable:true" width="50"><?php echo lang('event_start_date')?></th>
 <th data-options="field:'event_end_date',sortable:true" width="50"><?php echo lang('event_end_date')?></th>
-<th data-options="field:'member_id',sortable:true" width="50"><?php echo lang('member_id')?></th>
+    <th field="view_gallery" width="30" align="center" formatter="formatViewGallery">View Images</th>
 <th data-options="field:'status',sortable:true,formatter:formatStatus" width="30" align="center"><?php echo lang('status')?></th>
 
     <th field="action" width="100" formatter="getActions"><?php  echo lang('action')?></th>
@@ -75,7 +71,7 @@
 </div> 
 
 <!--for create and edit event form-->
-<div id="dlg" class="easyui-dialog" style="width:800px;height:auto;padding:10px 20px"
+<div id="dlg" class="easyui-dialog" style="width:800px;height:auto;padding:10px 20px;top:10px"
         data-options="closed:true,collapsible:true,buttons:'#dlg-buttons',modal:true">
     <form id="form-event" method="post" >
     <table>
@@ -93,34 +89,38 @@
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('country_code')?>:</label></td>
 					  <td width="66%"><input name="country_code" id="country_code" class="easyui-validatebox" required="true"></td>
-		              <td width="34%" ><label><?php echo lang('event_start_date')?>:</label></td>
-					  <td width="66%"><input name="event_start_date" id="event_start_date" class="easyui-datetimebox" required="true"></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('event_description')?>:</label></td>
-					  <td width="66%"><textarea name="event_description" id="event_description" class="easyui-validatebox" required="true" style="width:300px;height:100px"></textarea></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('event_image')?>:</label></td>
+                       <td width="34%" ><label><?php echo lang('event_image')?>:</label></td>
 					  <td width="66%"><label id="upload_image_name" style="display:none"></label>
                       <input name="event_image" id="event_image" type="text" style="display:none"/>
                       <input type="file" id="upload_image" name="userfile" style="display:block"/>
                       <a href="#" id="change-image" title="Delete" style="display:none"><img src="<?=base_url()?>assets/icons/delete.png" border="0"/></a></td>
+		       </tr><tr>
+		              <td width="34%" ><label><?php echo lang('event_description')?>:</label></td>
+					  <td width="66%" colspan="3"><textarea name="event_description" id="event_description" class="easyui-validatebox" required="true" style="width:500px;height:100px"></textarea></td>
+		       </tr><tr>
+		             
+                      
+		              <td width="34%" ><label><?php echo lang('event_start_date')?>:</label></td>
+					  <td width="66%"><input name="event_start_date" id="event_start_date" class="easyui-datetimebox" required="true"></td>
 		              <td width="34%" ><label><?php echo lang('event_end_date')?>:</label></td>
 					  <td width="66%"><input name="event_end_date" id="event_end_date" class="easyui-datetimebox" required="true"></td>
 		       </tr><tr>
                       <tr>
 							<td width="34%" ><label><?php echo lang('allow_ticket_sell')?>:</label></td>
-                             <td width="66%"><input type="radio" value="1" name="allow_ticket_sell" id="allow_ticket_sell1" />					<?php echo lang("general_yes")?> <input type="radio" value="0" name="allow_ticket_sell" id="allow_ticket_sell0" /><?php echo lang("general_no")?></td>                      
+                             <td width="66%"><input name="is_ticket_sales" type="radio" value="1" class="ticket-sale-allowed" /><?php echo lang("general_yes")?> <input name="is_ticket_sales" type="radio" value="0" class="ticket-sale-allowed"/><?php echo lang("general_no")?></td>                      
                       </tr>
-		              <td width="34%" ><label><?php echo lang('no_of_tickets')?>:</label></td>
-					  <td width="66%"><input name="no_of_tickets" id="no_of_tickets" class="easyui-numberbox" required="true"></td>
-		              <td width="34%" ><label><?php echo lang('paid_tickets')?>:</label></td>
+                      <tr class="ticket-row">
+		              <td width="34%" ><label><?=lang('no_of_tickets')?>:</label></td>
+					  <td width="66%"><input name="no_of_tickets" id="no_of_tickets" class="easyui-numberbox" ></td>
+		       
+		              <td width="34%" ><label><?=lang('ticket_amount')?>:</label></td>
+					  <td width="66%"><input name="ticket_amount" id="ticket_amount" class="easyui-validatebox" ></td>
+		       </tr><tr class="ticket-row">
+		              
+                      <td width="34%" ><label><?php echo lang('paid_tickets')?>:</label></td>
 					  <td width="66%"><input name="paid_tickets" id="paid_tickets" class="easyui-numberbox" required="true"></td>
-		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('ticket_amount')?>:</label></td>
-					  <td width="66%"><input name="ticket_amount" id="ticket_amount" class="easyui-validatebox" required="true"></td>
-		              <td width="34%" ><label><?php echo lang('member_id')?>:</label></td>
-					  <td width="66%"><input name="member_id" id="member_id" class="easyui-numberbox" required="true"></td>
-		       </tr><tr>
+               </tr>
+               <tr>
 		              <td width="34%" ><label><?php echo lang('status')?>:</label></td>
 					  <td width="66%"><input type="radio" value="1" name="status" id="status1" /><?php echo lang("general_yes")?> <input type="radio" value="0" name="status" id="status0" /><?php echo lang("general_no")?></td>
 		       </tr><input type="hidden" name="event_id" id="event_id"/>
@@ -134,11 +134,24 @@
 	</div>    
 </div>   
 </div>
+
+<div id="gallery-upload-form" iconcls="icon-upload" title="Upload Image" modal="true" class="easyui-window" style="height:auto;width:800px" closed="true">
+	<div id="uploader" style="width:auto; height:auto">You browser doesn't support upload.</div>
+</div>
+
+
 <!--div ends-->
    
 </div>
 </div>
 <script language="javascript" type="text/javascript">
+	function ticketValidation(required)
+	{
+		$('#no_of_tickets').numberbox({required:required});
+		$('#ticket_amount').validatebox({required:required});
+	}
+	
+
 	$(function(){
 		<?php easyui_combobox('search_event_type_id','EVENT_TYPE');
 			  easyui_combobox('event_type_id','EVENT_TYPE');?>
@@ -155,6 +168,22 @@
 				});
 
 		});
+		
+		$('.ticket-row').hide();
+		$('.ticket-sale-allowed').click(function(){
+			//alert($(this).val());
+			if($(this).val()==1)
+			{
+				$('.ticket-row').show();
+				ticketValidation(true);
+			}
+			else
+			{
+				ticketValidation(false);
+				$('.ticket-row').css('display','none');
+			}
+		});
+
 
 		$('#search').click(function(){
 			$('#event-table').datagrid({
@@ -181,14 +210,46 @@
 					});
 				}
 			});
-		});
+		}); //Change Image
+		
+		var uploader=$("#uploader").pluploadQueue({
+			runtimes : 'html5,html4',
+			url : '<?=site_url('event/admin/gallery/upload')?>',
+			max_file_size : '1mb',
+			unique_names : true,
+			filters : [
+				{title : "Image files", extensions : "jpg,gif,png"}
+				//{title : "Zip files", extensions : "zip"}
+			],
+			
+		});	
+		$("#uploader").pluploadQueue().bind('UploadComplete',function(up, files) {
+			$("#uploader").pluploadQueue().splice();
+			$('.plupload_buttons').attr('style', 'display: inline;');
+			$('.plupload_upload_status').attr('style', 'display: inline;'); 
+		});		
+		
 	});
 	
 	function getActions(value,row,index)
 	{
+		var u = '<a href="#" onclick="upload('+index+')" class="easyui-linkbutton l-btn" iconcls="icon-upload"  title="<?php  echo lang('upload_image')?>"><span class="l-btn-left"><span style="padding-left: 20px;" class="l-btn-text icon-upload"></span></span></a>';
+		
 		var e = '<a href="#" onclick="edit('+index+')" class="easyui-linkbutton l-btn" iconcls="icon-edit"  title="<?php  echo lang('edit_event')?>"><span class="l-btn-left"><span style="padding-left: 20px;" class="l-btn-text icon-edit"></span></span></a>';
+		
 		var d = '<a href="#" onclick="removeevent('+index+')" class="easyui-linkbutton l-btn" iconcls="icon-remove"  title="<?php  echo lang('delete_event')?>"><span class="l-btn-left"><span style="padding-left: 20px;" class="l-btn-text icon-cancel"></span></span></a>';
-		return e+d;		
+		return u+e+d;		
+	}
+	
+	function upload(index)
+	{
+		$("#uploader").pluploadQueue().splice();
+		var row = $('#event-table').datagrid('getRows')[index];
+		if (row){
+			$('#gallery-upload-form').window('setTitle','Upload Image for ' + row.event_name);
+			$('#gallery-upload-form').window('open');
+			$("#uploader").pluploadQueue().settings.multipart_params = {event_id: row.event_id};
+		}
 	}
 	
 	function formatImage(value)
@@ -199,12 +260,33 @@
 		}
 		return '';
 	}
+	
+	function formatEventName(value,row,index)
+	{
+		return '<a href="<?=site_url('events/detail')?>/'+row.event_id+'" target="_blank">'+value+'</a>';
+
+	}
+
+	
+	function formatViewGallery(value,row,index)
+	{
+		return '<a href="#" onclick="getImages('+row.event_id+')">View Images</a>';
+	}
+	
+	function getImages(event_id)
+	{
+		$.get('<?=site_url('event/admin/gallery/gallery_image')?>/'+event_id,function(data){
+			$('#image-list').html(data);
+			$('#images-window').window('open');
+		});
+	}
 
 	function create(){
 		//Create code here
 		$('#form-event').form('clear');
 		$('#dlg').window('open').window('setTitle','<?php  echo lang('create_event')?>');
 		$('#upload_image_name').html('').hide();
+		tinymce.get('event_description').setContent(''); 
 		$('#change-image').hide();
 		$('#upload_image').show();	
 			
@@ -222,6 +304,15 @@
 				$('#upload_image_name').html(row.event_image).show();
 				$('#change-image').show();
 				$('#upload_image').hide();
+			}
+			
+			if(row.is_ticket_sales=='1')
+			{
+				$('.ticket-row').show();
+			}
+			else
+			{
+				$('.ticket-row').css('display','none');
 			}
 			uploadReady(); //Uncomment This function if ajax uploading
 			$('#dlg').window('open').window('setTitle','<?php  echo lang('edit_event')?>');
@@ -278,7 +369,7 @@
 	function save()
 	{
 		$('#form-event').form('submit',{
-			url: '<?php  echo site_url('event/admin/event/save')?>',
+			url: '<?php  echo site_url('event/admin/event/form_json')?>',
 			onSubmit: function(){
 				return $(this).form('validate');
 			},
@@ -308,6 +399,9 @@
 		$this.save();
 		//email section
 		}
+	
+
+	
 	
 	
 	function uploadReady()

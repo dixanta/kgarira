@@ -11,6 +11,8 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
         $this->lang->module_load('event','event');
         $this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
 		$this->bep_assets->load_asset('tinymce');
+		$this->bep_assets->load_asset('jquery.upload');	
+		$this->bep_assets->load_asset_group('UPLOADER');
     }
     
 	public function index()
@@ -45,7 +47,6 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 ($params['search']['promoter_id']!='')?$this->db->where('promoter_id',$params['search']['promoter_id']):'';
 ($params['search']['country_code']!='')?$this->db->like('country_code',$params['search']['country_code']):'';
 (isset($params['search']['allow_ticket_sell']))?$this->db->where('allow_ticket_sell',$params['search']['allow_ticket_sell']):'';
-($params['search']['member_id']!='')?$this->db->where('member_id',$params['search']['member_id']):'';
 (isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
 
 		}  
@@ -81,18 +82,7 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 		echo json_encode($rows);    	
     }    
     
-	public function delete_json()
-	{
-    	$id=$this->input->post('id');
-		if($id && is_array($id))
-		{
-        	foreach($id as $row):
-				$this->event_model->delete('EVENTS',array('event_id'=>$row));
-            endforeach;
-		}
-	}    
-
-	public function save()
+	public function form_json()
 	{
 		
         $data=$this->_get_posted_data(); //Retrive Posted Data		
@@ -121,6 +111,18 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
         
 	}
 	
+	public function delete_json()
+	{
+    	$id=$this->input->post('id');
+		if($id && is_array($id))
+		{
+        	foreach($id as $row):
+				$this->event_model->delete('EVENTS',array('event_id'=>$row));
+            endforeach;
+		}
+	}    
+
+	
 	public function save_notify()
 	{
 		$this->save();		
@@ -144,7 +146,6 @@ $data['event_end_date'] = $this->input->post('event_end_date');
 $data['no_of_tickets'] = $this->input->post('no_of_tickets');
 $data['paid_tickets'] = $this->input->post('paid_tickets');
 $data['ticket_amount'] = $this->input->post('ticket_amount');
-$data['member_id'] = $this->input->post('member_id');
 $data['fb_event_id'] = $this->input->post('fb_event_id');
 $data['is_fb_event'] = $this->input->post('is_fb_event');
 $data['is_guest_event'] = $this->input->post('is_guest_event');

@@ -23,9 +23,9 @@
     <thead>
     <th data-options="field:'checkbox',checkbox:true"></th>
     <th data-options="field:'ticket_id',sortable:true" width="30"><?php echo lang('ticket_id')?></th>
-<th data-options="field:'ticket_image',sortable:true" width="50"><?php echo lang('ticket_image')?></th>
+<th data-options="field:'ticket_image',sortable:true,formatter:formatImage" width="50"><?php echo lang('ticket_image')?></th>
 <th data-options="field:'ticket_number',sortable:true" width="50"><?php echo lang('ticket_number')?></th>
-<th data-options="field:'event_name',sortable:true" width="50"><?php echo lang('event_id')?></th>
+<th data-options="field:'event_name',sortable:true" width="50"><?php echo lang('event_name')?></th>
 <th data-options="field:'created_date',sortable:true" width="50"><?php echo lang('created_date')?></th>
 
     <th field="action" width="100" formatter="getActions"><?php  echo lang('action')?></th>
@@ -62,6 +62,7 @@
     </form>
 	<div id="dlg-buttons">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
+        
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
 	</div>    
 </div>
@@ -99,6 +100,18 @@
 				edit(index);
 			}
 		});
+			$('#change-image').on('click',function(){
+			$.messager.confirm('Confirm','Are you sure to delete ?',function(r){
+				if (r){
+					$.post('<?php echo site_url('ticket/admin/ticket/upload_delete')?>',{filename:$('#ticket_image').val()},function(data){
+					$('#upload_image_name').html('').hide();
+					$('#change-image').hide();
+					$('#upload_image').show();	
+					});
+				}
+			});
+		});
+		
 	});
 	
 	function getActions(value,row,index)
@@ -108,6 +121,16 @@
 		return e+d;		
 	}
 	
+		function formatImage(value)
+	{
+		if(value!='')
+		{
+			return '<img src="<?php echo base_url()?>uploads/ticket/thumb/' + value + '" height="50" width="50">';
+		}
+		return '';
+	}
+	
+	
 	function formatStatus(value)
 	{
 		if(value==1)
@@ -116,12 +139,26 @@
 		}
 		return 'No';
 	}
+	
+		function formatImage(value)
+	{
+		if(value!='')
+		{
+			return '<img src="<?php echo base_url()?>uploads/ticket/thumb/' + value + '" height="50" width="50">';
+		}
+		return '';
+	}
 
 	function create(){
 		//Create code here
 		$('#form-ticket').form('clear');
 		$('#dlg').window('open').window('setTitle','<?php  echo lang('create_ticket')?>');
-		//uploadReady(); //Uncomment This function if ajax uploading
+		
+		$('#upload_image_name').html('').hide();
+		$('#change-image').hide();
+		$('#upload_image').show();
+		
+		uploadReady(); //Uncomment This function if ajax uploading
 	}	
 
 	function edit(index)
@@ -129,7 +166,15 @@
 		var row = $('#ticket-table').datagrid('getRows')[index];
 		if (row){
 			$('#form-ticket').form('load',row);
-			//uploadReady(); //Uncomment This function if ajax uploading
+			
+				if(row.ticket_image!='')
+			{
+				$('#upload_image_name').html(row.ticket_image).show();
+				$('#change-image').show();
+				$('#upload_image').hide();
+			}
+			
+			uploadReady(); //Uncomment This function if ajax uploading
 			$('#dlg').window('open').window('setTitle','<?php  echo lang('edit_ticket')?>');
 		}
 		else

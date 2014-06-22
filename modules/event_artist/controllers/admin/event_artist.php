@@ -36,8 +36,8 @@ class Event_artist extends Admin_Controller
 		parse_str($this->input->post('data'),$params);
 		if(!empty($params['search']))
 		{
-			($params['search']['artist_id']!='')?$this->db->where('artist_id',$params['search']['artist_id']):'';
-($params['search']['event_id']!='')?$this->db->where('event_id',$params['search']['event_id']):'';
+			($params['search']['artist_id']!='')?$this->db->where('artists.artist_id',$params['search']['artist_id']):'';
+($params['search']['event_id']!='')?$this->db->where('events.event_id',$params['search']['event_id']):'';
 
 		}  
 

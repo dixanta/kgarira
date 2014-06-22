@@ -9,7 +9,8 @@ protected $uploadthumbpath= 'uploads/ticket/thumb/';
     	parent::__construct();
         $this->load->module_model('ticket','ticket_model');
         $this->lang->module_load('ticket','ticket');
-        //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
+        $this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
+		//$this->bep_assets->load_asset('tinymce');
     }
     
 	public function index()
@@ -92,9 +93,14 @@ protected $uploadthumbpath= 'uploads/ticket/thumb/';
 
         if(!$this->input->post('ticket_id'))
         {
+
+			$data['created_date']=date('Y-m-d H:i:s');
+            $success=$this->ticket_model->insert('TICKETS',$data);
+
             $data['created_date'] =date('Y-m-d H:i:s');
 			$success=$this->ticket_model->insert('TICKETS',$data);
 			
+
         }
         else
         {
@@ -120,9 +126,16 @@ protected $uploadthumbpath= 'uploads/ticket/thumb/';
    {
    		$data=array();
         $data['ticket_id'] = $this->input->post('ticket_id');
+
+$data['ticket_image'] = $this->input->post('ticket_image');
+$data['ticket_number'] = $this->input->post('ticket_number');
+$data['event_id'] = $this->input->post('event_id');
+
+
 		$data['ticket_image'] = $this->input->post('ticket_image');
 		$data['ticket_number'] = $this->input->post('ticket_number');
 		$data['event_id'] = $this->input->post('event_id');
+
         return $data;
    }
    
@@ -160,6 +173,7 @@ protected $uploadthumbpath= 'uploads/ticket/thumb/';
 		//get filename
 		$filename = $this->input->post('filename');
 		@unlink($this->uploadPath . '/' . $filename);
+		@unlink($this->uploadthumbpath . '/' . $filename);
 	} 	
 	    
 }

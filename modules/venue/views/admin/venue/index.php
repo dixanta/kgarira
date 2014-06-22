@@ -11,8 +11,6 @@
 <tr>
 <td><label><?php echo lang('venue_location')?></label>:</td>
 <td><input type="text" name="search[venue_location]" id="search_venue_location"  class="easyui-validatebox"/></td>
-<td><label><?php echo lang('venue_city')?></label>:</td>
-<td><input type="text" name="search[venue_city]" id="search_venue_city"  class="easyui-validatebox"/></td>
 </tr>
 <tr>
 <td><label><?php echo lang('cusine')?></label>:</td>
@@ -45,7 +43,6 @@
 <th data-options="field:'venue_name',sortable:true" width="80"><?php echo lang('venue_name')?></th>
 <th data-options="field:'venue_type',sortable:true" width="50"><?php echo lang('venue_type')?></th>
 <th data-options="field:'venue_location',sortable:true" width="50"><?php echo lang('venue_location')?></th>
-<th data-options="field:'venue_city',sortable:true" width="50"><?php echo lang('venue_city')?></th>
 <th data-options="field:'cusine',sortable:true" width="50"><?php echo lang('cusine')?></th>
 <th data-options="field:'food_price_range',sortable:true" width="50"><?php echo lang('food_price_range')?></th>
 <th data-options="field:'drink_price_range',sortable:true" width="50"><?php echo lang('drink_price_range')?></th>
@@ -64,28 +61,28 @@
 </div> 
 
 <!--for create and edit venue form-->
-<div id="dlg" class="easyui-dialog" style="width:800px;height:auto;padding:10px 20px"
+<div id="dlg" class="easyui-dialog" style="width:1100px;height:auto;padding:10px 20px;top:10px"
         data-options="closed:true,collapsible:true,buttons:'#dlg-buttons',modal:true">
     <form id="form-venue" method="post" >
     <table>
+    
 		<tr>
 		              <td width="34%" ><label><?php echo lang('venue_name')?>:</label></td>
 					  <td width="66%"><input name="venue_name" id="venue_name" class="easyui-validatebox" required="true"></td>
 		              <td width="34%" ><label><?php echo lang('venue_type')?>:</label></td>
 					  <td width="66%"><input name="venue_type_id" id="venue_type_id" class="" required="true"></td>
 		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('venue_location')?>:</label></td>
-					  <td width="66%"><input name="venue_location" id="venue_location" class="easyui-validatebox" required="true"></td>
-		              <td width="34%" ><label><?php echo lang('venue_city')?>:</label></td>
-					  <td width="66%"><input name="venue_city" id="venue_city" class="easyui-validatebox" required="true"></td>
-		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_description')?>:</label></td>
 					  <td width="66%" colspan = "3"><textarea name="venue_description" id="venue_description" class="easyui-validatebox" required="true" style="width:500px;height:100px"></textarea></td>
 		       </tr><tr>
+		              <td width="34%" ><label><?php echo lang('venue_location')?>:</label></td>
+					  <td width="66%"><input name="venue_location" id="venue_location" class="easyui-validatebox" required="true" ></td>
+		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('venue_longitude')?>:</label></td>
-					  <td width="66%"><input name="venue_longitude" id="venue_longitude" class="easyui-numberbox" required="true"></td>
+					  <td width="66%"><input name="venue_longitude" id="venue_longitude" class="easyui-validatebox" required="true"></td>
 		              <td width="34%" ><label><?php echo lang('venue_latitude')?>:</label></td>
-					  <td width="66%"><input name="venue_latitude" id="venue_latitude" class="easyui-numberbox" required="true"></td>
+					  <td width="66%"><input name="venue_latitude" id="venue_latitude" class="easyui-validatebox" required="true"></td>
+                       <td><a href="javascript:void(0)"  onclick="mapLocation()">Find Location</a></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('cusine')?>:</label></td>
 					  <td width="66%"><input name="cusine" id="cusine" class="easyui-validatebox" required="true"></td>
@@ -95,10 +92,10 @@
 		              <td width="34%" ><label><?php echo lang('venue_food')?>:</label></td>
 					  <td width="66%"><input name="venue_food" id="venue_food" class="easyui-validatebox" required="true"></td>
 		       </tr><tr>
-		              <td width="34%" ><label><?php echo lang('food_price_range')?>:</label></td>
-					  <td width="66%"><input name="food_price_range" id="food_price_range" class="easyui-validatebox" required="true"></td>
 		              <td width="34%" ><label><?php echo lang('drink_price_range')?>:</label></td>
 					  <td width="66%"><input name="drink_price_range" id="drink_price_range" class="easyui-validatebox" required="true"></td>
+                      <td width="34%" ><label><?php echo lang('food_price_range')?>:</label></td>
+					  <td width="66%"><input name="food_price_range" id="food_price_range" class="easyui-validatebox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('status')?>:</label></td>
 					  <td width="66%"><input type="radio" value="1" name="status" id="status1" /><?php echo lang("general_yes")?> <input type="radio" value="0" name="status" id="status0" /><?php echo lang("general_no")?></td>
@@ -109,6 +106,11 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onClick="javascript:$('#dlg').window('close')"><?php  echo  lang('general_cancel')?></a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onClick="save()"><?php  echo  lang('general_save')?></a>
 	</div>    
+    
+     <div id="map-dialog" class="easyui-dialog" style="width:500px;height:500px;top:10px;padding:20px"
+            data-options="closed:true,collapsible:true,modal:true">
+            <div id="map_canvas" style="width:440px;height:420px"></div>
+       </div>  
 </div>
 <!--div ends-->
    
@@ -252,6 +254,58 @@
 		
 	}
     
+    
+    $(document).ready(function() {
+	//$('#venue-table').datagrid({url:'<?php echo site_url('admin/venue/json')?>'});
+
+	$('#map_canvas').gmap({'disableDefaultUI':false,'callback': function(map) {
+			var self = this;
+		$(map).click(function(event){
+			self.addMarker({'position': event.latLng, 'draggable': true, 'bounds': false}, function(map, marker){
+				self.get('findLocation')(marker.getPosition(), marker);
+			}).dragend( function(event) {
+				self.get('findLocation')(event.latLng, this);
+			});
+		});	
+
+		self.set('findLocation', function(location, marker) {
+			self.search({'location': location}, function(results, status) {
+
+				if ( status === 'OK' ) {
+						lat=results[0].geometry.location.lat();
+						lng=results[0].geometry.location.lng();
+						
+					$.each(results[0].address_components, function(i,v) {
+						if ( v.types[0] == "administrative_area_level_1" || v.types[0] == "administrative_area_level_2" ) {
+							//$('#state').html(v.long_name);
+						} else if ( v.types[0] == "country") {
+							//$('#country').html(v.long_name);
+						}
+					});
+	
+					$('#venue_location').val(results[0].formatted_address);
+					$('#venue_longitude').val(location.lng());
+					$('#venue_latitude').val(location.lat());
+					$('#map-dialog').window('close');
+				}
+			});
+		});			
+
+	} //close function(map)
+	});
+
+		
+
+});
+
+
+function mapLocation()
+{
+	
+	$('#map-dialog').window('setTitle','Find Longitude Latitude');
+	$('#map-dialog').window('open');
+	
+}
 	
 	
 </script>

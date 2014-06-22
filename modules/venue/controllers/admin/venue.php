@@ -9,6 +9,7 @@ class Venue extends Admin_Controller
         $this->lang->module_load('venue','venue');
         //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
         $this->bep_assets->load_asset('tinymce');
+        $this->bep_assets->load_asset_group('GOOGLE_MAP');
     }
     
 	public function index()
@@ -40,7 +41,6 @@ class Venue extends Admin_Controller
 			($params['search']['venue_name']!='')?$this->db->like('venue_name',$params['search']['venue_name']):'';
 ($params['search']['venue_type_id']!='')?$this->db->where('venues.venue_type_id',$params['search']['venue_type_id']):'';
 ($params['search']['venue_location']!='')?$this->db->like('venue_location',$params['search']['venue_location']):'';
-($params['search']['venue_city']!='')?$this->db->like('venue_city',$params['search']['venue_city']):'';
 ($params['search']['cusine']!='')?$this->db->like('cusine',$params['search']['cusine']):'';
 ($params['search']['food_price_range']!='')?$this->db->like('food_price_range',$params['search']['food_price_range']):'';
 ($params['search']['drink_price_range']!='')?$this->db->like('drink_price_range',$params['search']['drink_price_range']):'';
@@ -128,7 +128,6 @@ class Venue extends Admin_Controller
 $data['venue_name'] = $this->input->post('venue_name');
 $data['venue_type_id'] = $this->input->post('venue_type_id');
 $data['venue_location'] = $this->input->post('venue_location');
-$data['venue_city'] = $this->input->post('venue_city');
 $data['venue_description'] = $this->input->post('venue_description');
 $data['venue_longitude'] = $this->input->post('venue_longitude');
 $data['venue_latitude'] = $this->input->post('venue_latitude');
@@ -142,6 +141,15 @@ $data['status'] = $this->input->post('status');
         return $data;
    }
    
+   
+   public function google_map()
+   {
+        $data['header'] = 'Google Map';
+		$data['page'] = $this->config->item('template_admin') . "venue/map";
+		$data['module'] = 'venue';
+		$this->load->view($this->_container,$data);	
+    
+   }
    	
 	    
 }

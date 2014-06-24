@@ -131,3 +131,24 @@
 .icon-upload{
 	background:url('icons/upload.png') no-repeat;
 }
+.icon-genre{
+	background:url('icons/genre.png') no-repeat;
+}
+.icon-country{
+	background:url('icons/country.png') no-repeat;
+}
+.icon-artist{
+	background:url('icons/artist.png') no-repeat;
+}
+.icon-venue{
+	background:url('icons/venue.png') no-repeat;
+}
+.icon-ticket{
+	background:url('icons/ticket.png') no-repeat;
+}
+.icon-event_artist{
+	background:url('icons/event_artist.png') no-repeat;
+}
+.icon-event{
+	background:url('icons/event.png') no-repeat;
+}

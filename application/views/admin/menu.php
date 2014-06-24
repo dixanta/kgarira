@@ -24,7 +24,23 @@
 
 <div id="content-menu" style="width:150px">
 <div iconCls="icon-page" href="<?php echo site_url('page/admin/page')?>">Pages</div>
+<!--</div>-->
+
+<!--<div id="content-menu" style="width:150px">-->
+<div iconCls="icon-genre" href="<?php echo site_url('genre/admin/genre')?>">Genres</div>
+<div iconCls="icon-country" href="<?php echo site_url('country/admin/country')?>">Country</div>
+<div iconCls="icon-artist" href="<?php echo site_url('artist/admin/artist')?>">Artist</div>
+<div iconCls="icon-event" href="<?php echo site_url('event/admin/event')?>">Event</div>
+<div iconCls="icon-venue" href="<?php echo site_url('venue/admin/venue')?>">Venue</div>
+<div iconCls="icon-ticket" href="<?php echo site_url('ticket/admin/ticket')?>">Ticket</div>
+<div iconCls="icon-event_artist" href="<?php echo site_url('event_artist/admin/event_artist')?>">Event Artist</div>
+<div iconCls="icon-contact" href="<?php echo site_url('contact/admin/contact')?>">Contact</div>
+
+
+
+
 </div>
+
 
 <div id="design-menu" style="width:150px">
 <div iconCls="icon-page" href="<?php echo site_url('email_template/admin/email_template')?>">Email Templates</div>

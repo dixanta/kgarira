@@ -6,9 +6,9 @@ class Gallery_model extends MY_Model
     {
     	parent::__construct();
         $this->prefix='tbl_';
-        $this->_TABLES=array('GALLERY'=>$this->prefix.'gallery');
-		$this->_JOINS=array('KEY'=>array('join_type'=>'LEFT','join_field'=>'join1.id=join2.id',
-                                           'select'=>'field_names','alias'=>'alias_name'),
+        $this->_TABLES=array('GALLERY'=>$this->prefix.'gallery','EVENTS'=>$this->prefix.'events');
+		$this->_JOINS=array('EVENTS'=>array('join_type'=>'LEFT','join_field'=>'events.gallery_id=gallery.gallery_id',
+                                           'select'=>'gallery_image','alias'=>'gallery'),
                            
                             );        
     }

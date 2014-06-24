@@ -8,6 +8,7 @@ class Gallery extends Admin_Controller
 		$this->load->module_model('event','gallery_model');
         $this->lang->module_load('event','gallery');
 		$this->load->module_model('event','event_model');
+		$this->load->module_model('event','gallery_image_model');
 		$this->bep_assets->load_asset_group('UPLOADER');
 		$this->load->library('image_lib');
 		$this->load->helper('date');
@@ -244,10 +245,10 @@ class Gallery extends Admin_Controller
 
 	public function gallery_image($event_id)
 	{
-		$gallery=$this->gallery_model->getGalleries(array('event_id'=>$event_id))->row_array();
+		$gallery=$this->gallery_image_model->getGalleryImages(array('event_id'=>$event_id))->row_array();
 		if($gallery)
 		{
-			$data['images']=$this->gallery_model->getgalleryImage(array('gallery_id'=>$gallery['gallery_id']));
+			$data['images']=$this->gallery_image_model->getgalleryImage(array('gallery_id'=>$gallery['gallery_id']));
 			$page = $this->config->item('template_admin') . "gallery/gallery_image";
 			$data['module'] = 'event';
 			$data['gallery_id']=$gallery['gallery_id'];
@@ -269,8 +270,8 @@ class Gallery extends Admin_Controller
 			foreach($images as $image_id)
 			{
 				$image_info=$this->gallery_image_model->getgalleryImage(array('gallery_image_id'=>$image_id))->row_array();
-				@unlink('asset/images/gallery/'.$gallery_id .'/'.$image_info['gallery_image']);
-				@unlink('asset/images/gallery/'.$gallery_id .'/thumbs/'.$image_info['gallery_image']);				
+				@unlink('uploads/gallery/'.$gallery_id .'/'.$image_info['gallery_image']);
+				@unlink('uploads/gallery/'.$gallery_id .'/thumbs/'.$image_info['gallery_image']);				
 				$this->gallery_image_model->delete('GalleryImage',array('gallery_image_id'=>$image_id));
 			}
 		}

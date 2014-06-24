@@ -16,7 +16,7 @@
 </tr>
 <tr>
 <td><label><?php echo lang('country_code')?></label>:</td>
-<td><input type="text" name="search[country_code]" id="search_country_code"  class="easyui-validatebox"/></td>
+<td><input type="text" name="search[country_id]" id="search_country_id"  class="easyui-validatebox"/></td>
 <td><label><?php echo lang('event_start_date')?></label>:</td>
 <td><input type="text" name="date[event_start_date][from]" id="search_event_start_date_from"  class="easyui-datebox"/> ~ <input type="text" name="date[event_start_date][to]" id="search_event_start_date_to"  class="easyui-datebox"/></td>
 </tr>
@@ -52,7 +52,7 @@
 <th data-options="field:'event_type',sortable:true" width="50"><?php echo lang('event_type_id')?></th>
 <th data-options="field:'venue_name',sortable:true" width="50"><?php echo lang('venue_id')?></th>
 <th data-options="field:'promoter_id',sortable:true" width="50"><?php echo lang('promoter_id')?></th>
-<th data-options="field:'country_code',sortable:true" width="50"><?php echo lang('country_code')?></th>
+<th data-options="field:'country_name',sortable:true" width="50"><?php echo lang('country_code')?></th>
 <th data-options="field:'event_start_date',sortable:true" width="50"><?php echo lang('event_start_date')?></th>
 <th data-options="field:'event_end_date',sortable:true" width="50"><?php echo lang('event_end_date')?></th>
     <th field="view_gallery" width="30" align="center" formatter="formatViewGallery">View Images</th>
@@ -88,7 +88,7 @@
 					  <td width="66%"><input name="promoter_id" id="promoter_id" class="easyui-numberbox" required="true"></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('country_code')?>:</label></td>
-					  <td width="66%"><input name="country_code" id="country_code" class="easyui-validatebox" required="true"></td>
+					  <td width="66%"><input name="country_id" id="country_id" class="" required="true"></td>
                        <td width="34%" ><label><?php echo lang('event_image')?>:</label></td>
 					  <td width="66%"><label id="upload_image_name" style="display:none"></label>
                       <input name="event_image" id="event_image" type="text" style="display:none"/>
@@ -96,7 +96,7 @@
                       <a href="#" id="change-image" title="Delete" style="display:none"><img src="<?=base_url()?>assets/icons/delete.png" border="0"/></a></td>
 		       </tr><tr>
 		              <td width="34%" ><label><?php echo lang('event_description')?>:</label></td>
-					  <td width="66%" colspan="3"><textarea name="event_description" id="event_description" class="easyui-validatebox" required="true" style="width:500px;height:100px"></textarea></td>
+					  <td width="66%" colspan="3"><textarea name="event_description" id="event_description" class="easyui-validatebox" required="true" style="width:400px;height:100px"></textarea></td>
 		       </tr><tr>
 		             
                       
@@ -139,7 +139,8 @@
 	<div id="uploader" style="width:auto; height:auto">You browser doesn't support upload.</div>
 </div>
 
-
+<div id="images-window"  title="Image List" class="easyui-window" style="height:500px;width:800px" closed="true">
+<div id="image-list"></div>
 <!--div ends-->
    
 </div>
@@ -154,10 +155,12 @@
 
 	$(function(){
 		<?php easyui_combobox('search_event_type_id','EVENT_TYPE');
-			  easyui_combobox('event_type_id','EVENT_TYPE');?>
-			  
-			  <?php easyui_combobox('search_venue_id','VENUE');
-			  easyui_combobox('venue_id','VENUE');?>
+			  easyui_combobox('event_type_id','EVENT_TYPE');
+			  easyui_combobox('search_venue_id','VENUE');
+			  easyui_combobox('venue_id','VENUE');
+			  easyui_combobox('search_country_id','COUNTRY');
+			  easyui_combobox('country_id','COUNTRY');
+			  ?>
 			  
 		 <?php tinymce('event_description')?>
 		

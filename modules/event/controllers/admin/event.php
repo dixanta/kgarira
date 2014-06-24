@@ -27,7 +27,7 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 	public function json()
 	{
 		$this->_get_search_param();
-		$this->event_model->joins=array('VENUES','EVENT_TYPES');
+		$this->event_model->joins=array('VENUES','EVENT_TYPES','COUNTRIES');
 		$total=$this->event_model->count();
 		paging('event_id');
 		$this->_get_search_param();	

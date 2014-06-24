@@ -10,7 +10,7 @@
   	</tr>
     <tr>
    <?php else:?>
-    <td><img src="<?=base_url()?>uploads/gallery/<?=$gallery_id?>/thumbs/<?=$row['gallery_id']?>"/><br/>
+    <td><img src="<?=base_url()?>uploads/gallery/<?=$gallery_id?>/thumbs/<?=$row['gallery_image']?>"/><br/>
     <input type="checkbox" name="image_id[]" value="<?=$row['gallery_image_id']?>"/>
     <a href="#" class="make-cover" rel="<?=$row['gallery_image_id']?>">Make Cover</a>
     <a href="#" class="delete" rel="<?=$row['gallery_image_id']?>"><img src="<?=base_url()?>assets/icons/delete.png" border="0"/></a>
@@ -32,7 +32,7 @@ function deleteSelected()
 	$.messager.confirm('question','Are you sure to delete?',function(r){
 		if(r)
 		{
-			$.post('<?=site_url('gallery/admin/gallery/delete_images')?>',$('#image-view-form').serialize(),function(data){
+			$.post('<?=site_url('event/admin/gallery/delete_images')?>',$('#image-view-form').serialize(),function(data){
 				getImages('<?=$gallery_id?>');
 				/*if(data.success)
 				{
@@ -52,7 +52,7 @@ $('#delete-selected').linkbutton();
 $('.make-cover').click(function(){
 	var image_id=$(this).attr('rel');
 	
-	$.post('<?=site_url('gallery/admin/gallery/makecover')?>',{gallery_id:<?=$gallery_id?>,image_id:image_id},function(data){
+	$.post('<?=site_url('event/admin/gallery/makecover')?>',{gallery_id:<?=$gallery_id?>,image_id:image_id},function(data){
 		if(data.success)
 		{
 			$.messager.alert('Success',data.msg);
@@ -70,7 +70,7 @@ $('.delete').click(function(){
 	$.messager.confirm('question','Are you sure to delete?',function(r){
 		if(r)
 		{
-			$.post('<?=site_url('gallery/admin/gallery/delete_images')?>',{gallery_id:<?=$gallery_id?>,image_id:[image_id]},function(data){
+			$.post('<?=site_url('event/admin/gallery/delete_images')?>',{gallery_id:<?=$gallery_id?>,image_id:[image_id]},function(data){
 				getImages('<?=$gallery_id?>');
 				/*if(data.success)
 				{

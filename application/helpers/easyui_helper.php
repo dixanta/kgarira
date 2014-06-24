@@ -10,6 +10,11 @@ function easyui_settings($key)
 								'valueField'=>'gallery_image_id',
 								'textField'=>'image_name'
 							);
+						
+	$combo_settings['COUNTRY']=array('url'=>site_url('country/admin/country/combo_json'),
+								'valueField'=>'country_id',
+								'textField'=>'country_name'
+							);
 							
 	$combo_settings['VENUE_TYPE']=array('url'=>site_url('venue/admin/type/combo_json'),
 									'valueField'=>'venue_type_id',

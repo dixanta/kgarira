@@ -26,7 +26,7 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 
 	public function json()
 	{
-		$this->_get_search_param();
+		//$this->_get_search_param();
 		$this->event_model->joins=array('VENUES','EVENT_TYPES','COUNTRIES');
 		$total=$this->event_model->count();
 		paging('event_id');
@@ -42,12 +42,12 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 		if(!empty($params['search']))
 		{
 			($params['search']['event_name']!='')?$this->db->like('event_name',$params['search']['event_name']):'';
-($params['search']['event_type_id']!='')?$this->db->where('event_type_id',$params['search']['event_type_id']):'';
-($params['search']['venue_id']!='')?$this->db->where('venue_id',$params['search']['venue_id']):'';
-($params['search']['promoter_id']!='')?$this->db->where('promoter_id',$params['search']['promoter_id']):'';
-($params['search']['country_code']!='')?$this->db->like('country_code',$params['search']['country_code']):'';
-(isset($params['search']['allow_ticket_sell']))?$this->db->where('allow_ticket_sell',$params['search']['allow_ticket_sell']):'';
-(isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
+			($params['search']['event_type_id']!='')?$this->db->where('events.event_type_id',$params['search']['event_type_id']):'';
+			($params['search']['venue_id']!='')?$this->db->where('venues.venue_id',$params['search']['venue_id']):'';
+			($params['search']['promoter_id']!='')?$this->db->where('promoter_id',$params['search']['promoter_id']):'';
+			($params['search']['country_id']!='')?$this->db->like('countries.country_id',$params['search']['country_id']):'';
+			(isset($params['search']['allow_ticket_sell']))?$this->db->where('allow_ticket_sell',$params['search'][						'allow_ticket_sell']):'';
+			(isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
 
 		}  
 
@@ -137,7 +137,7 @@ $data['event_name'] = $this->input->post('event_name');
 $data['event_type_id'] = $this->input->post('event_type_id');
 $data['venue_id'] = $this->input->post('venue_id');
 $data['promoter_id'] = $this->input->post('promoter_id');
-$data['country_code'] = $this->input->post('country_code');
+$data['country_id'] = $this->input->post('country_id');
 $data['event_start_date'] = $this->input->post('event_start_date');
 $data['allow_ticket_sell'] = $this->input->post('allow_ticket_sell');
 $data['event_description'] = $this->input->post('event_description');

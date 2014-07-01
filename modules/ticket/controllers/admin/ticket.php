@@ -92,6 +92,7 @@ protected $uploadthumbpath= 'uploads/ticket/thumb/';
 
         if(!$this->input->post('ticket_id'))
         {
+			$data['created_date']=date('Y-m-d H:i:s');
             $success=$this->ticket_model->insert('TICKETS',$data);
         }
         else

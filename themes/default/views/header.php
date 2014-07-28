@@ -1,103 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<!DOCTYPE HTML>
+<html><head>
+    	
+        <title><?php echo $header;?></title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="<?php echo theme_url()?>assets/css/jquery.bxslider.css">
+	   	<link rel="stylesheet" href="<?php echo theme_url()?>assets/css/bootstrap.min.css">
+       	<link rel="stylesheet" href="<?php echo theme_url()?>assets/css/global.css">
+        <link rel="stylesheet" href="<?php echo theme_url()?>assets/css/responsive.css">
+        <link rel="stylesheet" href="<?php echo theme_url()?>assets/css/magnific-popup.css">
 
-    <!-- Le styles -->
-    <link href="<?php echo theme_url()?>assets/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="<?php echo theme_url()?>assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="<?php echo theme_url()?>assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo theme_url()?>assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo theme_url()?>assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo theme_url()?>assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="<?php echo theme_url()?>assets/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="<?php echo theme_url()?>assets/ico/favicon.png">
-	<?php print $this->bep_site->get_metatags(); ?>
-	<title><?php print $header.' | '.$this->preference->item('site_name')?></title>
-	<?php print $this->bep_site->get_variables()?>
-	<?php print $this->bep_assets->get_header_assets();?>
-	<?php print $this->bep_site->get_js_blocks()?>    
-  </head>
-
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="<?php echo site_url()?>">Momo Engine</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="<?php echo site_url()?>">Home</a></li>
-              <li><a href="#about" data-toggle="modal">About</a></li>
-              
-              <li><a href="<?php echo site_url('contact')?>">Contact</a></li>
-            </ul>
-			<?php
-                if(!is_user()){
-            ?>            
-            <form class="navbar-form pull-right" action="<?php echo site_url('auth/login')?>" method="post">
-              <input class="span2" type="text" name="login_field" placeholder="Username/Email">
-              <input class="span2" type="password" name="password" placeholder="Password">
-              <button type="submit" class="btn">Sign in</button>
-            </form>
-            <?php
-				}else{
-			?>
+    </head>
+    
+    <body>
+    	
+        <div id="wrapper">
+        
+        <div class="extra-menu">
+            <div class="heart">
+                <img src="<?php echo theme_url();?>assets/images/heart.png">
+            </div>
             
-            <ul class="nav   pull-right">  
-            <li class="navbar-text">Logged in as</li>
-            <li class="dropdown">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('username')?> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="<?php echo site_url('account')?>">Account</a></li>
-                  <li><a href="<?php echo site_url('account/change_password')?>">Change Password</a></li>
-                  <li><a href="<?php echo site_url('auth/logout')?>">Logout</a></li>
-<!--                   <li class="divider"></li>
-                 <li class="nav-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>-->
-                </ul>
-              </li>              
-             </ul> 
-                    
-            <?php
-				}
-			?>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+            <br/>
+            
+                        <div class="heart">
+                <img src="<?php echo theme_url();?>assets/images/aa.png">
+            </div>
+       
+         
+             <br/>
+            
+                        <div class="add-event">
+                         <img src="<?php echo theme_url();?>assets/images/add-events.png">
+               
+            </div>
+       
+         </div>
+ 
+ 
+        	<div id="header-wrapper">
+        	  <div class="header-back">
+        	  
+				<!--<div class="container">-->
+                	<div class= "" >
+                        <div class= "col-sm-12">
+                        <div class="header">
+                        <div class="logo">
+                            <a href="<?php echo site_url('home')?>"><img src="<?php echo theme_url();?>assets/images/kgarira-logo.png"></a>
+                        </div>
+                          <div class="search">
 
-        <div id="about" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">About</h3>
-        </div>
-        <div class="modal-body">
-        <p>Momo Engine About Content Can goes here</p>
-        </div>
-        <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        </div>
-        </div>
-    <div class="container">
+                               <input type="text"  placeholder="Search Artists, Bands, Gigs, Bars, Clubs">
+                               </div>
+                         <div class="main-menu menu">
+                    
+                         <ul class="list-inline">
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">Sign In</a></li>
+                            <li><a href="#">Subscribe</a></li>
+                        </ul>
+                          
+                            </div>
+                            </div>
+                           
+                            
+                            
+                           
+                             </div>
+                  <!--  </div>-->
+                    </div>
+                </div>
+                   
+                    <!--    <div class="container"> -->
+                    <div class="menupart header-left">
+                        <div id="side-menu-1" class="col-sm-12">
+                                <div class=" header-menu-img header-menu">
+                                    <a class="side-toggle" href="#">menu</a>
+                                </div>
+                        <div class="clearfix"></div>
+                           <div class="header-menu-talako">
+                            <ul>
+                            <li><a href="<?php echo site_url('event')?>">GIG GUIDE</a></li>
+                            <hr>
+                            <li><a href="bar_guide.php">bar guide</a></li>
+                            <hr>
+                            <li><a href="artist.php">bands</a></li>
+                            <hr>
+                            <li><a href="<?php echo site_url('gallery')?>">gallery</a></li>
+                            <hr>
+                            <li><a href="<?php echo site_url('contact')?>">contact us</a></li>
+                            <hr>
+                            <li><a href="about_k_garira.php">about us</a></li>
+                            </ul>
+                            
+                            
+<!--                            <br/>
+                            <ul>
+                            <li><a href="#">GIG GUIDE</a></li>
+                            <hr>
+                            <li><a href="#">bar guide</a></li>
+                            <hr>
+                            <li><a href="#">bands</a></li>
+                            <hr>
+                            <li><a href="#">gallery</a></li>
+                            <hr>
+                            <li><a href="#">contact us</a></li>
+                            <hr>
+                            <li><a href="#">about us</a></li>
+                        </ul>-->
+                          
+                           
+                            </div>
+                        </div>
+                            
+                    <div id="side-menu-2" class="col-sm-12">
+                        <div class=" header-menu-img header-menu">
+                            <a class="side-toggle" href="#">menu</a>
+                         </div>
+                    <div class="clearfix"></div>
+                       <div class="header-menu-talako-2">
+                            <div>
+                                <ul>
+                                    <li class="menu-talako-img">
+                                        <img src="<?php echo theme_url();?>assets/images/abhaya.jpg">
+                                    <div class="caption">       
+                                        <p>ABHAYA AND THE STEAM INJUNS<br>
+                                            <span>Soltee Crown Plaza </span><br>
+                                            <span><input type="submit" value="Add To Wish List" name="wish_list">
+                                            <input type="submit" value="Buy Tickets" name="buy_tickets"></span>
+                                        </p>
+                                    </div>
+                                    </li>
+                                    
+                                    <li class="menu-talako-img">
+                                        <img src="<?php echo theme_url();?>assets/images/abhaya.jpg">
+                                        <div class="caption">       
+                                        <p>ABHAYA AND THE STEAM INJUNS<br>
+                                            <span>Soltee Crown Plaza </span><br>
+                                            <span><input type="submit" value="Add To Wish List" name="wish_list">
+                                            <input type="submit" value="Buy Tickets" name="buy_tickets"></span>
+                                        </p>
+                                        </div>
+                                    </li>
+
+
+                                    <li class="menu-talako-img">
+                                        <img src="<?php echo theme_url();?>assets/images/abhaya.jpg">
+                                        <div class="caption">       
+                                            <p>ABHAYA AND THE STEAM INJUNS<br>
+                                            <span>Soltee Crown Plaza </span><br>
+                                            <span><input type="submit" value="Add To Wish List" name="wish_list">
+                                            <input type="submit" value="Buy Tickets" name="buy_tickets"></span>
+                                        </p>
+                                        </div>
+                                    </li>
+                                
+                                
+                                </ul>
+
+                            </div>
+                       
+<!--                            <br/>
+                            <ul>
+                            <li><a href="#">GIG GUIDE</a></li>
+                            <hr>
+                            <li><a href="#">bar guide</a></li>
+                            <hr>
+                            <li><a href="#">bands</a></li>
+                            <hr>
+                            <li><a href="#">gallery</a></li>
+                            <hr>
+                            <li><a href="#">contact us</a></li>
+                            <hr>
+                            <li><a href="#">about us</a></li>
+                        </ul>-->
+                          
+                           
+                           </div><!-- header-menu-talako-2-->
+                      </div><!--  side-menu-2-->
+                            
+           
+                </div>
+          <!-- </div>  Header Wrapper Ends-->

@@ -1,0 +1,864 @@
+    /* Footer fix */
+
+    body {
+    padding-top:0;
+    display: block;
+    position:absolute;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    }
+
+    #wrapper {
+    min-height:100%;
+    position:relative;
+    }
+
+
+    #header-wrapper {
+    height: 116px;
+    }
+
+    #content-wrapper {
+    padding-bottom:185px;   /* Height of the footer element */
+    }
+
+    #footer-wrapper {
+    width:100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    max-height: 185px;
+
+    }
+
+
+
+    /* BASIC */
+
+    a:link, a:visited {
+    text-decoration:none;
+    }
+
+    ul li {
+    list-style:none !important;
+    }
+
+    .header-back{
+    width: 100%;
+    float: left;
+    background: url(../images/header-back.jpg);
+    border-bottom: 7px solid black;
+    }
+
+    .header{
+    width: 100%;
+    float: left;
+    z-index: 1000;
+
+    }
+
+
+    .logo {
+    float: left;
+    left: 15px;
+    z-index: 1000;
+    width: 430px;
+    }
+
+    .main-menu{
+    padding-top: 18px;
+    float:right;
+    padding-right: 18px;
+    font-family: myriad Pro;
+
+    }
+
+    .main-menu a{
+    color:#ffffff;
+    }
+
+    .search{
+    width:280px;
+    float:left;
+    margin-top: 55px;
+    }
+
+    .search input{
+    width:280px;
+    background :url('../images/search_img.png')  no-repeat left #fff;
+    padding-left: 20px;
+    }
+
+
+
+
+    .menu{
+    padding-top: 53px;	
+    }
+
+
+    .header-menu{
+    font-family: gulim;
+    font-size: 14px;
+    text-transform: uppercase;
+    float: left;
+    }
+
+    .header-menu-img{
+    background: url('../images/menu.png') no-repeat left #fff;
+
+    }
+
+    .header-menu a{
+    color:#158635;
+    padding-left:30px;
+    }
+
+    .header-menu-talako {
+    margin-top:30px;   
+    }
+
+
+    .header-menu-talako ul{
+    padding:0;
+    text-align: center;
+    margin-bottom: 0px;
+    }
+
+
+    .header-menu-talako ul a{
+    color:#56b36e;  
+    text-transform: capitalize;
+    }
+
+    .header-menu-talako ul li{
+    padding: 15px;
+    }
+
+
+    .header-menu-talako ul li:hover {
+    color:#fff;
+    background: url(../images/header-back.jpg);
+    }
+
+    .header-menu-talako ul li:hover a{
+    color:#fff;
+    }
+
+    .header-menu-talako hr{
+    margin-top: 0;
+    margin-bottom:  0;
+    border-top: 1px solid #dd613c;
+    width: 100%;
+    float: left;
+    }
+
+
+    .header-menu-talako-2 {
+    margin-top:30px;
+    float:left;
+    }
+
+    .header-menu-talako-2 ul li{
+    padding-bottom: 15px;
+    }
+
+    .header-menu-talako-2 ul{
+    padding:0;
+
+    }
+
+    .body-menu{
+    border-right: 1px solid black;
+    font-family: gulim;
+    font-size: 14px;
+    font-weight: 700;
+    /* float: left; */
+
+    padding: 12px;
+    }
+
+    .secondary-menu{
+    width: 100%;
+    float: left;
+    border: 1px solid #000;
+    margin: 0;
+    }
+
+    .secondary-menu li:nth-last-child(1){
+    border-right:none;
+    }
+
+    .secondary-menu li{
+    padding-left: 0;
+    padding-right: 0;
+    width: 16%;
+    text-align:center;
+
+    }
+
+    .secondary-menu a{
+    color:#000000;
+    }
+
+    .secondary-menu a:hover{
+    color:#137e31;
+    }
+
+    .box-border{
+    border: 1px solid black;
+    margin-top: 27px;
+    margin-right: 8px;
+    margin-left: -1px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    }
+
+    .gallery-box{
+    background: #dd613c;
+    width: 99px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    }
+
+    .body hr{
+    margin-top: -10px;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 1px solid #dd613c;
+    width: 100%;
+    float: left;
+    }
+
+    .album{
+    color: #dd613c;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-top: 5px;
+    }
+
+    .full-gallery{
+    color: #4aa067;
+    text-transform: capitalize;
+    font-size: 18px;
+    margin-right: 47px;
+    margin-top: 5px;
+    }
+
+    .dog{
+    width:70%;
+
+    }
+    .flair{
+    width:30%;
+    }
+
+    .footer-back{
+    width: 100%;
+    float: left;
+    background: url(../images/header-back.jpg);
+    padding-left: 350px;
+
+    }
+
+    .footer-logo{
+    float: right;
+    left: 15px;
+    margin-right: 55px;
+    }
+
+    .menu-header{
+    border:1px;
+    }
+
+    .logo img {
+    padding-left: 35px;
+    }
+
+    .my-container{
+    width:95%;
+    }
+
+    .dog-and-flair{
+    margin-top: 10px;
+
+    }
+
+    .gallery-talako{
+    margin-top: 15px;
+    }
+
+    .bx-wrapper{
+    width: 100% !important;
+    margin-left: 0px !important;
+    border: 1px solid black !important;
+    border-top: none !important;
+    padding: 10px;
+    }
+
+    .bx-wrapper .bx-viewport{
+    left:auto;
+    }
+
+    .slide{
+    }
+
+    .slide .caption{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    left: 10px;
+    }
+
+    .talako-foto .bx-wrapper {
+    border:none !important;
+    padding: 0;
+    }
+
+    .talako-foto .bx-wrapper .bx-viewport {
+    border: none;
+    }
+
+    .footer-line {
+    font-family: gulim;
+    font-size:14pt;
+    font-weight: 700;
+    }
+
+    .footer-line a{
+    color:#ffffff;
+    }
+
+
+    .footer-line-menu {
+
+    }
+
+    .footer-line hr{
+    width:100%;
+    margin-top:0;
+    margin-bottom: 0;
+    }
+
+    .footer-line li{
+    width:13%;
+    text-align: center;
+    }
+
+    .footer-line ul{
+    margin:0;
+    }
+
+    .all-right{
+    color:#56b36e;
+    font-family: Helvetica;
+    font-size: 12pt;
+    margin-top: 10px;
+    margin-left: 23px;
+    }
+
+
+    .pagoda{
+    color:#56b36e;
+    font-family: Helvetica;
+    font-size: 12pt;
+    margin-top: 10px;
+    margin-right: 70px
+
+    }
+
+    .extra-menu {
+    position: fixed;
+    right: 0;
+    top: 200px;
+    }
+
+    .pagoda a {
+    color:#56b36e;
+    }
+
+    .pagoda a:hover{
+    color:#fff;
+    }
+
+    .heart {
+    background: url(../images/header-back.jpg);
+    height: 50px;
+    width: 50px;
+
+    }
+
+    .heart img{
+    width: 40px;
+    margin: 6px;
+    }
+
+    .add-event {
+    background: url(../images/add-event.jpg);
+    height: 200px;
+    width: 50px;
+
+    }
+
+    .add-event img{
+    padding:15px
+    }
+
+    .about-back {
+    background: url(../images/about-back.jpg);
+    width: 100%;
+    }
+
+    .info{
+    text-align: center;
+    padding-bottom:10px;
+
+    }
+
+    .info a{
+    color: #7d7d7d;
+    }
+
+    .info a:hover{
+    color:#56b36e;
+    }
+
+
+    .past-events{
+    color: #dd613c;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-top: 5px;
+    }
+    .aboutko-slider{
+    }
+
+
+    .aboutko-slider .bx-wrapper{
+    border:none !important;
+    }
+
+    .countrybox-aus{
+    background: #dd613c;
+    width: 120px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    }
+
+    .countrybox-nep{
+    background: #dd613c;
+    width: 120px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    }
+
+
+    .cust-control{
+    width: 45%;
+    float: left;
+    padding-left: 10px;
+    border-color:#147e29;
+    margin-right: 15px;
+    font-style: italic;
+
+    }
+    .form-wrapper .control-row:nth-child(1){
+    margin-top: 4px;
+    }
+
+    .form-wrapper input[type="submit"] {
+    display: block;
+    background: #147e29;
+    color: #ffffff;
+    border: none;
+    padding: 5px 20px;
+    -moz-border-radius: 2px;
+
+    cursor: pointer;
+    }
+
+    .cust-control-textbox{
+    width: 100;
+    float: left;
+    padding-left: 10px;
+    border-color:#147e29;
+    margin-right: 15px;
+    font-style: italic;
+    }
+
+    .control-row{
+    width: 100%;
+    margin: 8px 0;
+    float: left;
+
+    }
+
+    .map{
+
+    }
+
+    .map img{
+    width:100%;
+    }
+
+    .artist-gig-guide{
+
+    }
+
+    .artist-gig-guide hr{
+    margin-top: -10px;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 2px solid #959595;
+    width: 100%;
+    float: left;
+    }
+
+
+    .gig-box{
+    background: #dd613c;
+    width: 110px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    }
+
+    .gig-band{
+    font-size: 36pt;
+    font-weight:bold;
+    font-family: Helvetica;
+    float:left;
+    }
+
+    .band-info{
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: bold;
+    }
+
+    .artist-gig-guide-submit input[type="submit"] {
+    display: block;
+    background: #fff;
+    color: #147e29;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 7px;
+    -moz-border-radius: 2px;
+    cursor: pointer;
+    width: 100%;
+    margin-top:5px;
+    }
+
+    .gig-band-box{
+    background: #dd613c;
+    width: 145px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    }
+
+    .gig-event-box{
+    background: #dd613c;
+    width: 370px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    }
+
+    .band-gallery-box{
+    background: #dd613c;
+    width: 175px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-top: 10px;
+    }
+
+    .artist-img-event{
+    padding-left:15px;
+    }
+
+    .item-class-holder{
+    }
+
+    .item-image-left{
+    width:70%;
+    float:left;
+    padding: 5px;
+    }
+
+    .item-image-right{
+    width:30%;
+    float:left;
+    padding: 5px;
+    }
+
+    .item-image-left1{
+    width:60%;
+    float:left;
+    padding: 5px;
+    }
+
+    .item-image-right1{
+    width:40%;
+    float:left;
+    padding: 5px;
+    }
+    .item-image-right1 img{
+    margin-bottom: 10px;
+    }
+
+    .item-image-left1 img{
+    margin-bottom: 10px;
+    }
+
+
+    img{
+    max-width:100%;
+    }
+
+    .item-image-right img{
+    margin-bottom: 10px;
+    }
+
+    .gig-guide{
+    }
+
+    .gig-guide hr{
+    margin-top: -10px;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 2px solid #959595;
+    width: 100%;
+    float: left;
+    }
+
+    .gig-guide-band-info{
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: bold;
+    }
+
+    .gig-guide-band-info1{
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+    }
+
+    .gig-guide-submit input[type="submit"] {
+    display: block;
+    background: #fff;
+    color: #dd613c;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 7px;
+    -moz-border-radius: 2px;
+    cursor: pointer;
+    width: 100%;
+    margin-top:5px;
+    float:right;
+
+
+    }
+
+    .gig-guide-submit{
+    float: right;
+    width: 20%;
+    }
+
+    .gig-guide-submit input:hover{
+    color:#147e29;
+    }
+
+    .event-detail-box{
+    background: #dd613c;
+    width: 175px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-top: 10px;
+    }
+
+    .similar-event-box{
+    background: #dd613c;
+    width: 175px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-top: 10px;
+    }
+    .gig-guide-gallery-box{
+    background: #dd613c;
+    width: 110px;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-top: 10px;
+    }
+
+    .fb img {
+    margin-top:10%;
+    }
+    .artist-fb img {
+    margin-top:0%;
+    }
+
+    .bar-top{
+
+    }
+
+    .bar-menu{
+    color: #dd613c;
+    text-transform: uppercase;
+    font-size: 18px;
+    float:left;
+    text-align: center;
+    padding: 0 10px;
+    }
+
+
+
+
+    .bar-top p:hover {
+    background: #dd613c;
+    }
+
+    .bar-top p a{
+    color:#dd613c;
+    }
+
+    .bar-top p:hover a{
+    color:#fff;
+    }
+
+    .bar-img{
+    margin-left: 20px;
+    margin-bottom: 20px;
+    }
+
+    .image{
+    }
+
+    .image-info{
+    float: left;
+    position: relative;
+    }
+
+    .image-info .caption{
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    left: 30px;
+    bottom: 20px;
+    }
+
+    .image-info .caption2{
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    right: 5px;
+    top: 5px;
+    visibility: visible;
+        opacity: 0;
+   
+    }
+
+    .image-info img:hover .caption2{
+    
+        opacity: 1;
+    }
+
+    #gallery-main {
+    position:relative;
+    }
+
+    #side-menu-2 {
+    display: none;
+    }
+
+    /*
+    .header-menu-talako ul a{
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+    display: block;
+    }
+    */
+
+
+    .menupart{
+    position: absolute;
+    top: 112px;
+    }
+
+    .menu-talako-img {
+    position: relative;
+    }
+
+    .menu-talako-img .caption{
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    left: 20px;
+    bottom: 20px;
+    width: 100%;
+    }
+
+    .menu-talako-img input[type="submit"] {
+    background: #fff;
+    color: #dd613c;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 7px;
+    -moz-border-radius: 2px;
+    cursor: pointer;
+    width: 42%;
+    margin-top: 5px;
+    /* float: right; */
+    /* display: block; */
+    margin-right: 4px;
+    }
+
+    .menu-talako-img input:hover{
+    color: #147e29;
+    }
+
+    .bar-menu-sideko{
+    float:right;
+    }
+
+
+
+    .header-left {
+    background: url(../images/header-left.jpg);
+    width: 383px;
+    }
+
+.talako-foto .bx-wrapper .bx-prev {
+    background: 

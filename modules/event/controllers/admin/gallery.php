@@ -110,7 +110,7 @@ class Gallery extends Admin_Controller
 		if(!$gallery)
 		{
 			$event=$this->event_model->getEvents(array('event_id'=>$event_id))->row_array();
-			$insert_data=array('gallery_title'=>$event['event_name'],'event_id'=>$event_id,
+			$insert_data=array('gallery_title'=>$event['event_name'],'image_name'=>$event['event_image'],'event_id'=>$event_id,
 							   'country_code'=>$event['country_id'],'active'=>'1','created_on'=> date('Y-m-d H:i:s'));
             $this->gallery_model->insert('GALLERY',$insert_data);
 			$gallery_id=$this->db->insert_id();				   

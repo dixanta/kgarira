@@ -8,8 +8,8 @@ class Artist_model extends MY_Model
         $this->prefix='tbl_';
         $this->_TABLES=array('ARTISTS'=>$this->prefix.'artists',
 								'GENRES'=>$this->prefix.'genres');
-		$this->_JOINS=array('GENRES'=>array('join_type'=>'LEFT','join_field'=>'genres.genre_id=artists.artist_id',
-                                           'select'=>'genre_name','alias'=>'genres'),
+		$this->_JOINS=array('GENRES'=>array('join_type'=>'LEFT','join_field'=>'artists.genre_id=genres.genre_id',
+                                           'select'=>'genres.genre_name','alias'=>'genres'),
 										   
                            
                             );        
@@ -53,4 +53,14 @@ class Artist_model extends MY_Model
 		
         return $this->db->count_all_results();
     }
+	public function getById($id)
+	{
+		return $this->getArtists(array('artist_id'=>$id))->row_array();
+	}
+	
+	public function genre($id)
+	{
+		return $this->getArtists(array('artists.genre_id'=>$id));
+	}
+	
 }

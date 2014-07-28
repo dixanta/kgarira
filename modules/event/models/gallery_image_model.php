@@ -173,5 +173,9 @@ class Gallery_image_model extends MY_model
 			return $row->numrows;
 	
   }
-
+  public function getGalleryImageId($id)
+	{
+		$gallery_image_id=$this->getGalleryImages(array('gallery_image.gallery_id'=>$id));
+		return $gallery_image_id;
+	}
 }

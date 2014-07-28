@@ -10,7 +10,7 @@ class Event_model extends MY_Model
 							 'VENUES'=>$this->prefix.'venues','COUNTRIES'=>$this->prefix.'countries' );
 		
 		$this->_JOINS=array('VENUES'=>array('join_type'=>'LEFT','join_field'=>'venues.venue_id=events.venue_id',
-                                           'select'=>'venue_name','alias'=>'venues'),
+                                           'select'=>'venues.venue_name','alias'=>'venues'),
 							'EVENT_TYPES'=>array('join_type'=>'LEFT','join_field'=>'event_types.event_type_id=events.event_type_id',
                                            'select'=>'event_type','alias'=>'event_types'),
 										   
@@ -59,4 +59,9 @@ class Event_model extends MY_Model
 		
         return $this->db->count_all_results();
     }
+	
+	public function getById($id)
+	{
+		return $this->getEvents(array('event_id'=>$id))->row_array();
+	}
 }

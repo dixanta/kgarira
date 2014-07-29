@@ -2,12 +2,14 @@
 
 class Venue extends Admin_Controller
 {
+    protected $uploadPath = 'uploads/venue';
+protected $uploadthumbpath= 'uploads/venue/thumb/';
 	
 	public function __construct(){
     	parent::__construct();
         $this->load->module_model('venue','venue_model');
         $this->lang->module_load('venue','venue');
-        //$this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
+        $this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
         $this->bep_assets->load_asset('tinymce');
         $this->bep_assets->load_asset_group('GOOGLE_MAP');
     }
@@ -136,6 +138,7 @@ $data['venue_drink'] = $this->input->post('venue_drink');
 $data['venue_food'] = $this->input->post('venue_food');
 $data['food_price_range'] = $this->input->post('food_price_range');
 $data['drink_price_range'] = $this->input->post('drink_price_range');
+$data['venue_image'] = $this->input->post('venue_image');
 $data['status'] = $this->input->post('status');
 
         return $data;
@@ -150,6 +153,43 @@ $data['status'] = $this->input->post('status');
 		$this->load->view($this->_container,$data);	
     
    }
+   
+   function upload_image(){
+		//Image Upload Config
+		$config['upload_path'] = $this->uploadPath;
+		$config['allowed_types'] = 'gif|png|jpg';
+		$config['max_size']	= '10240';
+		$config['remove_spaces']  = true;
+		//load upload library
+		$this->load->library('upload', $config);
+		if(!$this->upload->do_upload())
+		{
+			$data['error'] = $this->upload->display_errors('','');
+			echo json_encode($data);
+		}
+		else
+		{
+		  $data = $this->upload->data();
+ 		  $config['image_library'] = 'gd2';
+		  $config['source_image'] = $data['full_path'];
+          $config['new_image']    = $this->uploadthumbpath;
+		  //$config['create_thumb'] = TRUE;
+		  $config['maintain_ratio'] = TRUE;
+		  $config['height'] =100;
+		  $config['width'] = 100;
+
+		  $this->load->library('image_lib', $config);
+		  $this->image_lib->resize();
+		  echo json_encode($data);
+	    }
+	}
+    
+    function upload_delete(){
+		//get filename
+		$filename = $this->input->post('filename');
+		@unlink($this->uploadPath . '/' . $filename);
+		@unlink($this->uploadthumbpath . '/' . $filename);
+	} 
    	
 	    
 }

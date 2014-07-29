@@ -23,7 +23,7 @@ class Event extends Public_Controller
 		$this->load->view($this->_container,$data);		
 	}
 	
-	public function details($id)
+	public function detail($id)
 	{
 		// Display Page
 		$data['header'] = 'event';

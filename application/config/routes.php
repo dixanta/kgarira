@@ -40,6 +40,8 @@
 
 $route['default_controller'] = "home";
 $route['admin'] = 'admin/home';
+$route['event/(:num)-(:any)']="event/detail/$1";
+$route['gallery/(:num)-(:any)']="gallery/detail/$1";
 $route['404_override'] = '';
 
 

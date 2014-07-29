@@ -26,7 +26,7 @@ class Gallery extends Public_Controller
 		$this->load->view($this->_container,$data);		
 	}
 	
-	public function details($id)
+	public function detail($id)
 	{
 		// Details Page
 		$data['header'] = 'gallery';

@@ -8,9 +8,9 @@
               <div class="col-sm-9 body">
                   <p class = "gig-box">gallery</p>
                   <hr>
-                  <?php foreach($gallery as $gallery){?>
+                  <?php foreach($galler as $gallery){?>
                   <div class = "col-sm-4" map>
-                      <a href="<?php echo site_url('gallery/details/')?>/<?php echo $gallery['gallery_id'];?>">  <img src="<?php echo base_url()?>uploads/event/<?php echo $gallery['image_name'];?>" height="200px" width="200px">  </a>
+                      <a href="<?php echo site_url('gallery/'.$gallery['gallery_id'].'-'.url_title($gallery['gallery_title']))?>">  <img src="<?php echo base_url()?>uploads/event/<?php echo $gallery['image_name'];?>" height="200px" width="200px">  </a>
                   </div>
                   <?php }?>
                   

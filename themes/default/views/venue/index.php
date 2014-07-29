@@ -7,11 +7,8 @@
    
               <div class="col-sm-9 body">
                  <div class ="bar-top">
-                  <p class = "bar-menu"><a href="#">bars</a></p>
-                  <p class = "bar-menu"><a href="#">pubs</a></p>
-                  <p class = "bar-menu"><a href="#">resturants</a></p>
-                  <p class = "bar-menu"><a href="#">hotels</a></p>
-                  <p class = "bar-menu"><a href="#">cinemas</a></p>
+                 <?php foreach($venues as $venue){?>
+                  <p class = "bar-menu"><a href="<?php echo site_url('venue/'.$venue['venue_id'].'-'.url_title($venue['venue_name']))?>"><?php echo $venue['venue_name']?></a></p><?php }?>
                   <div class = "bar-menu-sideko">
                   <img src="<?php echo theme_url();?>assets/images/tiles.png">
                   <img src="<?php echo theme_url();?>assets/images/list.png">
@@ -20,15 +17,21 @@
                   <hr>              
                   </div>
                   <div class="clearfix"></div>
+                 
                   <div class="image">
+                   <?php foreach($venues as $venue){?>
                           <div class = "image-info">  
-                          <a href="<?php echo site_url('venue/1-'.url_title('Fusion Bar & Pub Kathmandu Nepal'))?>"><img src="<?php echo theme_url();?>assets/images/bar1.jpg" class="bar-img"></a>
+                         
+                        <a href="<?php echo site_url('venue/'.$venue['venue_id'].'-'.url_title($venue['venue_name']))?>"><img src="<?php echo base_url();?>uploads/venue/<?php echo $venue['venue_image'];?>" height="200px" width="200px" class="bar-img"></a>
                           <div class = "caption">
-                          <p>FUSION BAR & PUB<br><span>Thamel, Kathmandu</span></p>
+                          <p><?php echo $venue['venue_name']?><br><span><?php echo $venue['venue_location']?></span></p>
                           </div>
                           </div>
+                          <?php }?>
+                          
+                          
 
-                          <div class = "image-info">  
+                        <!--  <div class = "image-info">  
                           <a href="#"><img src="<?php echo theme_url();?>assets/images/bars2.jpg" class="bar-img"></a>
                           <div class = "caption">
                           <p>SHEESHA CAFE & BAR<br><span>Thamel, Kathmandu</span></p>
@@ -38,81 +41,8 @@
                               <img src="<?php echo theme_url();?>assets/images/heart1.png">
                               <img src="<?php echo theme_url();?>assets/images/location.png">
                           </div>
-                          </div>
+                          </div>-->
                           
-                          <div class = "image-info">  
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images//bars3.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>OLIVE CAFE<br><span>DurbarMarg, Kathmandu</span></p>
-                          </div>
-                          </div>
-
-                          <div class = "image-info">  
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images/bars4.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>CHAPTER 9<br><span>Jhamsikhel, Lalitpur</span></p>
-                          </div>
-                          </div>
-                        
-                          <div class = "image-info">  
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images/bars3.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>OLIVE CAFE<br><span>DurbarMarg, Kathmandu</span></p>
-                          </div>
-                          </div>
-
-                          <div class = "image-info">  
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images/bars4.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>CHAPTER 9<br><span>Jhamsikhel, Lalitpur</span></p>
-                          </div>
-                          </div>   
-                          
-                          <div class = "image-info">
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images/bar1.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>FUSION BAR & PUB<br><span>Thamel, Kathmandu</span></p>
-                          </div>
-                          </div>
-                        
-
-                          <div class = "image-info">  
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images/bars2.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>SHEESHA CAFE & BAR<br><span>ThaThamel, Kathmandumel</span></p>
-                          </div>
-                          </div>
-                          
-                          <div class = "image-info">
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images/bar1.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>FUSION BAR & PUB<br><span>Thamel, Kathmandu</span></p>
-                          </div>
-                          </div>
-                          
-
-                          <div class = "image-info">  
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images/bars2.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>SHEESHA CAFE & BAR<br><span>Thamel, Kathmandu</span></p>
-                          </div>
-                          </div>
-                          
-
-                          <div class = "image-info">  
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images/bars3.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>OLIVE CAFE<br><span>DurbarMarg, Kathmandu</span></p>
-                          </div>
-                          </div>
-                          
-
-                          <div class = "image-info">  
-                          <a href="#"><img src="<?php echo theme_url();?>assets/images/bars4.jpg" class="bar-img"></a>
-                          <div class = "caption">
-                          <p>CHAPTER 9<br><span>Jhamsikhel, Lalitpur</span></p>
-                          </div>
-                          </div>
                      </div>
                                           <div class ="row">
                         <div class="col-sm-12">   

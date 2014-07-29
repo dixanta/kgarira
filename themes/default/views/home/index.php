@@ -17,7 +17,7 @@
 							 <?php foreach($events as $event){?>
                             <div class="slide">
                            
-                           <a href="<?php echo site_url('event/details/')?>/<?php echo $event['event_id'];?>">  <img style src="<?php echo base_url();?>uploads/event/thumb/<?php echo $event['event_image']?>"></a>
+                           <a href="<?php echo site_url('event/'.$event['event_id'].'-'.url_title($event['event_name']))?>">  <img style src="<?php echo base_url();?>uploads/event/thumb/<?php echo $event['event_image']?>"></a>
                                 <div class="caption">
                                 <p>JINDABAAD<br><span>Thamel</span></p>
                             </div>
@@ -81,12 +81,9 @@
                         <div class="col-sm-12">
                         <div class= "talako-foto ">
                                      <ul class="bxslider2">
-                                      <li><img src="<?php echo theme_url();?>assets/images/bot-img.jpg" /></li>
-                                      <li><img src="<?php echo theme_url();?>assets/images/bot-img.jpg" /></li>
-                                      <li><img src="<?php echo theme_url();?>assets/images/bot-img.jpg" /></li>
-                                      <li><img src="<?php echo theme_url();?>assets/images/bot-img.jpg" /></li>
-                                      <li><img src="<?php echo theme_url();?>assets/images/bot-img.jpg" /></li>
-                                      <li><img src="<?php echo theme_url();?>assets/images/bot-img.jpg" /></li>
+                                     <?php foreach($galleries as $gallery){?>
+                                      <li><a href="<?php echo site_url('gallery/'.$gallery['gallery_id'].'-'.url_title($gallery['gallery_title']))?>">  <img src="<?php echo base_url()?>uploads/event/<?php echo $gallery['image_name'];?>" height="253px" width="157px">  </a></li>
+                                      <?php }?>
                                     </ul>
                         </div>
                         </div>

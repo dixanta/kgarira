@@ -56,8 +56,8 @@
                          <div class="main-menu menu">
                     
                          <ul class="list-inline">
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">Sign In</a></li>
+                         	<li><a href="<?php echo site_url('auth/login');?>">Login</a></li>
+                            <li><a href="<?php echo site_url('auth/register');?>">Sign In</a></li>
                             <li><a href="#">Subscribe</a></li>
                         </ul>
                           
@@ -83,9 +83,9 @@
                             <ul>
                             <li><a href="<?php echo site_url('event')?>">GIG GUIDE</a></li>
                             <hr>
-                            <li><a href="bar_guide.php">bar guide</a></li>
+                            <li><a href="<?php echo site_url('venue') ?>">bar guide</a></li>
                             <hr>
-                            <li><a href="artist.php">bands</a></li>
+                            <li><a href="<?php echo site_url('artist') ?>">bands</a></li>
                             <hr>
                             <li><a href="<?php echo site_url('gallery')?>">gallery</a></li>
                             <hr>

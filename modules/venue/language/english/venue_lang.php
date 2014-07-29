@@ -16,6 +16,7 @@ $lang['venue_food'] = 'Venue Food';
 $lang['food_price_range'] = 'Food Price Range';
 $lang['drink_price_range'] = 'Drink Price Range';
 $lang['created_date'] = 'Created Date';
+$lang['venue_image'] = 'Venue Image';
 $lang['status'] = 'Status';
 
 $lang['create_venue']='Create Venue';

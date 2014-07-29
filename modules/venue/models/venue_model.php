@@ -52,4 +52,9 @@ class Venue_model extends MY_Model
 		
         return $this->db->count_all_results();
     }
+	
+	public function getById($id)
+	{
+		return $this->getVenues(array('venue_id'=>$id))->row_array();
+	}
 }

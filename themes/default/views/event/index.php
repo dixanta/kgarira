@@ -10,7 +10,7 @@
                   <hr>
                   <?php foreach($events as $event){?>
                   <div class = "col-sm-4" map>
-                      <a href="<?php echo site_url('event/details/')?>/<?php echo $event['event_id'];?>">  <img src="<?php echo base_url()?>uploads/event/<?php echo $event['event_image'];?>" height="200px" width="200px">  </a>
+                      <a href="<?php echo site_url('event/'.$event['event_id'].'-'.url_title($event['event_name']))?>">  <img src="<?php echo base_url()?>uploads/event/<?php echo $event['event_image'];?>" height="200px" width="200px">  </a>
                   </div>
                   <?php }?>
                   

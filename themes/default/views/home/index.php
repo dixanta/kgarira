@@ -8,24 +8,23 @@
   <div class="col-sm-9 body">
                        <ul class="list-inline secondary-menu">
                             <?php foreach($event_types as $type){?>
-                            <li class= "body-menu"><a href="<?php site_url('home');?>?id=<?php echo $type['event_type_id']?>"><?php echo $type['event_type']?></a></li>
+                            <li class= "body-menu"><a href="<?php echo site_url('home/type/'.$type['event_type_id'].'-'.url_title($type['event_type']))?>"><?php echo $type['event_type']?></a></li>
                             <?php }?>
                         </ul>
-                            <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                             
                         <div class="bxslider">
-							 <?php foreach($events as $event){?>
+							<?php foreach($events as $event){?>
                             <div class="slide">
-                           
-                           <a href="<?php echo site_url('event/'.$event['event_id'].'-'.url_title($event['event_name']))?>">  <img style src="<?php echo base_url();?>uploads/event/thumb/<?php echo $event['event_image']?>"></a>
+                           		<a href="<?php echo site_url('event/'.$event['event_id'].'-'.url_title($event['event_name']))?>">  <img style src="<?php echo base_url();?>uploads/event/<?php echo $event['event_image']?>"></a>
                                 <div class="caption">
-                                <p>JINDABAAD<br><span>Thamel</span></p>
-                            </div>
+                                	<p><?php echo $event['event_name']?><br></p>
+                            	</div>
                             </div>
                             <?php }?>
 
                             
-		</div>
+						</div>
                         
                         <div class ="row">
                         <div class="col-sm-12">   
@@ -56,13 +55,14 @@
 
                                                   <!-- Wrapper for slides -->
                                                   <div class="carousel-inner">
-                                                   <?php $i=0;foreach ($events as $event){?> 
+                                                   <?php $i=0;foreach ($galleries as $gallery){?> 
                                                     <div <?php if($i==0){?>class="item active"<?php } else{ ?>class="item" <?php }?>>
-                                                   <img src="<?php echo base_url();?>uploads/event/<?php echo $event['event_image']; $i++;?>" style=" width: 100%;">
+                                                   <img src="<?php echo base_url();?>uploads/event/<?php echo $gallery['image_name']; $i++;?>" style=" width: 100%; height:337px">
                                                       <div class="carousel-caption">
-                                                        1st image
+                                                        <?php echo $gallery['gallery_title']?>
                                                       </div>
-                                                    </div><?php } ?>                       
+                                                    </div>
+													<?php } ?>                       
 
                                                   </div>
                                                 </div>
@@ -71,7 +71,7 @@
                                                  <p>albums</p>
                                                  </div>
                                                  <div class="full-gallery pull-right">
-                                                 <p>view full gallery</p>
+                                               <a href="<?php echo site_url('gallery/')?>">  <p>view full gallery</p></a>
                                                  </div>
                           </div>
                           </div>
@@ -82,7 +82,7 @@
                         <div class= "talako-foto ">
                                      <ul class="bxslider2">
                                      <?php foreach($galleries as $gallery){?>
-                                      <li><a href="<?php echo site_url('gallery/'.$gallery['gallery_id'].'-'.url_title($gallery['gallery_title']))?>">  <img src="<?php echo base_url()?>uploads/event/<?php echo $gallery['image_name'];?>" height="253px" width="157px">  </a></li>
+                                      <li><a href="<?php echo site_url('gallery/'.$gallery['gallery_id'].'-'.url_title($gallery['gallery_title']))?>">  <img src="<?php echo base_url()?>uploads/event/<?php echo $gallery['image_name'];?>" height="157px" width="236px">  </a></li>
                                       <?php }?>
                                     </ul>
                         </div>

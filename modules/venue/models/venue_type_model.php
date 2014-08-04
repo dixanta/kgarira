@@ -51,4 +51,5 @@ class Venue_type_model extends MY_Model
 		
         return $this->db->count_all_results();
     }
+	
 }

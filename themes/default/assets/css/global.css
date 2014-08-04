@@ -857,7 +857,8 @@
 
     .header-left {
     background: url(../images/header-left.jpg);
-    width: 383px;
+    /*width: 383px;*/
+	width: 328px;
     }
 
 .talako-foto .bx-wrapper .bx-prev {

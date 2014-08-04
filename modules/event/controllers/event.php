@@ -8,6 +8,7 @@ class Event extends Public_Controller
 		$this->load->module_model('venue','venue_model');
 		$this->load->module_model('artist','artist_model');
         $this->lang->module_load('event','event');
+		$this->load->module_model('gallery','gallery_model');
         $this->load->module_model('country','country_model');
     }
     
@@ -18,7 +19,8 @@ class Event extends Public_Controller
 		$data['view_page'] ="event/index";
 		$data['module'] = 'event';
 		$this->event_model->joins=array('VENUES','EVENT_TYPES','COUNTRIES');
-		$data['events'] = $this->event_model->getEvents()->result_array();		
+		$data['events'] = $this->event_model->getEvents()->result_array();
+		$data['galleries'] = $this->gallery_model->getGalleries(null,null,array('limit'=>3))->result_array();		
 		$data['venues'] = $this->venue_model->getVenues()->result_array();
 		$this->load->view($this->_container,$data);		
 	}
@@ -30,11 +32,16 @@ class Event extends Public_Controller
 		$data['view_page'] ="event/detail";
 		$data['module'] = 'event';
 		$this->event_model->joins=array('VENUES','EVENT_TYPES','COUNTRIES');
-		$data['event'] = $this->event_model->getById($id);
-		$data['events'] = $this->event_model->getEvents()->result_array();		
+		$event= $this->event_model->getById($id);
+		$event_type=$event['event_type_id'];
+		$data['event'] =$event;
+		$this->db->where("events.event_id <> '".$event['event_id']."'");
+		$data['events'] = $this->event_model->getEvents(array('events.event_type_id'=>$event_type))->result_array();	
+		$data['galleries'] = $this->gallery_model->getGalleries(array('event_id'=>$event['event_id']),null,array('limit'=>3))->result_array();		
 		$data['venues'] = $this->venue_model->getVenues()->result_array();
 		$data['artists'] = $this->artist_model->getArtists()->result_array();
 		$this->load->view($this->_container,$data);		
 	}
-
+	
+	
 }

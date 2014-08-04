@@ -2,10 +2,10 @@
 
 
 $lang['gallery_id'] = 'Gallery Id';
-$lang['event_id'] = 'Event Id';
+$lang['event_id'] = 'Event Name';
 $lang['gallery_title'] = 'Gallery Title';
-$lang['gallery_image_id'] = 'Gallery Image Id';
-$lang['country_code'] = 'Country Code';
+$lang['gallery_image_id'] = 'Gallery Image';
+$lang['country_code'] = 'Country';
 $lang['active'] = 'Active';
 
 $lang['create_gallery']='Create Gallery';

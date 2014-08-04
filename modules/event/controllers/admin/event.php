@@ -9,6 +9,8 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
     	parent::__construct();
         $this->load->module_model('event','event_model');
         $this->lang->module_load('event','event');
+		$this->load->module_model('event','gallery_model');
+		$this->load->module_model('event','gallery_image_model');
         $this->bep_assets->load_asset('jquery.upload'); // uncomment if image ajax upload
 		$this->bep_assets->load_asset('tinymce');
 		$this->bep_assets->load_asset('jquery.upload');	
@@ -46,7 +48,7 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
 			($params['search']['venue_id']!='')?$this->db->where('venues.venue_id',$params['search']['venue_id']):'';
 			($params['search']['promoter_id']!='')?$this->db->where('promoter_id',$params['search']['promoter_id']):'';
 			($params['search']['country_id']!='')?$this->db->like('countries.country_id',$params['search']['country_id']):'';
-			(isset($params['search']['allow_ticket_sell']))?$this->db->where('allow_ticket_sell',$params['search'][						'allow_ticket_sell']):'';
+			(isset($params['search']['allow_ticket_sell']))?$this->db->where('allow_ticket_sell',$params['se2arch'][						'allow_ticket_sell']):'';
 			(isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
 
 		}  
@@ -116,12 +118,33 @@ protected $uploadthumbpath= 'uploads/event/thumb/';
     	$id=$this->input->post('id');
 		if($id && is_array($id))
 		{
+			
         	foreach($id as $row):
+				$this->_delete_event_images($row);
 				$this->event_model->delete('EVENTS',array('event_id'=>$row));
-            endforeach;
+            	
+			endforeach;
 		}
 	}    
 
+	private function _delete_event_images($id)
+	{
+		$this->gallery_model->joins = array('GALLERY_IMAGE');
+		$gallery_ids = $this->gallery_model->getGalleries(array('event_id'=>$id))->result_array();
+		if(is_array($gallery_ids))
+		{
+			foreach($gallery_ids as $gallery_id)
+			{
+				//echo "<pre>"; print_r($gallery_id['gallery_image']);
+				@unlink('uploads/gallery/'.$gallery_id['gallery_id'].'/' . $gallery_id['gallery_image']);
+				@unlink('uploads/gallery/'.$gallery_id['gallery_id'].'/thumbs/' . $gallery_id['gallery_image']);
+				@rmdir('uploads/gallery/'.$gallery_id['gallery_id'].'/thumbs/');
+				@rmdir('uploads/gallery/'.$gallery_id['gallery_id']);
+				$this->gallery_image_model->delete('GalleryImage',array('gallery_image_id'=>$gallery_id['gallery_image_id']));
+			}
+		}
+		$this->gallery_model->delete('GALLERY',array('event_id'=>$id));
+	}
 	
 	public function save_notify()
 	{

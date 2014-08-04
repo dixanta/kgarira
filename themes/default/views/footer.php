@@ -8,12 +8,12 @@
                     
                          <ul class="list-inline">
                             <li><a href="<?php echo site_url('event')?>">GIG GUIDE</a></li>
-                            <li><a href="#">BAR GUIDE</a></li>
-                            <li><a href="#">BANDS</a></li>
-                            <li><a href="#">DJ</a></li>
+                            <li><a href="<?php echo site_url('venue')?>">BAR GUIDE</a></li>
+                            <li><a href="<?php echo site_url('artist')?>">BANDS</a></li>
+                            <?php /*?><li><a href="#">DJ</a></li><?php */?>
                             <li><a href="<?php echo site_url('gallery')?>">GALLERY</a></li>
                             <li><a href="<?php echo site_url('contact')?>">CONTACT US</a></li>
-                            <li><a href="#">ABOUT US</a></li>
+                            <li><a href="<?php echo site_url('about-us')?>">ABOUT US</a></li>
                           <hr> 
                         </ul>
                            
@@ -22,7 +22,7 @@
                                 <p>© 2014 Kgarira.com All rights reserved.</p>
                                 </div>
                                 <div class="pagoda pull-right">
-                                <p>Powered By <a href="#">PAGODA LABS</a></p>
+                                <p>Powered By <a href="http://www.pagodalabs.com" target="_blank">PAGODA LABS</a></p>
                                 </div>
                                  <div class="clearfix"></div> 
                              

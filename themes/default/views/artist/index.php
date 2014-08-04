@@ -22,7 +22,7 @@
                    <?php foreach($ars as $artist){?>
                           <div class = "image-info">  
                          
-                        <a href="<?php echo site_url('artist/detail')?>/<?php echo $artist['artist_id']?>"><img src="<?php echo base_url();?>uploads/artist/<?php echo $artist['artist_image'];?>" height="200px" width="200px" class="bar-img"></a>
+                        <a href="<?php echo site_url('artist/'.$artist['artist_id'].'-'.url_title($artist['artist_name']))?>"><img src="<?php echo base_url();?>uploads/artist/<?php echo $artist['artist_image'];?>" height="200px" width="200px" class="bar-img"></a>
                           <div class = "caption">
                           <p><?php echo $artist['artist_name']?></p>
                           </div>

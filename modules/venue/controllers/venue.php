@@ -6,7 +6,7 @@ class Venue extends Public_Controller
 	{
 		parent::__construct();
 		$this->load->module_model('venue','venue_model');
-		//$this->load->module_model('genre','genre_model');
+		$this->load->module_model('venue','venue_type_model');
 	}
 
 	function index()
@@ -16,6 +16,7 @@ class Venue extends Public_Controller
 		$data['view_page'] = 'venue/index';
 		//$data['genres']=$this->genre_model->getGenres()->result_array();
 		$data['venues']=$this->venue_model->getVenues()->result_array();
+		$data['venue_types']=$this->venue_type_model->getVenueTypes()->result_array();
 		$this->load->view($this->_container,$data);
 	}
 	
@@ -27,5 +28,16 @@ class Venue extends Public_Controller
 		$this->load->view($this->_container,$data);
 		
 	}
+	
+	function type($id)
+		{
+			$data['header'] = "Venue";
+			$data['view_page'] = 'venue/index';
+			$this->venue_model->joins=array('VENUE_TYPES');
+			$data['venue_types']=$this->venue_type_model->getVenueTypes()->result_array();
+			$data['venues']=$this->venue_model->type($id)->result_array();
+			$this->load->view($this->_container,$data);
+		}
+
 }
 

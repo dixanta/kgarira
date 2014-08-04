@@ -12,6 +12,7 @@ class Page extends Public_Controller
 	
 	public function index($id=NULL)
 	{
+		//echo $id; exit;
 		if(is_null($id))
 		{
 			redirect(site_url());
@@ -25,6 +26,7 @@ class Page extends Public_Controller
 		// Display Page
 		$data['header'] = $detail['page_title'];
 		$data['detail'] = $detail;
+		//echo "<pre>"; print_r($detail); exit;
 		$data['view_page'] =  'page/index';
 		$this->load->view($this->_container,$data);
 	}

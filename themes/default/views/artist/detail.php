@@ -54,14 +54,15 @@
                       </p>
                   <p class = "gig-event-box">upcoming events from this band</p>
                   <hr>
-                 
-                
+                  	<?php if($events !=0){ foreach($events as $event){?>
+                    	<a href="<?php echo site_url('event/details/')?>/<?php echo $event['event_id'];?>"><img src="<?php echo base_url();?>uploads/event/<?php echo $event['event_image']?>" height="150px" width="150px"></a>
+                	<?php }} else {echo "No Upcoming Events";}?>
                 </div>
                   
                   <p class = "band-gallery-box">band gallery</p>
                   <hr>
                   
-                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                  <?php /*?><div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                   <!-- Indicators -->
                                                   
                                                   <div class="carousel-inner">
@@ -79,9 +80,9 @@
                                                     </div>
                                                     </div>
                                                     
-              </div>
+              </div><?php */?>
                     <div class="full-gallery pull-right">
-                        <p>view full gallery</p>
+                        <p></p>
                     </div>
                     
                      <div class ="row">

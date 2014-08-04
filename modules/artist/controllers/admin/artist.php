@@ -41,9 +41,9 @@ protected $uploadthumbpath= 'uploads/artist/thumb/';
 		if(!empty($params['search']))
 		{
 			($params['search']['artist_name']!='')?$this->db->like('artist_name',$params['search']['artist_name']):'';
-($params['search']['contact_number']!='')?$this->db->where('contact_number',$params['search']['contact_number']):'';
-($params['search']['genre_id']!='')?$this->db->where('genre_id',$params['search']['genre_id']):'';
-(isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
+			($params['search']['contact_number']!='')?$this->db->where('contact_number',$params['search']['contact_number']):'';
+			($params['search']['genre_id']!='')?$this->db->where('genre_id',$params['search']['genre_id']):'';
+			(isset($params['search']['status']))?$this->db->where('status',$params['search']['status']):'';
 
 		}  
 

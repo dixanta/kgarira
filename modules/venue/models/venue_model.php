@@ -57,4 +57,10 @@ class Venue_model extends MY_Model
 	{
 		return $this->getVenues(array('venue_id'=>$id))->row_array();
 	}
+	
+		public function type($id)
+	{
+		return $this->getVenues(array('venues.venue_type_id'=>$id));
+	}
+	
 }

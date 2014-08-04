@@ -26,10 +26,12 @@ class Gallery extends Admin_Controller
 	public function json()
 	{
 		$this->_get_search_param();	
-		$total=$this->gallery_model->countGalleries();
+		$total=$this->gallery_model->count();
 		paging('gallery_id desc');
 		$this->_get_search_param();	
+		$this->gallery_model->joins=array('EVENTS','COUNTRY');
 		$rows=$this->gallery_model->getGalleries()->result_array();
+		
 		echo json_encode(array('total'=>$total,'rows'=>$rows));
 	}
 	
@@ -287,7 +289,7 @@ class Gallery extends Admin_Controller
 
 			$this->db->or_like('gallery_title',$q);
 		}
-		$total=$this->gallery_model->countGalleries();
+		$total=$this->gallery_model->count();
 		paging('gallery_id');
 		//$this->_get_search_param();	
 		if($q)

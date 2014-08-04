@@ -7,8 +7,8 @@
    
               <div class="col-sm-9 body">
                  <div class ="bar-top">
-                 <?php foreach($venues as $venue){?>
-                  <p class = "bar-menu"><a href="<?php echo site_url('venue/'.$venue['venue_id'].'-'.url_title($venue['venue_name']))?>"><?php echo $venue['venue_name']?></a></p><?php }?>
+                <?php foreach($venue_types as $venue_type){?>
+                  <p class = "bar-menu"><a href="<?php echo site_url('venue/type/'.$venue_type['venue_type_id'].'-'.url_title($venue_type['venue_type']))?>"> <?php echo $venue_type['venue_type']?></a></p><?php }?>
                   <div class = "bar-menu-sideko">
                   <img src="<?php echo theme_url();?>assets/images/tiles.png">
                   <img src="<?php echo theme_url();?>assets/images/list.png">

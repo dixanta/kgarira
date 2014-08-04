@@ -32,10 +32,10 @@
     <thead>
     <th data-options="field:'checkbox',checkbox:true"></th>
     <th data-options="field:'gallery_id',sortable:true" width="30"><?php echo lang('gallery_id')?></th>
-<th data-options="field:'event_id',sortable:true" width="50"><?php echo lang('event_id')?></th>
+<th data-options="field:'event_name',sortable:true" width="50"><?php echo lang('event_id')?></th>
 <th data-options="field:'gallery_title',sortable:true" width="50"><?php echo lang('gallery_title')?></th>
-<th data-options="field:'gallery_image_id',sortable:true" width="50"><?php echo lang('gallery_image_id')?></th>
-<th data-options="field:'country_code',sortable:true" width="50"><?php echo lang('country_code')?></th>
+<th data-options="field:'image_name',sortable:false,formatter:formatImage" width="50" width="50"><?php echo lang('gallery_image_id')?></th>
+<th data-options="field:'country_name',sortable:true" width="50"><?php echo lang('country_code')?></th>
 <th data-options="field:'active',sortable:true,formatter:formatStatus" width="30" align="center"><?php echo lang('active')?></th>
 
     <th field="action" width="100" formatter="getActions"><?php  echo lang('action')?></th>
@@ -87,6 +87,13 @@
 </div>
 <script language="javascript" type="text/javascript">
 	$(function(){
+		
+		<?php easyui_combobox('search_event_id','EVENT');
+			  easyui_combobox('event_id','EVENT');
+			  easyui_combobox('search_country_code','COUNTRY');
+			  easyui_combobox('country_code','COUNTRY');
+		?>
+		
 		$('#clear').click(function(){
 			$('#gallery-search-form').form('clear');
 			$('#gallery-table').datagrid({
@@ -189,6 +196,15 @@
 			$.messager.alert('Error','<?php  echo lang('edit_selection_error')?>');	
 		}
 		
+	}
+	
+	function formatImage(value)
+	{
+		if(value!='')
+		{
+			return '<img src="<?php echo base_url()?>uploads/event/thumb/' + value + '" height="50" width="50">';
+		}
+		return '';
 	}
 	
 	function save()

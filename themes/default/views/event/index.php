@@ -10,7 +10,7 @@
                   <hr>
                   <?php foreach($events as $event){?>
                   <div class = "col-sm-4" map>
-                      <a href="<?php echo site_url('event/'.$event['event_id'].'-'.url_title($event['event_name']))?>">  <img src="<?php echo base_url()?>uploads/event/<?php echo $event['event_image'];?>" height="200px" width="200px">  </a>
+                      <a href="<?php echo site_url('event/'.$event['event_id'].'-'.url_title($event['event_name']))?>"><img src="<?php echo base_url()?>uploads/event/<?php echo $event['event_image'];?>" height="200px" width="200px">  </a>
                   </div>
                   <?php }?>
                   
@@ -18,25 +18,25 @@
                   <p class = "gig-guide-gallery-box">gallery</p>
                   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                   <!-- Indicators -->
-                                                  
-                                                  <div class="carousel-inner">
-                                                    <div class="item active">
-                                                    
-                                                         <div class = "item-image-holder">
-                                                    <?php $i=0; ;foreach($events as $event){ ?>
-                                                            <div <?php if($i==0){ ?>class = "item-image-left" height="450px"<?php $i++;;} 
-															else{?>class="item-image-right"<?php }?>>
-                                                            <img src="<?php echo base_url()?>uploads/event/<?php echo $event['event_image']?>" >
-                                                            </div>
-                                                            
-                                                    <?php } ?>      
-                                                          </div>                                                    
-                                                    </div>
-                                                    </div>
+                      
+                      <div class="carousel-inner">
+                          <div class="item active">
+                            
+                                 <div class = "item-image-holder">
+                           			 <?php $i=0;foreach($galleries as $gallery){ ?>
+                                        <div <?php if($i==0){ ?>class = "item-image-left" height="450px"<?php $i++;;} 
+                                        else{?>class="item-image-right"<?php }?>>
+                                        <a href="<?php echo site_url('/gallery/detail')?>/<?php echo $gallery['gallery_id']?> " ><img src="<?php echo base_url()?>uploads/event/<?php echo $gallery['image_name']?>" ></a>
+                                        </div>
+                                    
+                           			 <?php } ?>      
+                                </div>                                                    
+                          </div>
+                      </div>
                                                     
               </div>
                     <div class="full-gallery pull-right">
-                        <p>view full gallery</p>
+                        <a href="<?php echo site_url()?>/gallery"><p>view full gallery</p></a>
                     </div>
                     
                      <div class ="row">
@@ -52,6 +52,7 @@
                             </div>
                             </div>
 
-            </div>
+		</div>
+        </div>
         </div>
     </div>  <!--Content Wrapper-->       

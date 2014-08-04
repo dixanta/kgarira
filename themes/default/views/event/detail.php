@@ -20,7 +20,7 @@
                           </div>
                        <div class="row">  
                            <div class="col-sm-12">
-                              <p class="gig-band">1947 A.D</p>
+                              <p class="gig-band"><?php echo $event['event_name']?></p>
                                 <div class ="gig-guide-submit">
                                   <input type="submit" value="Add to Wish List" name="wish_list ">
                                   <input type="submit" value="Buy Tickets" name="buy_tickets ">
@@ -45,7 +45,7 @@
                   <hr>
                   
                   <?php foreach($events as $event){?>
-                  <a href="<?php echo site_url('event/details/')?>/<?php echo $event['event_id'];?>">  <img src="<?php echo base_url()?>uploads/event/thumb/<?php echo $event['event_image']?>" class ="artist-img-event"></a>
+                  <a href="<?php echo site_url('event/'.$event['event_id'].'-'.url_title($event['event_name']))?>">  <img src="<?php echo base_url()?>uploads/event/<?php echo $event['event_image']?>" class ="artist-img-event" width="190px" height="146px"></a>
                   <?php }?>
                   
                   <p class = "gig-guide-gallery-box">gallery</p>
@@ -54,24 +54,24 @@
                   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                   <!-- Indicators -->
                                                   
-                                                   <div class="carousel-inner">
-                                                    <div class="item active">
-                                                    
-                                                         <div class = "item-image-holder">
-                                                    <?php $i=0; $j=0;foreach($events as $event){ ?>
-                                                            <div <?php if($i==0){ if($j>=3){break;}?>class = "item-image-left"<?php $i++;$j++;} 
-															else{?>class="item-image-right"<?php }?>>
-                                                            <img src="<?php echo base_url()?>uploads/event/<?php echo $event['event_image']?>" >
-                                                            </div>
-                                                            
-                                                    <?php } ?>      
-                                                          </div>                                                    
-                                                    </div>
-                                                    </div>
+                       <div class="carousel-inner">
+                        <div class="item active">
+                        
+                             <div class = "item-image-holder">
+                        <?php $i=0;foreach($galleries as $gallery){ ?>
+                                <div <?php if($i==0){?>class = "item-image-left"<?php $i++;} 
+                                else{?>class="item-image-right"<?php }?>>
+                               <a href="<?php echo site_url('/gallery/detail')?>/<?php echo $gallery['gallery_id']?> " ><img src="<?php echo base_url()?>uploads/event/<?php echo $gallery['image_name']?>" ></a>
+                                </div>
+                                
+                        <?php } ?>      
+                              </div>                                                    
+                        </div>
+                        </div>
                                                     
               </div>
                     <div class="full-gallery pull-right">
-                        <p>view full gallery</p>
+                       <a href="<?php echo site_url()?>/gallery"> <p>view full gallery</p></a>
                     </div>
                     
                      <div class ="row">
@@ -90,3 +90,14 @@
             </div>
         </div>
     </div>  <!--Content Wrapper-->       
+  
+  <style>
+  .item-image-right img{
+		width: 278px;
+		height: 176px;	  
+	 }
+	.item-image-left img
+	{
+		height:367px;
+	}
+  </style>

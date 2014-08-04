@@ -118,7 +118,7 @@
 		       </tr><tr class="ticket-row">
 		              
                       <td width="34%" ><label><?php echo lang('paid_tickets')?>:</label></td>
-					  <td width="66%"><input name="paid_tickets" id="paid_tickets" class="easyui-numberbox" required="true"></td>
+					  <td width="66%"><input name="paid_tickets" id="paid_tickets" class="easyui-numberbox" ></td>
                </tr>
                <tr>
 		              <td width="34%" ><label><?php echo lang('status')?>:</label></td>

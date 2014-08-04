@@ -91,7 +91,7 @@
                             <hr>
                             <li><a href="<?php echo site_url('contact')?>">contact us</a></li>
                             <hr>
-                            <li><a href="about_k_garira.php">about us</a></li>
+                            <li><a href="<?php echo site_url('about-us')?>">about us</a></li>
                             </ul>
                             
                             

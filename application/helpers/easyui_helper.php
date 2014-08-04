@@ -11,6 +11,10 @@ function easyui_settings($key)
 								'valueField'=>'country_id',
 								'textField'=>'country_name'
 							);
+	$combo_settings['EVENT_TYPE']=array('url'=>site_url('event/admin/type/combo_json'),
+								'valueField'=>'event_type_id',
+								'textField'=>'event_type'
+							);						
 							
 	$combo_settings['VENUE_TYPE']=array('url'=>site_url('venue/admin/type/combo_json'),
 									'valueField'=>'venue_type_id',

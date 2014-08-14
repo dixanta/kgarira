@@ -7,9 +7,9 @@ class Event extends Public_Controller
         $this->load->module_model('event','event_model');
 		$this->load->module_model('venue','venue_model');
 		$this->load->module_model('artist','artist_model');
+		$this->load->module_model('event','event_type_model');
         $this->lang->module_load('event','event');
 		$this->load->module_model('gallery','gallery_model');
-        $this->load->module_model('country','country_model');
     }
     
 	public function index()
@@ -18,10 +18,9 @@ class Event extends Public_Controller
 		$data['header'] = 'event';
 		$data['view_page'] ="event/index";
 		$data['module'] = 'event';
-		$this->event_model->joins=array('VENUES','EVENT_TYPES','COUNTRIES');
-		$data['events'] = $this->event_model->getEvents()->result_array();
-		$data['galleries'] = $this->gallery_model->getGalleries(null,null,array('limit'=>3))->result_array();		
-		$data['venues'] = $this->venue_model->getVenues()->result_array();
+		$this->event_model->joins=array('EVENT_TYPES');
+		$data['events'] = $this->event_model->getEvents(null,'event_start_date desc')->result_array();
+		$data['event_types'] = $this->event_type_model->getEventTypes()->result_array();
 		$this->load->view($this->_container,$data);		
 	}
 	
@@ -43,5 +42,16 @@ class Event extends Public_Controller
 		$this->load->view($this->_container,$data);		
 	}
 	
+	function type($id)
+	{
+		$data['header'] = "Events";
+		$data['view_page'] = 'event/index';
+		$data['events'] = $this->event_model->getEvents()->result_array();
+		 $data['galleries'] = $this->gallery_model->getGalleries()->result_array();
+		//$this->artist_model->joins=array('EVENT_TYPES');
+		$data['event_types'] = $this->event_type_model->getEventTypes()->result_array();
+		$data['events']=$this->event_model->getEvents(array('event_type_id'=>$id))->result_array();
+		$this->load->view($this->_container,$data);
+	}
 	
 }

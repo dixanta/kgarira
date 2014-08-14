@@ -149,7 +149,7 @@ class Auth_form_processing
 		{
 			// We we have a valid user
 			$user = $result['query']->row();
-
+			
 			// Check if the users account hasn't been activated yet
 			if ( $user->active == 0 )
 			{
@@ -173,12 +173,18 @@ class Auth_form_processing
 			}
 
 			flashMsg('success',$this->CI->lang->line('userlib_login_successfull'));
-
+			$logged_id = $this->CI->user_model->getUsers(array('users.id'=>$user->id))->row_array();
+			//print_r($logged_id); exit;
 			// Redirect to requested page
-			if(FALSE !== ($page = $this->CI->session->flashdata('requested_page')))
+			if($logged_id['group'] == 'Promotors')
+			{
+				redirect(site_url('account/dashboard'));
+			}
+			else if(FALSE !== ($page = $this->CI->session->flashdata('requested_page')))
 			{
 				redirect($page,'location');
 			}
+
 
 			// If user has access to control panel
 			if ( check('Control Panel',NULL,FALSE))

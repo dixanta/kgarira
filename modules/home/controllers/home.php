@@ -7,8 +7,7 @@ class Home extends Public_Controller
 		parent::__construct();
         $this->load->module_model('event','event_type_model');
         $this->load->module_model('event','event_model');
-		 $this->load->module_model('venue','venue_model');
-        $this->load->module_model('event','gallery_model');
+		$this->load->module_model('event','gallery_model');
         $this->lang->module_load('event','event');
 	}
 
@@ -16,10 +15,9 @@ class Home extends Public_Controller
 	{
 	    $id =  $this->_get_parameter();
         $data['header'] = "Home";
-        $data['events'] = $this->event_model->getEvents()->result_array();
-        $data['galleries'] = $this->gallery_model->getGalleries()->result_array();
+        $data['events'] = $this->event_model->getEvents(null,'event_start_date desc')->result_array();
+        $data['galleries'] = $this->gallery_model->getGalleries(null,'gallery_id desc')->result_array();
 		$this->event_model->joins=array('EVENT_TYPES');
-		$data['venues'] = $this->event_type_model->getEventTypes()->result_array();
 		$data['view_page'] = 'home/index';
         $data['event_types'] = $this->event_type_model->getEventTypes()->result_array();
 		$this->load->view($this->_container,$data);

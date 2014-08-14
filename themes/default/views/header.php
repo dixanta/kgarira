@@ -54,10 +54,14 @@
                                <input type="text"  placeholder="Search Artists, Bands, Gigs, Bars, Clubs">
                                </div>
                          <div class="main-menu menu">
-                    
                          <ul class="list-inline">
-                         	<li><a href="<?php echo site_url('auth/login');?>">Login</a></li>
-                            <li><a href="<?php echo site_url('auth/register');?>">Sign In</a></li>
+                         	<?php if(is_user()){?>
+                            <li><a href="<?php echo site_url('auth/logout')?>">Logout</a></li>
+                            <?php } else{?>
+                            
+                            <li><a href="<?php echo site_url('auth/login')?>">Login</a></li>
+                            <li><a href="<?php echo site_url('auth/register')?>">Sign In</a></li>
+                            <?php }?>
                             <li><a href="#">Subscribe</a></li>
                         </ul>
                           
@@ -83,9 +87,9 @@
                             <ul>
                             <li><a href="<?php echo site_url('event')?>">GIG GUIDE</a></li>
                             <hr>
-                            <li><a href="<?php echo site_url('venue') ?>">bar guide</a></li>
+                            <li><a href="<?php echo site_url('venue')?>">bar guide</a></li>
                             <hr>
-                            <li><a href="<?php echo site_url('artist') ?>">bands</a></li>
+                            <li><a href="<?php echo site_url('artist')?>">bands</a></li>
                             <hr>
                             <li><a href="<?php echo site_url('gallery')?>">gallery</a></li>
                             <hr>

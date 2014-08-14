@@ -16,7 +16,7 @@
                         <div class="bxslider">
 							<?php foreach($events as $event){?>
                             <div class="slide">
-                           		<a href="<?php echo site_url('event/'.$event['event_id'].'-'.url_title($event['event_name']))?>">  <img style src="<?php echo base_url();?>uploads/event/<?php echo $event['event_image']?>"></a>
+                           		<a href="<?php echo site_url('event/'.$event['event_id'].'-'.url_title($event['event_name']))?>">  <img style src="<?php echo base_url();?>uploads/event/<?php echo $event['event_image']?>" height="193px" width="154px"></a>
                                 <div class="caption">
                                 	<p><?php echo $event['event_name']?><br></p>
                             	</div>
@@ -57,7 +57,7 @@
                                                   <div class="carousel-inner">
                                                    <?php $i=0;foreach ($galleries as $gallery){?> 
                                                     <div <?php if($i==0){?>class="item active"<?php } else{ ?>class="item" <?php }?>>
-                                                   <img src="<?php echo base_url();?>uploads/event/<?php echo $gallery['image_name']; $i++;?>" style=" width: 100%; height:337px">
+                                                   <a href="<?php echo site_url('gallery/'.$gallery['gallery_id'].'-'.url_title($gallery['gallery_title']))?>"><img src="<?php echo base_url();?>uploads/event/<?php echo $gallery['image_name']; $i++;?>" style=" width: 100%; height:337px"></a>
                                                       <div class="carousel-caption">
                                                         <?php echo $gallery['gallery_title']?>
                                                       </div>

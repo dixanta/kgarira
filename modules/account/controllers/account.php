@@ -92,6 +92,12 @@ class Account extends Member_Controller
 	}
 	
 
-	
+	public function dashboard()
+	{
+		$data['header']="Dashboard";
+		$data['view_page'] =  'account/dashboard';
+		$data['module'] = 'account';
+		$this->load->view($this->_container,$data);
+	}
 	
 }
